@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
-path = os.getcwd()   + '/../'
+path = os.getcwd()  # + '/../'
 
 # FLAGS = tf.app.flags.FLAGS
 
@@ -150,13 +150,13 @@ class Evaluater:
                                           initializer=tf.truncated_normal_initializer(stddev=0.1))
                 biases = tf.get_variable('biases', [neural_num], initializer=tf.constant_initializer(0.0))
                 if hplist[2] == 'relu':
-                    local3 = tf.nn.relu(self.batch_norm(tf.matmul(inputs, weights) + biases, name=scope.name))
+                    local3 = tf.nn.relu(self.batch_norm(tf.matmul(inputs, weights) + biases), name=scope.name)
                 elif hplist[2] == 'tanh':
-                    local3 = tf.tanh(self.batch_norm(tf.matmul(inputs, weights) + biases, name=scope.name))
+                    local3 = tf.tanh(self.batch_norm(tf.matmul(inputs, weights) + biases), name=scope.name)
                 elif hplist[2] == 'sigmoid':
-                    local3 = tf.sigmoid(self.batch_norm(tf.matmul(inputs, weights) + biases, name=scope.name))
+                    local3 = tf.sigmoid(self.batch_norm(tf.matmul(inputs, weights) + biases), name=scope.name)
                 elif hplist[2] == 'identity':
-                    local3 = tf.identity(self.batch_norm(tf.matmul(inputs, weights) + biases, name=scope.name))
+                    local3 = tf.identity(self.batch_norm(tf.matmul(inputs, weights) + biases), name=scope.name)
             inputs = local3
             i += 1
         return inputs
@@ -189,7 +189,7 @@ class Evaluater:
             # print('Evaluater:right now we are processing node %d'%node,', ',cellist[node])
             if cellist[node][0] == 'conv':
                 layer = self._makeconv(inputs[node], cellist[node], node)
-                layer = tf.nn.lrn(layer, 4, bias=1.0, alpha=0.001 / 9.0, beta=0.75, name='norm2')
+                # layer = tf.nn.lrn(layer, 4, bias=1.0, alpha=0.001 / 9.0, beta=0.75, name='norm2')
             elif cellist[node][0] == 'pooling':
                 layer = self._makepool(inputs[node], cellist[node])
             elif cellist[node][0] == 'dense':
@@ -441,9 +441,12 @@ class Evaluater:
         return precision, time.time() - start_time
 
     def add_data(self, add_num=0):
-        self.train_num += add_num
-        if self.train_num > 50000:
+
+        if self.train_num + add_num > 50000:
+            add_num = 50000 - self.train_num
             self.train_num = 50000
+        else:
+            self.train_num += add_num
         # print('************A NEW ROUND************')
         self.network_num = 0
         self.max_steps = int(self.train_num / batch_size)  # *50
@@ -456,16 +459,6 @@ class Evaluater:
                 cata_index = [i for i in self.leftindex if self.dataset.label[i] == cat]
                 selected = random.sample(cata_index, int(add_num / catag))
                 self.trainindex += selected
-                '''if self.dtrain.feature == []:
-                    self.dtrain.feature = self.dataset.feature[selected]
-                    self.dtrain.label = [cat for i in range(int(add_num / catag))]
-                else:
-                    self.dtrain.feature = np.concatenate([self.dtrain.feature, self.dataset.feature[selected]], axis=0)
-                    self.dtrain.label = np.concatenate([self.dtrain.label, [cat for i in range(int(add_num / catag))]],
-                                                       axis=0)
-                skip = [i for i in range(num_train_samples) if not (i in selected)]
-                self.dataset.feature = self.dataset.feature[skip]
-                self.dataset.label = self.dataset.label[skip]'''
                 self.leftindex = [i for i in self.leftindex if not (i in selected)]
                 random.shuffle(self.trainindex)
         return 0
@@ -592,11 +585,13 @@ if __name__ == '__main__':
          ('pooling', 'max', 2), ('conv', 512, 3, 'relu'), ('conv', 512, 3, 'relu'),
          ('conv', 512, 3, 'relu'), ('pooling', 'max', 2), ('dense', [4096, 4096, 1000], 'relu')]]
     network_list = []
-    g = []
+
     # network_list.append(lenet)
     x, y = np.meshgrid(subsample_ratio_range, epoch_range)
     network_list.append(vgg16)
     for network in network_list:
+        eval = Evaluater()
+        g = []
         for r in subsample_ratio_range:
 
             eval.add_data(int(NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN * r))
@@ -604,11 +599,12 @@ if __name__ == '__main__':
             g.append(a)
         print(np.shape(g))
         g = np.array(g)
-        mpl.rcParams['legend.fontsize'] = 10
-        fig = plt.figure()
-        ax = fig.add_subplot(111, projection='3d')
-        ax.plot_wireframe(x, y, g, rstride=10, cstride=10)
-        plt.show()
+        np.savetxt("2res.txt", g, "%.3f")
+        # mpl.rcParams['legend.fontsize'] = 10
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111, projection='3d')
+        # ax.plot_wireframe(x, y, g, rstride=10, cstride=10)
+        # plt.show()
     # eval.add_data(50000)
     # tf_network = NetworkUnit()
     # tf_network.graph_part = [[1], [2], [3], [4], []]
