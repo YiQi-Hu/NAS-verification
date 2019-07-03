@@ -27,14 +27,14 @@ NUM_EXAMPLES_PER_EPOCH_FOR_EVAL = 10000
 # Constants describing the training process.
 INITIAL_LEARNING_RATE = 0.001  # Initial learning rate.
 LEARNING_RATE_DECAY_FACTOR = 0.1
+NUM_EPOCHS_PER_DECAY = 350.0
 MOVING_AVERAGE_DECAY = 0.99
 REGULARAZTION_RATE = 0.0001
 num_examples = 10000
 batch_size = 128
+epoch = 1
 log_device_placement = False
-train_dir = path + 'train_dir'
-eval_dir = '/eval_dir'
-checkpoint_dir = path + 'train_dir'
+
 # If a model is trained with multiple GPU's prefix all Op names with tower_name
 # to differentiate the operations. Note that this prefix is removed from the
 # names of the summaries when visualizing a model.
@@ -63,6 +63,7 @@ class Evaluator:
         self.train_num = 0
         self.network_num = 0
         self.max_steps = 60000
+        self.epoch = epoch
 
     def _variable_on_cpu(self, name, shape, initializer):
         """Helper to create a Variable stored on CPU memory.
@@ -141,8 +142,10 @@ class Evaluator:
         inputs = tf.reshape(inputs, [batch_size, -1])
         for neural_num in hplist[1]:
             with tf.variable_scope('dense' + str(i)) as scope:
-                weights = tf.get_variable('weights', shape=[inputs.shape[-1], neural_num],
-                                          initializer=tf.truncated_normal_initializer(stddev=0.1))
+                weight = tf.get_variable('weights', shape=[inputs.shape[-1], neural_num],
+                                         initializer=tf.truncated_normal_initializer(stddev=0.1))
+                weights = tf.multiply(tf.nn.l2_loss(weight), 0.004, name='weight_loss')
+                tf.add_to_collection('losses', weights)
                 biases = tf.get_variable('biases', [neural_num], initializer=tf.constant_initializer(0.0))
                 if hplist[2] == 'relu':
                     local3 = tf.nn.relu(tf.matmul(inputs, weights) + biases, name=scope.name)
@@ -262,23 +265,20 @@ class Evaluator:
             train_op = opt.apply_gradients(grads)
         return train_op, loss, top_k_op, images, labels
 
-    def train(self, graph_part, cellist):
-        with tf.Graph().as_default():
+    def train(self, graph_part, cellist, global_step):
             images = tf.placeholder(tf.float32, [128, 32, 32, 3])
             labels = tf.placeholder(tf.int32, [128, ])
 
             y = self._inference(images, graph_part, cellist)
 
-            global_steps = tf.Variable(0, trainable=False)
-            variable_average = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY, global_steps)
-            variable_average_op = variable_average.apply(
-                tf.trainable_variables())
+            variable_average = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY, global_step)
+            variable_average_op = variable_average.apply(tf.trainable_variables())
             labels = tf.cast(labels, tf.int64)
             top_k_op = tf.nn.in_top_k(y, labels, 1)  # Calculate predictions
             cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=y, labels=labels)
             cross_entropy_mean = tf.reduce_mean(cross_entropy)
             tf.add_to_collection('losses', cross_entropy_mean)
-            decay_steps = int(num_batches_per_epoch * NUM_EPOCHS_PER_DECAY)
+            decay_steps = int(NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN / batch_size * NUM_EPOCHS_PER_DECAY)
 
             # Decay the learning rate exponentially based on the number of steps.
             lr = tf.train.exponential_decay(INITIAL_LEARNING_RATE,
@@ -286,10 +286,10 @@ class Evaluator:
                                             decay_steps,
                                             LEARNING_RATE_DECAY_FACTOR,
                                             staircase=True)
-            loss_averages_op = _add_loss_summaries(total_loss)
+
 
             loss = cross_entropy_mean + tf.add_n(tf.get_collection('losses'))
-            train_step = tf.train.AdamOptimizer(1e-3).minimize(loss, global_step=global_steps)
+            train_step = tf.train.AdamOptimizer(lr).minimize(loss, global_step=global_step)
 
             with tf.control_dependencies([train_step, variable_average_op]):
                 # with tf.control_dependencies([train_step]):
@@ -298,7 +298,6 @@ class Evaluator:
             return train_op, loss, top_k_op, images, labels
 
     def add_data(self, add_num=0):
-
         if self.train_num + add_num > 50000:
             add_num = 50000 - self.train_num
             self.train_num = 50000
@@ -306,13 +305,12 @@ class Evaluator:
             self.train_num += add_num
         # print('************A NEW ROUND************')
         self.network_num = 0
-        self.max_steps = int(self.train_num / batch_size)  # *50
+        self.max_steps = int(self.train_num / batch_size) * self.epoch
 
         # print('Evaluater: Adding data')
         if add_num:
             catag = 10
             for cat in range(catag):
-                # num_train_samples = self.dataset.label.shape[0]
                 cata_index = [i for i in self.leftindex if self.dataset.label[i] == cat]
                 selected = random.sample(cata_index, int(add_num / catag))
                 self.trainindex += selected
@@ -362,7 +360,8 @@ class Evaluator:
         precision_list = []
         tf.reset_default_graph()
         with tf.Graph().as_default():
-            train_op, loss, top_k_op, images, labels = self.train(graph_part, cellist)
+            global_step = tf.Variable(0, trainable=False)
+            train_op, loss, top_k_op, images, labels = self.train(graph_part, cellist, global_step)
 
             sess = tf.InteractiveSession()
 
@@ -371,7 +370,6 @@ class Evaluator:
             one_epoch = int(self.train_num / batch_size)
             max_steps = epoch * one_epoch
             num_iter = int(math.ceil(num_examples / batch_size)) - 1
-            true_count = 0  # Counts the number of correct predictions.
             total_sample_count = num_iter * batch_size
             for i in range(max_steps):
                 st = (i * batch_size) % self.train_num
