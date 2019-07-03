@@ -26,6 +26,7 @@ NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN = 50000
 NUM_EXAMPLES_PER_EPOCH_FOR_EVAL = 10000
 # Constants describing the training process.
 INITIAL_LEARNING_RATE = 0.001  # Initial learning rate.
+LEARNING_RATE_DECAY_FACTOR = 0.1
 MOVING_AVERAGE_DECAY = 0.99
 REGULARAZTION_RATE = 0.0001
 num_examples = 10000
@@ -41,7 +42,7 @@ TOWER_NAME = 'tower'
 num_gpu = 2
 
 
-class Evaluater:
+class Evaluator:
     def __init__(self):
 
         self.log = "****************"
@@ -53,6 +54,7 @@ class Evaluater:
         data_dir = os.path.join(path, 'cifar-10-batches-bin')
         self.dvalid.feature, self.dvalid.label = self._load_batch(os.path.join(data_dir, 'test_batch.bin'))
         self.dataset.feature, self.dataset.label = self._load_data(data_dir)
+        self.dvalid.feature, self.dataset.feature = self.data_preprocessing(self.dvalid.feature, self.dataset.feature)
         self.leftindex = range(self.dataset.label.shape[0])
         ind = list(range(10000))
         random.shuffle(ind)
@@ -258,41 +260,10 @@ class Evaluater:
                             tower_grads.append(grads)
             grads = self.__average_gradients(tower_grads)
             train_op = opt.apply_gradients(grads)
-
-            # with tf.Session() as sess:
-            #     sess.run(tf.global_variables_initializer())
-            #     for i in range(self.max_steps):
-            #         st = (i * batch_size) % self.train_num
-            #         end = ((i + 1) * batch_size) % self.train_num
-            #         if end < st:
-            #             end = st + 128
-            #             if end > self.train_num:
-            #                 st = 0
-            #                 end = 128
-            #         batch_index = self.trainindex[st:end]
-            #         _, loss_value = sess.run([train_op, loss]
-            #                                  , feed_dict={images: self.dataset.feature[batch_index],
-            #                                               labels: self.dataset.label[batch_index]})
-            #         if i % 50 == 0 or i == self.max_steps - 1:
-            #             print("After %d training steps, loss on training"
-            #                   "batch is %f" % (i, loss_value))
-            #     '''print("Done")
-            #     print("Testing Accuracy:",
-            #           np.mean([sess.run(accuracy, feed_dict={X: mnist.test.images[i:i + batch_size],
-            #                                                  Y: mnist.test.labels[i:i + batch_size]}) for i in
-            #                    range(0, len(mnist.test.images), batch_size)]))'''
         return train_op, loss, top_k_op, images, labels
 
     def train(self, graph_part, cellist):
         with tf.Graph().as_default():
-            # Get images and labels.
-            # input_queue = tf.train.slice_input_producer(
-            #     [self.dataset.feature[self.trainindex], self.dataset.label[self.trainindex]], shuffle=True)
-            # input_queue=tf.image.per_image_standardization(input_queue)
-            # images, trainlabel = tf.train.batch(input_queue, batch_size=batch_size, num_threads=16, capacity=500,
-            #                                     allow_smaller_final_batch=False)
-            # images, labels = inputs(eval_data=False, data_dir=os.path.join(path, 'cifar-10-batches-bin'),
-            #                                       batch_size=batch_size,NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN=self.train_num)
             images = tf.placeholder(tf.float32, [128, 32, 32, 3])
             labels = tf.placeholder(tf.int32, [128, ])
 
@@ -307,6 +278,15 @@ class Evaluater:
             cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=y, labels=labels)
             cross_entropy_mean = tf.reduce_mean(cross_entropy)
             tf.add_to_collection('losses', cross_entropy_mean)
+            decay_steps = int(num_batches_per_epoch * NUM_EPOCHS_PER_DECAY)
+
+            # Decay the learning rate exponentially based on the number of steps.
+            lr = tf.train.exponential_decay(INITIAL_LEARNING_RATE,
+                                            global_step,
+                                            decay_steps,
+                                            LEARNING_RATE_DECAY_FACTOR,
+                                            staircase=True)
+            loss_averages_op = _add_loss_summaries(total_loss)
 
             loss = cross_entropy_mean + tf.add_n(tf.get_collection('losses'))
             train_step = tf.train.AdamOptimizer(1e-3).minimize(loss, global_step=global_steps)
@@ -355,9 +335,9 @@ class Evaluater:
         labels = labels_images[0].reshape(num)
         labels = np.int64(labels)
         images = labels_images[1].reshape(num, 32, 32, 3)
-        images_mean = np.mean(images, axis=(1, 2, 3)).reshape((-1, 1, 1, 1))
-        stddev = np.std(images, axis=(1, 2, 3)).reshape((-1, 1, 1, 1))
-        images = (images - images_mean) / stddev
+        # images_mean = np.mean(images, axis=(1, 2, 3)).reshape((-1, 1, 1, 1))
+        # stddev = np.std(images, axis=(1, 2, 3)).reshape((-1, 1, 1, 1))
+        # images = (images - images_mean) / stddev
         return images, labels
 
     def _load_data(self, ROOT):
@@ -382,25 +362,6 @@ class Evaluater:
         precision_list = []
         tf.reset_default_graph()
         with tf.Graph().as_default():
-            # images = tf.placeholder(tf.float32, [128, 32, 32, 3])
-            # labels = tf.placeholder(tf.int32, [128, ])
-            #
-            # y = self._inference(images, graph_part, cellist)
-            #
-            # global_steps = tf.Variable(0, trainable=False)
-            # variable_average = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY, global_steps)
-            # variable_average_op = variable_average.apply(tf.trainable_variables())
-            # labels = tf.cast(labels, tf.int64)
-            # top_k_op = tf.nn.in_top_k(y, labels, 1)  # Calculate predictions
-            # cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=y, labels=labels)
-            # cross_entropy_mean = tf.reduce_mean(cross_entropy)
-            # tf.add_to_collection('losses', cross_entropy_mean)
-            #
-            # loss = cross_entropy_mean + tf.add_n(tf.get_collection('losses'))
-            # train_step = tf.train.AdamOptimizer(1e-3).minimize(loss, global_step=global_steps)
-            #
-            # with tf.control_dependencies([train_step, variable_average_op]):
-            #     train_op = tf.no_op(name='train')
             train_op, loss, top_k_op, images, labels = self.train(graph_part, cellist)
 
             sess = tf.InteractiveSession()
@@ -441,6 +402,59 @@ class Evaluater:
 
             return precision_list, epoch
 
+    def _random_crop(self, batch, crop_shape, padding=None):
+        oshape = np.shape(batch[0])
+
+        if padding:
+            oshape = (oshape[0] + 2 * padding, oshape[1] + 2 * padding)
+        new_batch = []
+        npad = ((padding, padding), (padding, padding), (0, 0))
+        for i in range(len(batch)):
+            new_batch.append(batch[i])
+            if padding:
+                new_batch[i] = np.lib.pad(batch[i], pad_width=npad,
+                                          mode='constant', constant_values=0)
+            nh = random.randint(0, oshape[0] - crop_shape[0])
+            nw = random.randint(0, oshape[1] - crop_shape[1])
+            new_batch[i] = new_batch[i][nh:nh + crop_shape[0],
+                           nw:nw + crop_shape[1]]
+        return new_batch
+
+    def _random_flip_leftright(self, batch):
+        for i in range(len(batch)):
+            if bool(random.getrandbits(1)):
+                batch[i] = np.fliplr(batch[i])
+        return batch
+
+    def data_preprocessing(self, x_train, x_test):
+
+        x_train = x_train.astype('float32')
+        x_test = x_test.astype('float32')
+
+        x_train[:, :, :, 0] = (x_train[:, :, :, 0] - np.mean(x_train[:, :, :, 0])) / np.std(x_train[:, :, :, 0])
+        x_train[:, :, :, 1] = (x_train[:, :, :, 1] - np.mean(x_train[:, :, :, 1])) / np.std(x_train[:, :, :, 1])
+        x_train[:, :, :, 2] = (x_train[:, :, :, 2] - np.mean(x_train[:, :, :, 2])) / np.std(x_train[:, :, :, 2])
+        x_train = self._random_flip_leftright(x_train)
+        x_train = self._random_crop(x_train, [32, 32], 4)
+
+        x_test[:, :, :, 0] = (x_test[:, :, :, 0] - np.mean(x_test[:, :, :, 0])) / np.std(x_test[:, :, :, 0])
+        x_test[:, :, :, 1] = (x_test[:, :, :, 1] - np.mean(x_test[:, :, :, 1])) / np.std(x_test[:, :, :, 1])
+        x_test[:, :, :, 2] = (x_test[:, :, :, 2] - np.mean(x_test[:, :, :, 2])) / np.std(x_test[:, :, :, 2])
+        x_test = self._random_flip_leftright(x_test)
+        x_test = self._random_crop(x_test, [32, 32], 4)
+
+        return x_train, x_test
+
+    def cutout(self, x):
+        cutout_size = 0
+        for k in range(x.shape[0]):
+            s = random.randint(0, 32 - cutout_size)
+            for i in range(cutout_size):
+                for j in range(cutout_size):
+                    for channel in range(3):
+                        x[k, s + i, s + j, channel] = 0
+        return x
+
 
 if __name__ == '__main__':
     subsample_ratio_range = np.arange(0.05, 1, 0.05)
@@ -474,7 +488,7 @@ if __name__ == '__main__':
     # network_list.append(vgg16)
 
     for network in network_list:
-        eval = Evaluater()
+        eval = Evaluator()
         g = []
         for r in subsample_ratio_range:
             eval.add_data(int(NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN * r))
@@ -483,19 +497,3 @@ if __name__ == '__main__':
         print(np.shape(g))
         g = np.array(g)
         np.savetxt("2res.txt", g, "%.3f")
-        # mpl.rcParams['legend.fontsize'] = 10
-        # fig = plt.figure()
-        # ax = fig.add_subplot(111, projection='3d')
-        # ax.plot_wireframe(x, y, g, rstride=10, cstride=10)
-        # plt.show()
-    # eval.add_data(50000)
-    # tf_network = NetworkUnit()
-    # tf_network.graph_part = [[1], [2], [3], [4], []]
-    # cellist = [('conv', 64, 5, 'relu'), ('pooling', 'max', 3), ('conv', 64, 5, 'relu'), ('pooling', 'max', 3),
-    #            ('dense', [384, 192], 'relu')]
-    # # cellist=[('conv', 128, 1, 'relu'), ('conv', 32, 1, 'relu'), ('conv', 256, 1, 'relu'), ('pooling', 'max', 2), ('pooling', 'global', 3), ('conv', 32, 1, 'relu')]
-    # # cellist=[('pooling', 'global', 2), ('pooling', 'max', 3), ('conv', 21, 32, 'leakyrelu'), ('conv', 16, 32, 'leakyrelu'), ('pooling', 'max', 3), ('conv', 16, 32, 'leakyrelu')]
-    # tf_network.cell_list = [cellist]
-    # e = eval.evaluate(tf_network)
-    # # e=eval.train(network.graph_part,cellist)
-    # print(e)

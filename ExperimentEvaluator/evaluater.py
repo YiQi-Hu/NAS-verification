@@ -339,63 +339,7 @@ class Evaluater:
 
         # try:
         # precision, time_cost = self.train(network.graph_part, cellist, network_index, start_time)  # start training
-        '''except Exception as err: 
-            print(err)
-            return -1
-        """Eval"""
-        # print('Evaluater:start evaluating')
-        with tf.Graph().as_default():
-            # if True:
-            evatime = time.time()
-            # input_queue = tf.train.slice_input_producer([self.dvalid.feature, self.dvalid.label], shuffle=True)
-            # images, labels = tf.train.batch(input_queue, batch_size=batch_size, num_threads=16, capacity=500,
-            #                               allow_smaller_final_batch=False)
-            # images, labels = inputs(eval_data=True,data_dir=os.path.join(path, 'cifar-10-batches-bin'),batch_size=batch_size)
-            images = tf.placeholder(tf.float32, [128, 32, 32, 3])
-            labels = tf.placeholder(tf.int32, [128, ])
 
-            logits = self._inference(images, network.graph_part, cellist)  # ,regularizer)
-            top_k_op = tf.nn.in_top_k(logits, labels, 1)  # Calculate predictions
-            # Restore the moving average version of the learned variables for eval.
-            saver = tf.train.Saver()
-
-            with tf.Session() as sess:
-
-                ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
-                if ckpt and ckpt.model_checkpoint_path:
-                    # Restores from checkpoint
-                    saver.restore(sess, ckpt.model_checkpoint_path)
-                else:
-                    print('No checkpoint file found')
-                    return -1
-
-                # Start the queue runners.
-                coord = tf.train.Coordinator()
-                try:
-                    threads = []
-                    for qr in tf.get_collection(tf.GraphKeys.QUEUE_RUNNERS):
-                        threads.extend(qr.create_threads(sess, coord=coord, daemon=True, start=True))
-                    num_iter = int(math.ceil(num_examples / batch_size)) - 1
-                    true_count = 0  # Counts the number of correct predictions.
-                    total_sample_count = num_iter * batch_size
-                    step = 0
-                    while step < num_iter and not coord.should_stop():
-                        predictions = sess.run([top_k_op]
-                                               , feed_dict={
-                                images: self.dvalid.feature[step * batch_size:(step + 1) * batch_size],
-                                labels: self.dvalid.label[step * batch_size:(step + 1) * batch_size]})
-                        true_count += np.sum(predictions)
-                        step += 1
-                    precision = true_count / total_sample_count  # Compute precision.
-                    print('%s: precision network@ %d = %.3f' % (
-                        datetime.now(), self.network_num, precision))  # ,time.time()-evatime))
-
-                except Exception as e:
-                    coord.request_stop(e)
-
-                coord.request_stop()
-                coord.join(threads, stop_grace_period_secs=10)
-            sess.close()'''
         with tf.Graph().as_default():
             train_op, loss, top_k_op,images,labels = self.train(network.graph_part, cellist)
 
@@ -593,26 +537,9 @@ if __name__ == '__main__':
         eval = Evaluater()
         g = []
         for r in subsample_ratio_range:
-
             eval.add_data(int(NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN * r))
             a = eval.exp(network, 50)
             g.append(a)
         print(np.shape(g))
         g = np.array(g)
         np.savetxt("2res.txt", g, "%.3f")
-        # mpl.rcParams['legend.fontsize'] = 10
-        # fig = plt.figure()
-        # ax = fig.add_subplot(111, projection='3d')
-        # ax.plot_wireframe(x, y, g, rstride=10, cstride=10)
-        # plt.show()
-    # eval.add_data(50000)
-    # tf_network = NetworkUnit()
-    # tf_network.graph_part = [[1], [2], [3], [4], []]
-    # cellist = [('conv', 64, 5, 'relu'), ('pooling', 'max', 3), ('conv', 64, 5, 'relu'), ('pooling', 'max', 3),
-    #            ('dense', [384, 192], 'relu')]
-    # # cellist=[('conv', 128, 1, 'relu'), ('conv', 32, 1, 'relu'), ('conv', 256, 1, 'relu'), ('pooling', 'max', 2), ('pooling', 'global', 3), ('conv', 32, 1, 'relu')]
-    # # cellist=[('pooling', 'global', 2), ('pooling', 'max', 3), ('conv', 21, 32, 'leakyrelu'), ('conv', 16, 32, 'leakyrelu'), ('pooling', 'max', 3), ('conv', 16, 32, 'leakyrelu')]
-    # tf_network.cell_list = [cellist]
-    # e = eval.evaluate(tf_network)
-    # # e=eval.train(network.graph_part,cellist)
-    # print(e)
