@@ -11,13 +11,14 @@ import multiprocessing
 from base import NetworkUnit
 import time
 import pickle
+import copy
 
 class Sampler_tree:
     def __init__(self, nn):
         # 设置结构大小
         self.node_number = len(nn.graph_part)
         # 读取配置表得到操作的概率映射
-        self.setting, self.pros, self.parameters_subscript_node, = load_conf()
+        self.setting, self.pros, self.parameters_subscript, = load_conf()
         self.dic_index = self._init_dict()
         #
         # print(self.dic_index)
@@ -25,27 +26,23 @@ class Sampler_tree:
         self.p = []
         # 设置优化Dimension
         self.dim = Dimension()
-        self.dim.set_dimension_size(self.node_number * len(self.pros))
+        self.dim.set_dimension_size(len(self.pros))
         # 设置优化的参数
-        tmp = []
-        self.parameters_subscript = []
-        for i in range(self.node_number):
-            tmp = tmp + self.pros
-            self.parameters_subscript.extend(self.parameters_subscript_node)
 
-        self.dim.set_regions(tmp, [0 for _ in range(len(tmp))])
+        self.dim.set_regions(self.pros, [0 for _ in range(len(self.pros))])
+
 
     # 更新p
     def renewp(self, newp):
         self.p = newp
 
-    def sample(self):
+    def sample(self, node_number):
         res = []
         # 基于节点的搜索结构参数
-        for num in range(self.node_number):
-            # 取一个节点大小的概率
-            p_node = self.p[num*len(self.pros):(num+1)*len(self.pros)]
-            first = self.range_sample(p_node,self.dic_index['conv'])
+        for num in range(node_number):
+            # 取概率
+            p_node = self.p
+            first = self.range_sample(p_node, self.dic_index['conv'])
             tmp = ()
             # 首位置确定 conv 还是 pooling
             if first == 0:
@@ -93,6 +90,12 @@ class Sampler_tree:
 
         return dic
 
+    def get_dim(self):
+        return self.dim
+
+    def get_parametets_subscript(self):
+        return self.parameters_subscript
+
     # log
     def get_cell_log(self, POOL, PATH, date):
         for i, j in enumerate(POOL):
@@ -105,9 +108,9 @@ class Sampler_tree:
 class Experiment_tree:
     def __init__(self, nn, sample_size=5, budget=20, positive_num=2, r_p=0.99, uncertain_bit=3, add_num=20000):
         self.nn = nn
-        self.spl = Sampler_tree(S)
-
-        self.opt = Optimizer(self.spl.dim, self.spl.parameters_subscript)
+        self.spl = Sampler_tree(nn)
+        dim = self.spl.get_dim()
+        self.opt = Optimizer(self.spl.get_dim(), self.spl.get_parametets_subscript())
         # sample_size = 5  # the instance number of sampling in an iteration
         # budget = 20  # budget in online style
         # positive_num = 2  # the set size of PosPop
@@ -122,39 +125,43 @@ class Experiment_tree:
         self.spl.renewp(pros)
         self.eva = Evaluater()
         self.eva.add_data(add_num)
+        self.opt_p_log = []
         print(self.eva.max_steps)
 
-    def start_experiment(self):
         for i in range(self.budget):
-            spl_list = self.spl.sample()
+            self.opt_p_log.append(pros)
+            spl_list = self.spl.sample(len(nn.graph_part))
             self.nn.cell_list.append(spl_list)
             # time_tmp = time.time()
+            # score = self.eva.evaluate(self.nn, i, time_tmp)
             score = self.eva.evaluate(self.nn)
-            print('##################' * 10)
-            print(score)
             # Updating optimization based on the obtained scores
             # Upadting pros in spl
-            self.opt.update_model(self.spl.pros, -score)
+            self.opt.update_model(pros, -score)
             pros = self.opt.sample()
             self.spl.renewp(pros)
             #
-            self.opt.get_optimal().get_features()  # pros
-            self.opt.get_optimal().get_fitness()  # scores
+        self.res_fea = self.opt.get_optimal().get_features()
+        self.res_fit = self.opt.get_optimal().get_fitness()
+        print('best:')
+        print('features', self.res_fea)  # pros
+        print('fitness', self.res_fit)  # scores
 
 
 if __name__ == '__main__':
-
+    import os
+    os.environ['CUDA_VISIBLE_DEVICES'] = '6'
     S = NetworkUnit()
     S.graph_part = [[1, 10], [2, 14], [3], [4], [5], [6], [7], [8], [9], [], [11], [12], [13], [6], [7]]
     #
     time1 = time.time()
-    ob = Experiment_tree(S, sample_size=5, budget=1, positive_num=2, uncertain_bit=3, add_num=1000)
-    ob.start_experiment()
+    ob = Experiment_tree(S, sample_size=5, budget=100, positive_num=2, uncertain_bit=3, add_num=10000)
     time2 = time.time()
     print('time cost: ', time2 - time1)
 
-    op = open('enumerate_best_struct_sampler.pickle','wb')
-    pickle.dump(S.cell_list, op)
+    res = [S.graph_part, ob.res_fea, ob.res_fit]
+    op = open('enumerate_best_pros.pickle', 'wb')
+    pickle.dump(res, op)
     op.close()
     # print(S.cell_list)
     # spl.renewp(tmp)

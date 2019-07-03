@@ -16,10 +16,11 @@ import pickle
 class Sampler_struct:
 
     def __init__(self, nn):
-        '''
-        :param nn: NetworkUnit
 
         '''
+        :param nn: NetworkUnit
+        '''
+
         # 设置结构大小
         self.node_number = len(nn.graph_part)
         # 读取配置表得到操作的对应映射
@@ -63,7 +64,6 @@ class Sampler_struct:
         for num in range(self.node_number):
             # 取一个节点大小的概率
             p_node = self.p[num*len(self.dic_index):(num+1)*len(self.dic_index)]
-            print(p_node)
             first = p_node[0]
             tmp = ()
             # 首位置确定 conv 还是 pooling
@@ -98,6 +98,13 @@ class Sampler_struct:
                 cnt += tmp
 
         return dic
+
+    def get_dim(self):
+        return self.dim
+
+    def get_parametets_subscript(self):
+        return self.parameters_subscript
+
     # log
     def get_cell_log(self, POOL, PATH, date):
         for i, j in enumerate(POOL):
@@ -108,10 +115,11 @@ class Sampler_struct:
 
 
 class Experiment_struct:
+
     def __init__(self, nn, sample_size=5, budget=20, positive_num=2, r_p=0.99, uncertain_bit=3, add_num=20000):
         self.nn = nn
         self.spl = Sampler_struct(nn)
-        self.opt = Optimizer(self.spl.dim, self.spl.parameters_subscript)
+        self.opt = Optimizer(self.spl.get_dim(), self.spl.get_parametets_subscript())
         # sample_size = 5  # the instance number of sampling in an iteration
         # budget = 20  # budget in online style
         # positive_num = 2  # the set size of PosPop
@@ -126,41 +134,46 @@ class Experiment_struct:
         self.spl.renewp(pros)
         self.eva = Evaluater()
         self.eva.add_data(add_num)
-
+        self.opt_p_log = []
         print(self.eva.max_steps)
+        print(len(pros))
 
-    def start_experiment(self):
         for i in range(self.budget):
+            self.opt_p_log.append(pros)
             spl_list = self.spl.sample()
             self.nn.cell_list.append(spl_list)
+            # score = np.random.random()
             # time_tmp = time.time()
+            # score = self.eva.evaluate(self.nn, i, time_tmp)
             score = self.eva.evaluate(self.nn)
-            print('##################' * 10)
-            print(score)
             # Updating optimization based on the obtained scores
             # Upadting pros in spl
-            self.opt.update_model(self.spl.pros, -score)
+            self.opt.update_model(pros, -score)
             pros = self.opt.sample()
             self.spl.renewp(pros)
 
-        # a = self.opt.get_optimal().get_features()  # pros
-        # b = self.opt.get_optimal().get_fitness()  # scores
-        # print(a)
-        # print(b)
+        self.res_fea = self.opt.get_optimal().get_features()
+        self.res_fit = self.opt.get_optimal().get_fitness()
+        print('best:')
+        print('features', self.res_fea)  # pros
+        print('fitness', self.res_fit)  # scores
 
 
 if __name__ == '__main__':
+    # import os
+    # os.environ['CUDA_VISIBLE_DEVICES'] = '5'
+
     S = NetworkUnit()
     S.graph_part = [[1, 10], [2, 14], [3], [4], [5], [6], [7], [8], [9], [], [11], [12], [13], [6], [7]]
     #
     time1 = time.time()
-    ob = Experiment_struct(S, sample_size=5, budget=100, positive_num=2, uncertain_bit=3, add_num=10000)
-    # ob.start_experiment()
+    ob = Experiment_struct(S, sample_size=5, budget=10, positive_num=2, uncertain_bit=10, add_num=400)
     time2 = time.time()
-    print('time cost: ', time2 - time1)
-    # op = open('enumerater_best_struct_samper.pickle','wb')
-    # pickle.dump(S.cell_list, op)
-    # op.close()
-    # # print(S.cell_list)
+    print('Experiment time cost: ', time2 - time1)
 
+    res = [S.graph_part, ob.res_fea, ob.res_fit]
+    op = open('enumerater_best_struct.pickle', 'wb')
+    pickle.dump(res, op)
+    op.close()
+    # print(S.cell_list)
 
