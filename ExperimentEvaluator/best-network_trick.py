@@ -54,12 +54,13 @@ class Evaluator:
         data_dir = os.path.join(path, 'cifar-10-batches-bin')
         self.dvalid.feature, self.dvalid.label = self._load_batch(os.path.join(data_dir, 'test_batch.bin'))
         self.dataset.feature, self.dataset.label = self._load_data(data_dir)
-        self.dvalid.feature, self.dataset.feature = self.data_preprocessing(self.dvalid.feature, self.dataset.feature)
-        self.leftindex = range(self.dataset.label.shape[0])
         ind = list(range(10000))
         random.shuffle(ind)
         self.dvalid.feature = self.dvalid.feature[ind]
         self.dvalid.label = self.dvalid.label[ind]
+        self.dvalid.feature, self.dataset.feature = self.data_preprocessing(self.dvalid.feature, self.dataset.feature)
+        self.leftindex = range(self.dataset.label.shape[0])
+
         self.train_num = 0
         self.network_num = 0
         self.max_steps = 60000
@@ -385,7 +386,7 @@ class Evaluator:
                                          , feed_dict={images: self.dataset.feature[batch_index],
                                                       labels: self.dataset.label[batch_index]})
                 if i % one_epoch == 0 and i > 0:
-                    print("After %d training steps, loss on training batch is %f" % (i, loss_value))
+                    print("After %d training steps, loss on training batch is %f" % (i / one_epoch, loss_value))
                     step = 0
                     true_count = 0
                     while step < num_iter:
@@ -397,6 +398,7 @@ class Evaluator:
                     precision = true_count / total_sample_count  # Compute precision.
                     precision_list.append(precision)
                     print('%s: precision = %.3f' % (datetime.now(), precision))
+            sess.close()
 
             return precision_list, epoch
 
@@ -441,7 +443,7 @@ class Evaluator:
         x_test = self._random_flip_leftright(x_test)
         x_test = self._random_crop(x_test, [32, 32], 4)
 
-        return x_train, x_test
+        return np.array(x_train), np.array(x_test)
 
     def cutout(self, x):
         cutout_size = 0
@@ -464,11 +466,11 @@ if __name__ == '__main__':
                         ('dense', [120, 84], 'relu')]]
     best_network = NetworkUnit()
     best_network.graph_part = [[1, 10], [2, 14], [3], [4], [5], [6], [7], [8], [9], [], [11], [12], [13], [6], [7]]
-    best_network.cell_list = [('conv', 32, 1, 'relu'), ('conv', 48, 3, 'relu'), ('conv', 64, 1, 'relu'),
-                              ('conv', 128, 3, 'relu'), ('conv', 64, 1, 'relu'), ('conv', 256, 3, 'relu'),
-                              ('pooling', 'global', 7), ('conv', 192, 1, 'relu'), ('conv', 128, 3, 'relu'),
-                              ('conv', 128, 1, 'relu'), ('conv', 32, 3, 'relu'), ('conv', 256, 3, 'relu'),
-                              ('conv', 256, 3, 'leakyrelu'), ('conv', 48, 5, 'relu'), ('conv', 32, 3, 'relu')]
+    best_network.cell_list = [[('conv', 32, 1, 'relu'), ('conv', 48, 3, 'relu'), ('conv', 64, 1, 'relu'),
+                               ('conv', 128, 3, 'relu'), ('conv', 64, 1, 'relu'), ('conv', 256, 3, 'relu'),
+                               ('pooling', 'global', 7), ('conv', 192, 1, 'relu'), ('conv', 128, 3, 'relu'),
+                               ('conv', 128, 1, 'relu'), ('conv', 32, 3, 'relu'), ('conv', 256, 3, 'relu'),
+                               ('conv', 256, 3, 'leakyrelu'), ('conv', 48, 5, 'relu'), ('conv', 32, 3, 'relu')]]
     vgg16 = NetworkUnit()
     vgg16.graph_part = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [17],
                         [18], []]

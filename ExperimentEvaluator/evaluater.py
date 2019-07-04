@@ -43,7 +43,7 @@ TOWER_NAME = 'tower'
 num_gpu = 2
 
 
-class Evaluater:
+class Evaluator:
     def __init__(self):
 
         self.log = "****************"
@@ -506,18 +506,25 @@ class Evaluater:
                     precision_list.append(precision)
                     print('%s: precision = %.3f' % (datetime.now(), precision))
 
+            sess.close()
             return precision_list, epoch
 
 
 if __name__ == '__main__':
     subsample_ratio_range = np.arange(0.05, 1, 0.05)
     epoch_range = range(0, 50)
-    eval = Evaluater()
     # for the experiment of data ratio and epoch
     lenet = NetworkUnit()
     lenet.graph_part = [[1], [2], [3], [4], []]
     lenet.cell_list = [[('conv', 64, 5, 'relu'), ('pooling', 'max', 2), ('conv', 64, 5, 'relu'), ('pooling', 'max', 2),
                         ('dense', [120, 84], 'relu')]]
+    best_network = NetworkUnit()
+    best_network.graph_part = [[1, 10], [2, 14], [3], [4], [5], [6], [7], [8], [9], [], [11], [12], [13], [6], [7]]
+    best_network.cell_list = [[('conv', 32, 1, 'relu'), ('conv', 48, 3, 'relu'), ('conv', 64, 1, 'relu'),
+                               ('conv', 128, 3, 'relu'), ('conv', 64, 1, 'relu'), ('conv', 256, 3, 'relu'),
+                               ('pooling', 'global', 7), ('conv', 192, 1, 'relu'), ('conv', 128, 3, 'relu'),
+                               ('conv', 128, 1, 'relu'), ('conv', 32, 3, 'relu'), ('conv', 256, 3, 'relu'),
+                               ('conv', 256, 3, 'leakyrelu'), ('conv', 48, 5, 'relu'), ('conv', 32, 3, 'relu')]]
     vgg16 = NetworkUnit()
     vgg16.graph_part = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [17],
                         [18], []]
@@ -528,13 +535,14 @@ if __name__ == '__main__':
          ('conv', 512, 3, 'relu'), ('conv', 512, 3, 'relu'), ('conv', 512, 3, 'relu'),
          ('pooling', 'max', 2), ('conv', 512, 3, 'relu'), ('conv', 512, 3, 'relu'),
          ('conv', 512, 3, 'relu'), ('pooling', 'max', 2), ('dense', [4096, 4096, 1000], 'relu')]]
-    network_list = []
 
+    network_list = []
     # network_list.append(lenet)
-    x, y = np.meshgrid(subsample_ratio_range, epoch_range)
+    # network_list.append(best_network)
     network_list.append(vgg16)
+
     for network in network_list:
-        eval = Evaluater()
+        eval = Evaluator()
         g = []
         for r in subsample_ratio_range:
             eval.add_data(int(NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN * r))

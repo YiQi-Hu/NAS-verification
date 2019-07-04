@@ -6,7 +6,7 @@ import sys
 import random
 import pickle as pickle
 
-
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 class_num = 10
 image_size = 32
@@ -287,7 +287,7 @@ def load_data( ROOT):
 
 
 if __name__ == '__main__':
-    path=os.getcwd()+'/../'
+    path = os.getcwd()  # +'/../'
     data_dir = os.path.join(path, 'cifar-10-batches-bin')
 
     train_x, train_y=load_data(data_dir)
@@ -477,9 +477,9 @@ if __name__ == '__main__':
                     print("iteration: %d/%d, cost_time: %ds, train_loss: %.4f, "
                           "train_acc: %.4f, test_loss: %.4f, test_acc: %.4f"
                           % (it, iterations, int(time.time()-start_time), train_loss, train_acc, val_loss, val_acc))
-                else:
-                    print("iteration: %d/%d, train_loss: %.4f, train_acc: %.4f"
-                          % (it, iterations, train_loss / it, train_acc / it))
+                # else:
+                #     print("iteration: %d/%d, train_loss: %.4f, train_acc: %.4f"
+                #           % (it, iterations, train_loss / it, train_acc / it))
 
 
         save_path = saver.save(sess, model_save_path)
