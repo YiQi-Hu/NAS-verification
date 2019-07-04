@@ -291,7 +291,6 @@ class Evaluator:
         return train_op, loss, top_k_op,images,labels
 
     def train(self, graph_part, cellist):
-        with tf.Graph().as_default():
             global_step = tf.Variable(0, trainable=False)
             # Get images and labels.
             # input_queue = tf.train.slice_input_producer(
