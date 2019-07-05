@@ -33,9 +33,7 @@ REGULARAZTION_RATE = 0.0001
 num_examples = 10000
 batch_size = 128
 log_device_placement = False
-train_dir = path + 'train_dir'
-eval_dir = '/eval_dir'
-checkpoint_dir = path + 'train_dir'
+epoch = 1
 # If a model is trained with multiple GPU's prefix all Op names with tower_name
 # to differentiate the operations. Note that this prefix is removed from the
 # names of the summaries when visualizing a model.
@@ -392,7 +390,7 @@ class Evaluator:
             self.train_num += add_num
         # print('************A NEW ROUND************')
         self.network_num = 0
-        self.max_steps = int(self.train_num / batch_size)  # *50
+        self.max_steps = int(self.train_num / batch_size) * epoch
 
         # print('Evaluater: Adding data')
         if add_num:
@@ -506,7 +504,7 @@ class Evaluator:
                     print('%s: precision = %.3f' % (datetime.now(), precision))
 
             sess.close()
-            return precision_list, epoch
+            return precision_list
 
 
 if __name__ == '__main__':

@@ -400,7 +400,7 @@ class Evaluator:
                     print('%s: precision = %.3f' % (datetime.now(), precision))
             sess.close()
 
-            return precision_list, epoch
+            return precision_list
 
     def _random_crop(self, batch, crop_shape, padding=None):
         oshape = np.shape(batch[0])
