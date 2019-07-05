@@ -1,0 +1,1862 @@
+After 1 training steps, loss on training batch is 4.527561
+2019-07-04 11:28:09.649929: precision = 0.167
+After 2 training steps, loss on training batch is 4.423409
+2019-07-04 11:28:13.066999: precision = 0.200
+After 3 training steps, loss on training batch is 4.308568
+2019-07-04 11:28:16.494636: precision = 0.226
+After 4 training steps, loss on training batch is 4.259045
+2019-07-04 11:28:19.876438: precision = 0.257
+After 5 training steps, loss on training batch is 3.943517
+2019-07-04 11:28:23.313429: precision = 0.271
+After 6 training steps, loss on training batch is 3.863994
+2019-07-04 11:28:26.749665: precision = 0.309
+After 7 training steps, loss on training batch is 3.890070
+2019-07-04 11:28:30.184931: precision = 0.310
+After 8 training steps, loss on training batch is 3.546491
+2019-07-04 11:28:33.605918: precision = 0.331
+After 9 training steps, loss on training batch is 3.363191
+2019-07-04 11:28:37.053523: precision = 0.337
+After 10 training steps, loss on training batch is 3.607193
+2019-07-04 11:28:40.505487: precision = 0.359
+After 11 training steps, loss on training batch is 3.605447
+2019-07-04 11:28:43.959996: precision = 0.354
+After 12 training steps, loss on training batch is 3.734055
+2019-07-04 11:28:47.399170: precision = 0.373
+After 13 training steps, loss on training batch is 3.768235
+2019-07-04 11:28:50.846624: precision = 0.380
+After 14 training steps, loss on training batch is 3.672699
+2019-07-04 11:28:54.307547: precision = 0.383
+After 15 training steps, loss on training batch is 3.386259
+2019-07-04 11:28:57.748177: precision = 0.385
+After 16 training steps, loss on training batch is 3.203909
+2019-07-04 11:29:01.159271: precision = 0.394
+After 17 training steps, loss on training batch is 3.133849
+2019-07-04 11:29:04.618827: precision = 0.394
+After 18 training steps, loss on training batch is 3.055965
+2019-07-04 11:29:08.074254: precision = 0.383
+After 19 training steps, loss on training batch is 3.119842
+2019-07-04 11:29:11.519628: precision = 0.402
+After 20 training steps, loss on training batch is 2.944829
+2019-07-04 11:29:14.959822: precision = 0.417
+After 21 training steps, loss on training batch is 3.019548
+2019-07-04 11:29:18.387764: precision = 0.394
+After 22 training steps, loss on training batch is 3.051979
+2019-07-04 11:29:21.836132: precision = 0.412
+After 23 training steps, loss on training batch is 2.990273
+2019-07-04 11:29:25.294694: precision = 0.412
+After 24 training steps, loss on training batch is 2.888521
+2019-07-04 11:29:28.731880: precision = 0.409
+After 25 training steps, loss on training batch is 2.773123
+2019-07-04 11:29:32.202948: precision = 0.434
+After 26 training steps, loss on training batch is 2.840607
+2019-07-04 11:29:35.675941: precision = 0.438
+After 27 training steps, loss on training batch is 2.832880
+2019-07-04 11:29:39.127650: precision = 0.431
+After 28 training steps, loss on training batch is 2.731190
+2019-07-04 11:29:42.541020: precision = 0.418
+After 29 training steps, loss on training batch is 2.649429
+2019-07-04 11:29:45.978930: precision = 0.443
+After 30 training steps, loss on training batch is 2.702504
+2019-07-04 11:29:49.413368: precision = 0.444
+After 31 training steps, loss on training batch is 2.594111
+2019-07-04 11:29:52.846121: precision = 0.435
+After 32 training steps, loss on training batch is 2.377976
+2019-07-04 11:29:56.298690: precision = 0.447
+After 33 training steps, loss on training batch is 2.499755
+2019-07-04 11:29:59.770575: precision = 0.446
+After 34 training steps, loss on training batch is 2.500835
+2019-07-04 11:30:03.222839: precision = 0.446
+After 35 training steps, loss on training batch is 2.825256
+2019-07-04 11:30:06.681246: precision = 0.455
+After 36 training steps, loss on training batch is 2.372671
+2019-07-04 11:30:10.109915: precision = 0.436
+After 37 training steps, loss on training batch is 1.864452
+2019-07-04 11:30:13.549897: precision = 0.438
+After 38 training steps, loss on training batch is 2.013812
+2019-07-04 11:30:16.982719: precision = 0.444
+After 39 training steps, loss on training batch is 2.461044
+2019-07-04 11:30:20.443771: precision = 0.464
+After 40 training steps, loss on training batch is 2.427661
+2019-07-04 11:30:23.906040: precision = 0.417
+After 41 training steps, loss on training batch is 2.282974
+2019-07-04 11:30:27.333090: precision = 0.453
+After 42 training steps, loss on training batch is 2.336680
+2019-07-04 11:30:30.787681: precision = 0.449
+After 43 training steps, loss on training batch is 2.219426
+2019-07-04 11:30:34.247689: precision = 0.452
+After 44 training steps, loss on training batch is 2.057167
+2019-07-04 11:30:37.702402: precision = 0.451
+After 45 training steps, loss on training batch is 1.763846
+2019-07-04 11:30:41.171743: precision = 0.444
+After 46 training steps, loss on training batch is 1.712204
+2019-07-04 11:30:44.614559: precision = 0.446
+After 47 training steps, loss on training batch is 1.988766
+2019-07-04 11:30:48.075149: precision = 0.444
+After 48 training steps, loss on training batch is 1.972652
+2019-07-04 11:30:51.522242: precision = 0.471
+After 49 training steps, loss on training batch is 1.956331
+2019-07-04 11:30:54.967234: precision = 0.461
+After 1 training steps, loss on training batch is 4.398527
+2019-07-04 11:31:07.548622: precision = 0.251
+After 2 training steps, loss on training batch is 3.770642
+2019-07-04 11:31:13.842562: precision = 0.296
+After 3 training steps, loss on training batch is 3.915057
+2019-07-04 11:31:20.159951: precision = 0.318
+After 4 training steps, loss on training batch is 3.833927
+2019-07-04 11:31:26.463693: precision = 0.341
+After 5 training steps, loss on training batch is 3.331584
+2019-07-04 11:31:32.769849: precision = 0.365
+After 6 training steps, loss on training batch is 3.245725
+2019-07-04 11:31:39.077829: precision = 0.386
+After 7 training steps, loss on training batch is 3.314749
+2019-07-04 11:31:45.407800: precision = 0.376
+After 8 training steps, loss on training batch is 3.186960
+2019-07-04 11:31:51.734034: precision = 0.408
+After 9 training steps, loss on training batch is 3.141469
+2019-07-04 11:31:58.070108: precision = 0.407
+After 10 training steps, loss on training batch is 3.096507
+2019-07-04 11:32:04.406524: precision = 0.428
+After 11 training steps, loss on training batch is 2.970154
+2019-07-04 11:32:10.714612: precision = 0.440
+After 12 training steps, loss on training batch is 2.994299
+2019-07-04 11:32:17.022171: precision = 0.446
+After 13 training steps, loss on training batch is 2.926713
+2019-07-04 11:32:23.328048: precision = 0.449
+After 14 training steps, loss on training batch is 3.001000
+2019-07-04 11:32:29.644965: precision = 0.443
+After 15 training steps, loss on training batch is 3.107522
+2019-07-04 11:32:35.965885: precision = 0.476
+After 16 training steps, loss on training batch is 2.878460
+2019-07-04 11:32:42.282150: precision = 0.494
+After 17 training steps, loss on training batch is 3.047844
+2019-07-04 11:32:48.600757: precision = 0.468
+After 18 training steps, loss on training batch is 2.452780
+2019-07-04 11:32:54.920701: precision = 0.493
+After 19 training steps, loss on training batch is 2.340040
+2019-07-04 11:33:01.219216: precision = 0.498
+After 20 training steps, loss on training batch is 2.475914
+2019-07-04 11:33:07.543438: precision = 0.494
+After 21 training steps, loss on training batch is 2.010380
+2019-07-04 11:33:13.871794: precision = 0.509
+After 22 training steps, loss on training batch is 1.997050
+2019-07-04 11:33:20.165104: precision = 0.509
+After 23 training steps, loss on training batch is 2.297611
+2019-07-04 11:33:26.490910: precision = 0.518
+After 24 training steps, loss on training batch is 2.233386
+2019-07-04 11:33:32.822307: precision = 0.529
+After 25 training steps, loss on training batch is 2.222323
+2019-07-04 11:33:39.138794: precision = 0.538
+After 26 training steps, loss on training batch is 2.444382
+2019-07-04 11:33:45.459342: precision = 0.534
+After 27 training steps, loss on training batch is 2.341559
+2019-07-04 11:33:51.775092: precision = 0.545
+After 28 training steps, loss on training batch is 2.280787
+2019-07-04 11:33:58.099530: precision = 0.528
+After 29 training steps, loss on training batch is 1.953990
+2019-07-04 11:34:04.423656: precision = 0.529
+After 30 training steps, loss on training batch is 1.832195
+2019-07-04 11:34:10.738914: precision = 0.528
+After 31 training steps, loss on training batch is 1.990452
+2019-07-04 11:34:17.069461: precision = 0.544
+After 32 training steps, loss on training batch is 1.942897
+2019-07-04 11:34:23.392095: precision = 0.542
+After 33 training steps, loss on training batch is 1.845794
+2019-07-04 11:34:29.727229: precision = 0.544
+After 34 training steps, loss on training batch is 1.840101
+2019-07-04 11:34:36.042898: precision = 0.558
+After 35 training steps, loss on training batch is 1.643862
+2019-07-04 11:34:42.382597: precision = 0.558
+After 36 training steps, loss on training batch is 1.627920
+2019-07-04 11:34:48.689932: precision = 0.563
+After 37 training steps, loss on training batch is 1.602005
+2019-07-04 11:34:54.985129: precision = 0.550
+After 38 training steps, loss on training batch is 1.477266
+2019-07-04 11:35:01.317868: precision = 0.550
+After 39 training steps, loss on training batch is 1.456713
+2019-07-04 11:35:07.639527: precision = 0.555
+After 40 training steps, loss on training batch is 1.834148
+2019-07-04 11:35:13.972563: precision = 0.553
+After 41 training steps, loss on training batch is 2.087336
+2019-07-04 11:35:20.300145: precision = 0.542
+After 42 training steps, loss on training batch is 1.953430
+2019-07-04 11:35:26.630722: precision = 0.541
+After 43 training steps, loss on training batch is 1.863664
+2019-07-04 11:35:32.949700: precision = 0.536
+After 44 training steps, loss on training batch is 1.965486
+2019-07-04 11:35:39.261305: precision = 0.540
+After 45 training steps, loss on training batch is 1.690795
+2019-07-04 11:35:45.590967: precision = 0.543
+After 46 training steps, loss on training batch is 1.574997
+2019-07-04 11:35:51.863721: precision = 0.541
+After 47 training steps, loss on training batch is 1.672214
+2019-07-04 11:35:58.182861: precision = 0.548
+After 48 training steps, loss on training batch is 1.570557
+2019-07-04 11:36:04.511070: precision = 0.556
+After 49 training steps, loss on training batch is 1.373537
+2019-07-04 11:36:10.834605: precision = 0.552
+After 1 training steps, loss on training batch is 3.689161
+2019-07-04 11:36:31.724765: precision = 0.299
+After 2 training steps, loss on training batch is 3.493024
+2019-07-04 11:36:42.364445: precision = 0.352
+After 3 training steps, loss on training batch is 3.183859
+2019-07-04 11:36:53.014121: precision = 0.377
+After 4 training steps, loss on training batch is 3.081127
+2019-07-04 11:37:03.645497: precision = 0.393
+After 5 training steps, loss on training batch is 2.750999
+2019-07-04 11:37:14.305769: precision = 0.433
+After 6 training steps, loss on training batch is 3.039842
+2019-07-04 11:37:24.923216: precision = 0.464
+After 7 training steps, loss on training batch is 2.724783
+2019-07-04 11:37:35.613196: precision = 0.484
+After 8 training steps, loss on training batch is 2.895711
+2019-07-04 11:37:46.282170: precision = 0.498
+After 9 training steps, loss on training batch is 2.819952
+2019-07-04 11:37:56.961392: precision = 0.509
+After 10 training steps, loss on training batch is 2.557318
+2019-07-04 11:38:07.645126: precision = 0.520
+After 11 training steps, loss on training batch is 2.222762
+2019-07-04 11:38:18.325331: precision = 0.533
+After 12 training steps, loss on training batch is 2.347956
+2019-07-04 11:38:28.996073: precision = 0.542
+After 13 training steps, loss on training batch is 2.291045
+2019-07-04 11:38:39.679243: precision = 0.554
+After 14 training steps, loss on training batch is 2.366045
+2019-07-04 11:38:50.355110: precision = 0.567
+After 15 training steps, loss on training batch is 2.351969
+2019-07-04 11:39:01.037859: precision = 0.575
+After 16 training steps, loss on training batch is 2.247078
+2019-07-04 11:39:11.697934: precision = 0.584
+After 17 training steps, loss on training batch is 1.973497
+2019-07-04 11:39:22.342355: precision = 0.584
+After 18 training steps, loss on training batch is 1.935052
+2019-07-04 11:39:32.998959: precision = 0.580
+After 19 training steps, loss on training batch is 1.940096
+2019-07-04 11:39:43.664321: precision = 0.592
+After 20 training steps, loss on training batch is 1.702488
+2019-07-04 11:39:54.317694: precision = 0.585
+After 21 training steps, loss on training batch is 1.631315
+2019-07-04 11:40:04.986264: precision = 0.586
+After 22 training steps, loss on training batch is 1.595013
+2019-07-04 11:40:15.647437: precision = 0.585
+After 23 training steps, loss on training batch is 1.647397
+2019-07-04 11:40:26.319298: precision = 0.588
+After 24 training steps, loss on training batch is 1.645352
+2019-07-04 11:40:36.995474: precision = 0.598
+After 25 training steps, loss on training batch is 1.820578
+2019-07-04 11:40:47.679617: precision = 0.599
+After 26 training steps, loss on training batch is 1.912640
+2019-07-04 11:40:58.324147: precision = 0.601
+After 27 training steps, loss on training batch is 1.838234
+2019-07-04 11:41:08.955320: precision = 0.602
+After 28 training steps, loss on training batch is 1.771899
+2019-07-04 11:41:19.615468: precision = 0.601
+After 29 training steps, loss on training batch is 1.725626
+2019-07-04 11:41:30.299182: precision = 0.593
+After 30 training steps, loss on training batch is 1.700109
+2019-07-04 11:41:40.981213: precision = 0.598
+After 31 training steps, loss on training batch is 1.552008
+2019-07-04 11:41:51.652787: precision = 0.607
+After 32 training steps, loss on training batch is 1.403868
+2019-07-04 11:42:02.344512: precision = 0.617
+After 33 training steps, loss on training batch is 1.320873
+2019-07-04 11:42:13.036788: precision = 0.618
+After 34 training steps, loss on training batch is 1.328343
+2019-07-04 11:42:23.713391: precision = 0.618
+After 35 training steps, loss on training batch is 1.493967
+2019-07-04 11:42:34.332618: precision = 0.609
+After 36 training steps, loss on training batch is 1.625940
+2019-07-04 11:42:44.988795: precision = 0.580
+After 37 training steps, loss on training batch is 1.311805
+2019-07-04 11:42:55.652665: precision = 0.587
+After 38 training steps, loss on training batch is 1.288452
+2019-07-04 11:43:06.299308: precision = 0.597
+After 39 training steps, loss on training batch is 1.201963
+2019-07-04 11:43:16.967509: precision = 0.611
+After 40 training steps, loss on training batch is 1.016758
+2019-07-04 11:43:27.648504: precision = 0.623
+After 41 training steps, loss on training batch is 1.081768
+2019-07-04 11:43:38.330887: precision = 0.618
+After 42 training steps, loss on training batch is 1.092584
+2019-07-04 11:43:49.002681: precision = 0.611
+After 43 training steps, loss on training batch is 1.236041
+2019-07-04 11:43:59.676154: precision = 0.612
+After 44 training steps, loss on training batch is 1.153047
+2019-07-04 11:44:10.342567: precision = 0.618
+After 45 training steps, loss on training batch is 1.075626
+2019-07-04 11:44:20.983169: precision = 0.613
+After 46 training steps, loss on training batch is 1.054318
+2019-07-04 11:44:31.654755: precision = 0.613
+After 47 training steps, loss on training batch is 1.140527
+2019-07-04 11:44:42.333770: precision = 0.614
+After 48 training steps, loss on training batch is 0.998332
+2019-07-04 11:44:52.997463: precision = 0.615
+After 49 training steps, loss on training batch is 0.930976
+2019-07-04 11:45:03.676314: precision = 0.615
+After 1 training steps, loss on training batch is 3.534361
+2019-07-04 11:45:34.929058: precision = 0.338
+After 2 training steps, loss on training batch is 3.279332
+2019-07-04 11:45:51.393316: precision = 0.398
+After 3 training steps, loss on training batch is 2.896046
+2019-07-04 11:46:07.860960: precision = 0.437
+After 4 training steps, loss on training batch is 3.125377
+2019-07-04 11:46:24.314216: precision = 0.477
+After 5 training steps, loss on training batch is 2.774568
+2019-07-04 11:46:40.771607: precision = 0.504
+After 6 training steps, loss on training batch is 2.516363
+2019-07-04 11:46:57.216552: precision = 0.511
+After 7 training steps, loss on training batch is 2.318475
+2019-07-04 11:47:13.668391: precision = 0.537
+After 8 training steps, loss on training batch is 2.496691
+2019-07-04 11:47:30.122230: precision = 0.549
+After 9 training steps, loss on training batch is 2.673462
+2019-07-04 11:47:46.597654: precision = 0.553
+After 10 training steps, loss on training batch is 2.639478
+2019-07-04 11:48:03.029062: precision = 0.563
+After 11 training steps, loss on training batch is 2.158810
+2019-07-04 11:48:19.400554: precision = 0.583
+After 12 training steps, loss on training batch is 2.288342
+2019-07-04 11:48:35.770812: precision = 0.596
+After 13 training steps, loss on training batch is 2.016286
+2019-07-04 11:48:52.155212: precision = 0.598
+After 14 training steps, loss on training batch is 2.074259
+2019-07-04 11:49:08.609876: precision = 0.610
+After 15 training steps, loss on training batch is 2.065905
+2019-07-04 11:49:25.043726: precision = 0.609
+After 16 training steps, loss on training batch is 2.030619
+2019-07-04 11:49:41.469153: precision = 0.607
+After 17 training steps, loss on training batch is 2.081057
+2019-07-04 11:49:57.947449: precision = 0.617
+After 18 training steps, loss on training batch is 1.894060
+2019-07-04 11:50:14.412466: precision = 0.618
+After 19 training steps, loss on training batch is 1.893713
+2019-07-04 11:50:30.871936: precision = 0.610
+After 20 training steps, loss on training batch is 1.663312
+2019-07-04 11:50:47.320375: precision = 0.614
+After 21 training steps, loss on training batch is 1.718696
+2019-07-04 11:51:03.796245: precision = 0.625
+After 22 training steps, loss on training batch is 1.633209
+2019-07-04 11:51:20.225082: precision = 0.621
+After 23 training steps, loss on training batch is 1.754482
+2019-07-04 11:51:36.665706: precision = 0.628
+After 24 training steps, loss on training batch is 1.770912
+2019-07-04 11:51:53.113271: precision = 0.629
+After 25 training steps, loss on training batch is 1.466022
+2019-07-04 11:52:09.567429: precision = 0.626
+After 26 training steps, loss on training batch is 1.357809
+2019-07-04 11:52:25.992064: precision = 0.626
+After 27 training steps, loss on training batch is 1.257037
+2019-07-04 11:52:42.437736: precision = 0.629
+After 28 training steps, loss on training batch is 1.459158
+2019-07-04 11:52:58.879801: precision = 0.633
+After 29 training steps, loss on training batch is 1.327354
+2019-07-04 11:53:15.354917: precision = 0.633
+After 30 training steps, loss on training batch is 1.147867
+2019-07-04 11:53:31.814304: precision = 0.633
+After 31 training steps, loss on training batch is 1.060390
+2019-07-04 11:53:48.234505: precision = 0.633
+After 32 training steps, loss on training batch is 0.820129
+2019-07-04 11:54:04.726861: precision = 0.644
+After 33 training steps, loss on training batch is 1.019616
+2019-07-04 11:54:21.208848: precision = 0.639
+After 34 training steps, loss on training batch is 1.032111
+2019-07-04 11:54:37.645813: precision = 0.642
+After 35 training steps, loss on training batch is 0.966143
+2019-07-04 11:54:54.094359: precision = 0.641
+After 36 training steps, loss on training batch is 1.000178
+2019-07-04 11:55:10.528683: precision = 0.639
+After 37 training steps, loss on training batch is 0.902067
+2019-07-04 11:55:26.997671: precision = 0.631
+After 38 training steps, loss on training batch is 1.069674
+2019-07-04 11:55:43.441167: precision = 0.637
+After 39 training steps, loss on training batch is 1.003811
+2019-07-04 11:55:59.910405: precision = 0.620
+After 40 training steps, loss on training batch is 1.037638
+2019-07-04 11:56:16.366795: precision = 0.615
+After 41 training steps, loss on training batch is 1.183264
+2019-07-04 11:56:32.798963: precision = 0.610
+After 42 training steps, loss on training batch is 1.021803
+2019-07-04 11:56:49.260840: precision = 0.621
+After 43 training steps, loss on training batch is 0.996361
+2019-07-04 11:57:05.735899: precision = 0.614
+After 44 training steps, loss on training batch is 0.764952
+2019-07-04 11:57:22.166471: precision = 0.624
+After 45 training steps, loss on training batch is 0.630667
+2019-07-04 11:57:38.609573: precision = 0.628
+After 46 training steps, loss on training batch is 0.681401
+2019-07-04 11:57:55.060573: precision = 0.619
+After 47 training steps, loss on training batch is 0.695416
+2019-07-04 11:58:11.508617: precision = 0.618
+After 48 training steps, loss on training batch is 0.732445
+2019-07-04 11:58:27.956860: precision = 0.634
+After 49 training steps, loss on training batch is 0.742986
+2019-07-04 11:58:44.433540: precision = 0.625
+After 1 training steps, loss on training batch is 3.666861
+2019-07-04 11:59:27.628205: precision = 0.382
+After 2 training steps, loss on training batch is 3.051282
+2019-07-04 11:59:51.178632: precision = 0.450
+After 3 training steps, loss on training batch is 2.809567
+2019-07-04 12:00:14.784726: precision = 0.493
+After 4 training steps, loss on training batch is 2.684951
+2019-07-04 12:00:38.402544: precision = 0.528
+After 5 training steps, loss on training batch is 2.215853
+2019-07-04 12:01:01.976078: precision = 0.542
+After 6 training steps, loss on training batch is 2.466987
+2019-07-04 12:01:25.572837: precision = 0.577
+After 7 training steps, loss on training batch is 2.092598
+2019-07-04 12:01:49.136237: precision = 0.597
+After 8 training steps, loss on training batch is 1.976937
+2019-07-04 12:02:12.676082: precision = 0.604
+After 9 training steps, loss on training batch is 2.258826
+2019-07-04 12:02:36.187617: precision = 0.614
+After 10 training steps, loss on training batch is 2.406440
+2019-07-04 12:02:59.775235: precision = 0.619
+After 11 training steps, loss on training batch is 2.134615
+2019-07-04 12:03:23.341585: precision = 0.627
+After 12 training steps, loss on training batch is 1.962436
+2019-07-04 12:03:46.895906: precision = 0.648
+After 13 training steps, loss on training batch is 1.660573
+2019-07-04 12:04:10.462630: precision = 0.656
+After 14 training steps, loss on training batch is 1.876619
+2019-07-04 12:04:33.987280: precision = 0.656
+After 15 training steps, loss on training batch is 1.527860
+2019-07-04 12:04:57.561861: precision = 0.658
+After 16 training steps, loss on training batch is 1.237945
+2019-07-04 12:05:21.130622: precision = 0.668
+After 17 training steps, loss on training batch is 1.647603
+2019-07-04 12:05:44.713283: precision = 0.671
+After 18 training steps, loss on training batch is 1.787033
+2019-07-04 12:06:08.271971: precision = 0.675
+After 19 training steps, loss on training batch is 1.784896
+2019-07-04 12:06:31.830517: precision = 0.672
+After 20 training steps, loss on training batch is 1.656274
+2019-07-04 12:06:55.396174: precision = 0.649
+After 21 training steps, loss on training batch is 1.230411
+2019-07-04 12:07:18.840729: precision = 0.659
+After 22 training steps, loss on training batch is 1.443261
+2019-07-04 12:07:42.252414: precision = 0.679
+After 23 training steps, loss on training batch is 1.342487
+2019-07-04 12:08:05.678906: precision = 0.671
+After 24 training steps, loss on training batch is 1.441658
+2019-07-04 12:08:29.163140: precision = 0.655
+After 25 training steps, loss on training batch is 0.970916
+2019-07-04 12:08:52.687321: precision = 0.662
+After 26 training steps, loss on training batch is 1.391363
+2019-07-04 12:09:16.131478: precision = 0.675
+After 27 training steps, loss on training batch is 1.067726
+2019-07-04 12:09:39.585355: precision = 0.669
+After 28 training steps, loss on training batch is 1.022079
+2019-07-04 12:10:03.082527: precision = 0.670
+After 29 training steps, loss on training batch is 1.180169
+2019-07-04 12:10:26.483663: precision = 0.670
+After 30 training steps, loss on training batch is 1.158693
+2019-07-04 12:10:49.954588: precision = 0.671
+After 31 training steps, loss on training batch is 0.920528
+2019-07-04 12:11:13.441054: precision = 0.676
+After 32 training steps, loss on training batch is 1.077234
+2019-07-04 12:11:36.930103: precision = 0.680
+After 33 training steps, loss on training batch is 0.648491
+2019-07-04 12:12:00.440446: precision = 0.678
+After 34 training steps, loss on training batch is 0.890312
+2019-07-04 12:12:23.932965: precision = 0.660
+After 35 training steps, loss on training batch is 0.688113
+2019-07-04 12:12:47.438005: precision = 0.640
+After 36 training steps, loss on training batch is 0.893615
+2019-07-04 12:13:10.965139: precision = 0.668
+After 37 training steps, loss on training batch is 1.339125
+2019-07-04 12:13:34.429076: precision = 0.670
+After 38 training steps, loss on training batch is 1.041541
+2019-07-04 12:13:57.903376: precision = 0.656
+After 39 training steps, loss on training batch is 0.432321
+2019-07-04 12:14:21.395676: precision = 0.663
+After 40 training steps, loss on training batch is 0.515183
+2019-07-04 12:14:44.915007: precision = 0.665
+After 41 training steps, loss on training batch is 0.334475
+2019-07-04 12:15:08.380060: precision = 0.674
+After 42 training steps, loss on training batch is 0.461359
+2019-07-04 12:15:31.854430: precision = 0.673
+After 43 training steps, loss on training batch is 0.621907
+2019-07-04 12:15:55.339858: precision = 0.663
+After 44 training steps, loss on training batch is 0.389261
+2019-07-04 12:16:18.823016: precision = 0.670
+After 45 training steps, loss on training batch is 0.895810
+2019-07-04 12:16:42.336034: precision = 0.670
+After 46 training steps, loss on training batch is 0.399771
+2019-07-04 12:17:05.789217: precision = 0.669
+After 47 training steps, loss on training batch is 0.474625
+2019-07-04 12:17:29.193622: precision = 0.671
+After 48 training steps, loss on training batch is 0.342016
+2019-07-04 12:17:52.632397: precision = 0.682
+After 49 training steps, loss on training batch is 0.373601
+2019-07-04 12:18:16.054913: precision = 0.684
+After 1 training steps, loss on training batch is 3.093920
+2019-07-04 12:19:11.194023: precision = 0.402
+After 2 training steps, loss on training batch is 2.867421
+2019-07-04 12:19:41.977804: precision = 0.479
+After 3 training steps, loss on training batch is 2.675453
+2019-07-04 12:20:12.838139: precision = 0.512
+After 4 training steps, loss on training batch is 2.435467
+2019-07-04 12:20:43.647036: precision = 0.544
+After 5 training steps, loss on training batch is 2.452128
+2019-07-04 12:21:14.507612: precision = 0.586
+After 6 training steps, loss on training batch is 2.597775
+2019-07-04 12:21:45.342089: precision = 0.578
+After 7 training steps, loss on training batch is 2.242246
+2019-07-04 12:22:16.132026: precision = 0.602
+After 8 training steps, loss on training batch is 1.713948
+2019-07-04 12:22:46.890977: precision = 0.631
+After 9 training steps, loss on training batch is 1.855001
+2019-07-04 12:23:17.678377: precision = 0.646
+After 10 training steps, loss on training batch is 1.798573
+2019-07-04 12:23:48.481386: precision = 0.657
+After 11 training steps, loss on training batch is 1.512250
+2019-07-04 12:24:19.209694: precision = 0.658
+After 12 training steps, loss on training batch is 1.636604
+2019-07-04 12:24:49.998337: precision = 0.662
+After 13 training steps, loss on training batch is 1.475660
+2019-07-04 12:25:20.770591: precision = 0.672
+After 14 training steps, loss on training batch is 1.402159
+2019-07-04 12:25:51.595748: precision = 0.682
+After 15 training steps, loss on training batch is 1.244168
+2019-07-04 12:26:22.417510: precision = 0.680
+After 16 training steps, loss on training batch is 1.271166
+2019-07-04 12:26:53.167516: precision = 0.683
+After 17 training steps, loss on training batch is 1.099133
+2019-07-04 12:27:23.961949: precision = 0.694
+After 18 training steps, loss on training batch is 1.204673
+2019-07-04 12:27:54.719441: precision = 0.704
+After 19 training steps, loss on training batch is 1.542873
+2019-07-04 12:28:25.412139: precision = 0.704
+After 20 training steps, loss on training batch is 1.765173
+2019-07-04 12:28:56.184678: precision = 0.701
+After 21 training steps, loss on training batch is 1.394735
+2019-07-04 12:29:26.967577: precision = 0.687
+After 22 training steps, loss on training batch is 1.207025
+2019-07-04 12:29:57.722980: precision = 0.683
+After 23 training steps, loss on training batch is 1.546849
+2019-07-04 12:30:28.493084: precision = 0.680
+After 24 training steps, loss on training batch is 1.385180
+2019-07-04 12:30:59.272463: precision = 0.674
+After 25 training steps, loss on training batch is 0.998872
+2019-07-04 12:31:30.075082: precision = 0.670
+After 26 training steps, loss on training batch is 1.099346
+2019-07-04 12:32:00.821172: precision = 0.680
+After 27 training steps, loss on training batch is 1.159400
+2019-07-04 12:32:31.581711: precision = 0.691
+After 28 training steps, loss on training batch is 1.027913
+2019-07-04 12:33:02.320169: precision = 0.690
+After 29 training steps, loss on training batch is 1.012111
+2019-07-04 12:33:33.048820: precision = 0.684
+After 30 training steps, loss on training batch is 0.780263
+2019-07-04 12:34:03.811709: precision = 0.693
+After 31 training steps, loss on training batch is 0.595546
+2019-07-04 12:34:34.563442: precision = 0.696
+After 32 training steps, loss on training batch is 0.806617
+2019-07-04 12:35:05.354032: precision = 0.699
+After 33 training steps, loss on training batch is 0.553554
+2019-07-04 12:35:36.116741: precision = 0.702
+After 34 training steps, loss on training batch is 0.430334
+2019-07-04 12:36:06.882946: precision = 0.696
+After 35 training steps, loss on training batch is 0.547276
+2019-07-04 12:36:37.623930: precision = 0.695
+After 36 training steps, loss on training batch is 0.513501
+2019-07-04 12:37:08.393799: precision = 0.698
+After 37 training steps, loss on training batch is 0.770949
+2019-07-04 12:37:39.131963: precision = 0.683
+After 38 training steps, loss on training batch is 0.559281
+2019-07-04 12:38:09.869184: precision = 0.682
+After 39 training steps, loss on training batch is 0.671744
+2019-07-04 12:38:40.574210: precision = 0.698
+After 40 training steps, loss on training batch is 0.753889
+2019-07-04 12:39:11.312450: precision = 0.669
+After 41 training steps, loss on training batch is 0.398091
+2019-07-04 12:39:42.063577: precision = 0.674
+After 42 training steps, loss on training batch is 0.425317
+2019-07-04 12:40:12.832481: precision = 0.680
+After 43 training steps, loss on training batch is 0.437662
+2019-07-04 12:40:43.588951: precision = 0.672
+After 44 training steps, loss on training batch is 0.404750
+2019-07-04 12:41:14.265814: precision = 0.677
+After 45 training steps, loss on training batch is 0.604108
+2019-07-04 12:41:45.003255: precision = 0.671
+After 46 training steps, loss on training batch is 0.496678
+2019-07-04 12:42:15.768446: precision = 0.678
+After 47 training steps, loss on training batch is 0.373124
+2019-07-04 12:42:46.534576: precision = 0.680
+After 48 training steps, loss on training batch is 0.239680
+2019-07-04 12:43:17.275997: precision = 0.678
+After 49 training steps, loss on training batch is 0.330007
+2019-07-04 12:43:48.045607: precision = 0.678
+After 1 training steps, loss on training batch is 3.173382
+2019-07-04 12:44:49.301680: precision = 0.399
+After 2 training steps, loss on training batch is 2.850799
+2019-07-04 12:45:20.154865: precision = 0.482
+After 3 training steps, loss on training batch is 2.651471
+2019-07-04 12:45:51.016906: precision = 0.507
+After 4 training steps, loss on training batch is 2.610922
+2019-07-04 12:46:21.846181: precision = 0.548
+After 5 training steps, loss on training batch is 2.463263
+2019-07-04 12:46:52.683935: precision = 0.574
+After 6 training steps, loss on training batch is 2.357975
+2019-07-04 12:47:23.539621: precision = 0.590
+After 7 training steps, loss on training batch is 2.243237
+2019-07-04 12:47:54.366667: precision = 0.611
+After 8 training steps, loss on training batch is 2.050253
+2019-07-04 12:48:25.207358: precision = 0.630
+After 9 training steps, loss on training batch is 1.806959
+2019-07-04 12:48:56.031355: precision = 0.632
+After 10 training steps, loss on training batch is 1.682583
+2019-07-04 12:49:26.829567: precision = 0.650
+After 11 training steps, loss on training batch is 1.391916
+2019-07-04 12:49:57.636822: precision = 0.656
+After 12 training steps, loss on training batch is 1.723879
+2019-07-04 12:50:28.389746: precision = 0.669
+After 13 training steps, loss on training batch is 1.542594
+2019-07-04 12:50:59.143794: precision = 0.666
+After 14 training steps, loss on training batch is 1.386963
+2019-07-04 12:51:29.924743: precision = 0.667
+After 15 training steps, loss on training batch is 1.176639
+2019-07-04 12:52:00.699466: precision = 0.672
+After 16 training steps, loss on training batch is 1.008921
+2019-07-04 12:52:31.498181: precision = 0.686
+After 17 training steps, loss on training batch is 0.973245
+2019-07-04 12:53:02.288481: precision = 0.694
+After 18 training steps, loss on training batch is 1.231895
+2019-07-04 12:53:32.951140: precision = 0.697
+After 19 training steps, loss on training batch is 1.303910
+2019-07-04 12:54:03.744576: precision = 0.693
+After 20 training steps, loss on training batch is 1.387527
+2019-07-04 12:54:34.563892: precision = 0.699
+After 21 training steps, loss on training batch is 1.300328
+2019-07-04 12:55:05.341970: precision = 0.695
+After 22 training steps, loss on training batch is 1.104182
+2019-07-04 12:55:36.093246: precision = 0.700
+After 23 training steps, loss on training batch is 1.205564
+2019-07-04 12:56:06.836633: precision = 0.701
+After 24 training steps, loss on training batch is 1.130260
+2019-07-04 12:56:37.592057: precision = 0.709
+After 25 training steps, loss on training batch is 1.018267
+2019-07-04 12:57:08.329247: precision = 0.697
+After 26 training steps, loss on training batch is 1.214364
+2019-07-04 12:57:39.089687: precision = 0.696
+After 27 training steps, loss on training batch is 1.104403
+2019-07-04 12:58:09.866480: precision = 0.687
+After 28 training steps, loss on training batch is 0.828992
+2019-07-04 12:58:40.570615: precision = 0.694
+After 29 training steps, loss on training batch is 0.635816
+2019-07-04 12:59:11.329985: precision = 0.700
+After 30 training steps, loss on training batch is 0.703749
+2019-07-04 12:59:42.085021: precision = 0.708
+After 31 training steps, loss on training batch is 0.642683
+2019-07-04 13:00:12.869236: precision = 0.701
+After 32 training steps, loss on training batch is 0.922051
+2019-07-04 13:00:43.626043: precision = 0.696
+After 33 training steps, loss on training batch is 0.699494
+2019-07-04 13:01:14.426507: precision = 0.699
+After 34 training steps, loss on training batch is 0.385783
+2019-07-04 13:01:45.179702: precision = 0.691
+After 35 training steps, loss on training batch is 0.360219
+2019-07-04 13:02:15.879928: precision = 0.691
+After 36 training steps, loss on training batch is 0.538503
+2019-07-04 13:02:46.627872: precision = 0.684
+After 37 training steps, loss on training batch is 0.809902
+2019-07-04 13:03:17.382382: precision = 0.676
+After 38 training steps, loss on training batch is 0.701019
+2019-07-04 13:03:48.124377: precision = 0.676
+After 39 training steps, loss on training batch is 0.703519
+2019-07-04 13:04:18.876933: precision = 0.673
+After 40 training steps, loss on training batch is 0.544819
+2019-07-04 13:04:49.655693: precision = 0.663
+After 41 training steps, loss on training batch is 0.353243
+2019-07-04 13:05:20.447276: precision = 0.665
+After 42 training steps, loss on training batch is 0.490741
+2019-07-04 13:05:51.198953: precision = 0.678
+After 43 training steps, loss on training batch is 0.334406
+2019-07-04 13:06:21.924933: precision = 0.690
+After 44 training steps, loss on training batch is 0.301639
+2019-07-04 13:06:52.691088: precision = 0.699
+After 45 training steps, loss on training batch is 0.142303
+2019-07-04 13:07:23.477996: precision = 0.691
+After 46 training steps, loss on training batch is 0.269770
+2019-07-04 13:07:54.264848: precision = 0.702
+After 47 training steps, loss on training batch is 0.176912
+2019-07-04 13:08:24.951545: precision = 0.691
+After 48 training steps, loss on training batch is 0.132065
+2019-07-04 13:08:55.632583: precision = 0.681
+After 49 training steps, loss on training batch is 0.107587
+2019-07-04 13:09:26.268313: precision = 0.691
+After 1 training steps, loss on training batch is 3.250456
+2019-07-04 13:10:27.136804: precision = 0.397
+After 2 training steps, loss on training batch is 2.894925
+2019-07-04 13:10:57.836784: precision = 0.491
+After 3 training steps, loss on training batch is 2.668795
+2019-07-04 13:11:28.467746: precision = 0.511
+After 4 training steps, loss on training batch is 2.436498
+2019-07-04 13:11:59.167798: precision = 0.549
+After 5 training steps, loss on training batch is 2.501527
+2019-07-04 13:12:29.860287: precision = 0.579
+After 6 training steps, loss on training batch is 2.540230
+2019-07-04 13:13:00.574093: precision = 0.569
+After 7 training steps, loss on training batch is 2.171727
+2019-07-04 13:13:31.252940: precision = 0.588
+After 8 training steps, loss on training batch is 2.068287
+2019-07-04 13:14:01.955211: precision = 0.622
+After 9 training steps, loss on training batch is 1.863598
+2019-07-04 13:14:32.638196: precision = 0.633
+After 10 training steps, loss on training batch is 1.906166
+2019-07-04 13:15:03.290899: precision = 0.640
+After 11 training steps, loss on training batch is 1.519680
+2019-07-04 13:15:33.984619: precision = 0.659
+After 12 training steps, loss on training batch is 1.716790
+2019-07-04 13:16:04.647547: precision = 0.667
+After 13 training steps, loss on training batch is 1.455550
+2019-07-04 13:16:35.185992: precision = 0.671
+After 14 training steps, loss on training batch is 1.353029
+2019-07-04 13:17:05.896395: precision = 0.683
+After 15 training steps, loss on training batch is 1.348921
+2019-07-04 13:17:36.601728: precision = 0.687
+After 16 training steps, loss on training batch is 1.166725
+2019-07-04 13:18:07.307546: precision = 0.691
+After 17 training steps, loss on training batch is 1.128557
+2019-07-04 13:18:37.949937: precision = 0.694
+After 18 training steps, loss on training batch is 1.303495
+2019-07-04 13:19:08.654601: precision = 0.700
+After 19 training steps, loss on training batch is 1.315010
+2019-07-04 13:19:39.342364: precision = 0.704
+After 20 training steps, loss on training batch is 1.272111
+2019-07-04 13:20:10.000638: precision = 0.696
+After 21 training steps, loss on training batch is 1.085637
+2019-07-04 13:20:40.681703: precision = 0.695
+After 22 training steps, loss on training batch is 1.206316
+2019-07-04 13:21:11.322435: precision = 0.695
+After 23 training steps, loss on training batch is 1.412049
+2019-07-04 13:21:41.979425: precision = 0.694
+After 24 training steps, loss on training batch is 1.182121
+2019-07-04 13:22:12.618330: precision = 0.697
+After 25 training steps, loss on training batch is 1.044137
+2019-07-04 13:22:43.146716: precision = 0.702
+After 26 training steps, loss on training batch is 1.227865
+2019-07-04 13:23:13.835530: precision = 0.703
+After 27 training steps, loss on training batch is 1.175927
+2019-07-04 13:23:44.570960: precision = 0.699
+After 28 training steps, loss on training batch is 0.952335
+2019-07-04 13:24:15.261899: precision = 0.691
+After 29 training steps, loss on training batch is 0.847226
+2019-07-04 13:24:45.968330: precision = 0.688
+After 30 training steps, loss on training batch is 0.900182
+2019-07-04 13:25:16.657046: precision = 0.685
+After 31 training steps, loss on training batch is 0.704488
+2019-07-04 13:25:47.325811: precision = 0.681
+After 32 training steps, loss on training batch is 1.008117
+2019-07-04 13:26:18.031465: precision = 0.678
+After 33 training steps, loss on training batch is 0.695668
+2019-07-04 13:26:48.703536: precision = 0.680
+After 34 training steps, loss on training batch is 0.739004
+2019-07-04 13:27:19.385798: precision = 0.682
+After 35 training steps, loss on training batch is 0.550235
+2019-07-04 13:27:50.082371: precision = 0.684
+After 36 training steps, loss on training batch is 0.613074
+2019-07-04 13:28:20.709228: precision = 0.686
+After 37 training steps, loss on training batch is 0.689159
+2019-07-04 13:28:51.283453: precision = 0.687
+After 38 training steps, loss on training batch is 0.786404
+2019-07-04 13:29:21.918293: precision = 0.685
+After 39 training steps, loss on training batch is 0.803660
+2019-07-04 13:29:52.605530: precision = 0.685
+After 40 training steps, loss on training batch is 0.703956
+2019-07-04 13:30:23.272903: precision = 0.674
+After 41 training steps, loss on training batch is 0.542094
+2019-07-04 13:30:53.918173: precision = 0.672
+After 42 training steps, loss on training batch is 0.503130
+2019-07-04 13:31:24.533876: precision = 0.652
+After 43 training steps, loss on training batch is 0.473236
+2019-07-04 13:31:55.205279: precision = 0.677
+After 44 training steps, loss on training batch is 0.516355
+2019-07-04 13:32:25.711718: precision = 0.683
+After 45 training steps, loss on training batch is 0.269706
+2019-07-04 13:32:56.343982: precision = 0.683
+After 46 training steps, loss on training batch is 0.405689
+2019-07-04 13:33:26.905008: precision = 0.668
+After 47 training steps, loss on training batch is 0.311334
+2019-07-04 13:33:57.410728: precision = 0.680
+After 48 training steps, loss on training batch is 0.285969
+2019-07-04 13:34:28.078909: precision = 0.693
+After 49 training steps, loss on training batch is 0.479852
+2019-07-04 13:34:58.702223: precision = 0.689
+After 1 training steps, loss on training batch is 3.253014
+2019-07-04 13:35:59.848870: precision = 0.396
+After 2 training steps, loss on training batch is 2.899694
+2019-07-04 13:36:30.720915: precision = 0.483
+After 3 training steps, loss on training batch is 2.595306
+2019-07-04 13:37:01.566015: precision = 0.525
+After 4 training steps, loss on training batch is 2.544670
+2019-07-04 13:37:32.364492: precision = 0.573
+After 5 training steps, loss on training batch is 2.369655
+2019-07-04 13:38:03.204259: precision = 0.594
+After 6 training steps, loss on training batch is 2.491772
+2019-07-04 13:38:34.017601: precision = 0.591
+After 7 training steps, loss on training batch is 2.052131
+2019-07-04 13:39:04.831962: precision = 0.607
+After 8 training steps, loss on training batch is 1.823781
+2019-07-04 13:39:35.618868: precision = 0.629
+After 9 training steps, loss on training batch is 1.790466
+2019-07-04 13:40:06.428526: precision = 0.644
+After 10 training steps, loss on training batch is 1.624440
+2019-07-04 13:40:37.229564: precision = 0.658
+After 11 training steps, loss on training batch is 1.536551
+2019-07-04 13:41:08.039670: precision = 0.669
+After 12 training steps, loss on training batch is 1.604951
+2019-07-04 13:41:38.835869: precision = 0.676
+After 13 training steps, loss on training batch is 1.472463
+2019-07-04 13:42:09.657411: precision = 0.681
+After 14 training steps, loss on training batch is 1.405081
+2019-07-04 13:42:40.453957: precision = 0.686
+After 15 training steps, loss on training batch is 1.396813
+2019-07-04 13:43:11.292200: precision = 0.691
+After 16 training steps, loss on training batch is 1.372957
+2019-07-04 13:43:42.092898: precision = 0.693
+After 17 training steps, loss on training batch is 1.124850
+2019-07-04 13:44:12.900236: precision = 0.691
+After 18 training steps, loss on training batch is 1.167677
+2019-07-04 13:44:43.702106: precision = 0.686
+After 19 training steps, loss on training batch is 1.271074
+2019-07-04 13:45:14.471100: precision = 0.687
+After 20 training steps, loss on training batch is 1.425103
+2019-07-04 13:45:45.274241: precision = 0.688
+After 21 training steps, loss on training batch is 1.136401
+2019-07-04 13:46:16.043610: precision = 0.685
+After 22 training steps, loss on training batch is 1.125089
+2019-07-04 13:46:46.869437: precision = 0.683
+After 23 training steps, loss on training batch is 1.365129
+2019-07-04 13:47:17.649527: precision = 0.672
+After 24 training steps, loss on training batch is 1.029678
+2019-07-04 13:47:48.430633: precision = 0.698
+After 25 training steps, loss on training batch is 1.001074
+2019-07-04 13:48:19.233160: precision = 0.699
+After 26 training steps, loss on training batch is 1.196459
+2019-07-04 13:48:50.016430: precision = 0.691
+After 27 training steps, loss on training batch is 0.960518
+2019-07-04 13:49:20.803942: precision = 0.684
+After 28 training steps, loss on training batch is 0.824979
+2019-07-04 13:49:51.563097: precision = 0.693
+After 29 training steps, loss on training batch is 0.818942
+2019-07-04 13:50:22.349705: precision = 0.689
+After 30 training steps, loss on training batch is 0.798839
+2019-07-04 13:50:53.070643: precision = 0.679
+After 31 training steps, loss on training batch is 0.547238
+2019-07-04 13:51:23.764893: precision = 0.688
+After 32 training steps, loss on training batch is 1.066127
+2019-07-04 13:51:54.546128: precision = 0.690
+After 33 training steps, loss on training batch is 0.775814
+2019-07-04 13:52:25.344529: precision = 0.687
+After 34 training steps, loss on training batch is 0.441944
+2019-07-04 13:52:56.074589: precision = 0.675
+After 35 training steps, loss on training batch is 0.442840
+2019-07-04 13:53:26.832589: precision = 0.688
+After 36 training steps, loss on training batch is 0.574220
+2019-07-04 13:53:57.566619: precision = 0.695
+After 37 training steps, loss on training batch is 0.762525
+2019-07-04 13:54:28.319994: precision = 0.699
+After 38 training steps, loss on training batch is 0.853802
+2019-07-04 13:54:59.108877: precision = 0.684
+After 39 training steps, loss on training batch is 0.633417
+2019-07-04 13:55:29.801759: precision = 0.679
+After 40 training steps, loss on training batch is 0.376314
+2019-07-04 13:56:00.524119: precision = 0.682
+After 41 training steps, loss on training batch is 0.339867
+2019-07-04 13:56:31.248687: precision = 0.694
+After 42 training steps, loss on training batch is 0.457342
+2019-07-04 13:57:02.006749: precision = 0.688
+After 43 training steps, loss on training batch is 0.382726
+2019-07-04 13:57:32.806168: precision = 0.674
+After 44 training steps, loss on training batch is 0.379097
+2019-07-04 13:58:03.557965: precision = 0.676
+After 45 training steps, loss on training batch is 0.167345
+2019-07-04 13:58:34.237633: precision = 0.687
+After 46 training steps, loss on training batch is 0.327320
+2019-07-04 13:59:05.021207: precision = 0.687
+After 47 training steps, loss on training batch is 0.233040
+2019-07-04 13:59:35.736908: precision = 0.707
+After 48 training steps, loss on training batch is 0.255094
+2019-07-04 14:00:06.429062: precision = 0.692
+After 49 training steps, loss on training batch is 0.340865
+2019-07-04 14:00:37.045175: precision = 0.684
+After 1 training steps, loss on training batch is 3.203441
+2019-07-04 14:01:37.880661: precision = 0.391
+After 2 training steps, loss on training batch is 2.816671
+2019-07-04 14:02:08.606905: precision = 0.483
+After 3 training steps, loss on training batch is 2.829567
+2019-07-04 14:02:39.348801: precision = 0.513
+After 4 training steps, loss on training batch is 2.406751
+2019-07-04 14:03:10.101556: precision = 0.546
+After 5 training steps, loss on training batch is 2.514276
+2019-07-04 14:03:40.847028: precision = 0.575
+After 6 training steps, loss on training batch is 2.358742
+2019-07-04 14:04:11.604377: precision = 0.579
+After 7 training steps, loss on training batch is 2.196620
+2019-07-04 14:04:42.344185: precision = 0.608
+After 8 training steps, loss on training batch is 2.041317
+2019-07-04 14:05:13.088446: precision = 0.633
+After 9 training steps, loss on training batch is 1.834090
+2019-07-04 14:05:43.792848: precision = 0.642
+After 10 training steps, loss on training batch is 1.746594
+2019-07-04 14:06:14.519931: precision = 0.659
+After 11 training steps, loss on training batch is 1.672199
+2019-07-04 14:06:45.266385: precision = 0.663
+After 12 training steps, loss on training batch is 1.704421
+2019-07-04 14:07:16.002310: precision = 0.677
+After 13 training steps, loss on training batch is 1.413561
+2019-07-04 14:07:46.703218: precision = 0.678
+After 14 training steps, loss on training batch is 1.458575
+2019-07-04 14:08:17.441748: precision = 0.684
+After 15 training steps, loss on training batch is 1.347222
+2019-07-04 14:08:48.154387: precision = 0.689
+After 16 training steps, loss on training batch is 1.163289
+2019-07-04 14:09:18.786312: precision = 0.698
+After 17 training steps, loss on training batch is 1.183385
+2019-07-04 14:09:49.494725: precision = 0.701
+After 18 training steps, loss on training batch is 1.210654
+2019-07-04 14:10:20.197256: precision = 0.700
+After 19 training steps, loss on training batch is 1.321794
+2019-07-04 14:10:50.881606: precision = 0.699
+After 20 training steps, loss on training batch is 1.525202
+2019-07-04 14:11:21.549052: precision = 0.690
+After 21 training steps, loss on training batch is 1.091478
+2019-07-04 14:11:52.239411: precision = 0.681
+After 22 training steps, loss on training batch is 1.260513
+2019-07-04 14:12:22.784479: precision = 0.675
+After 23 training steps, loss on training batch is 1.307280
+2019-07-04 14:12:53.375537: precision = 0.681
+After 24 training steps, loss on training batch is 1.146456
+2019-07-04 14:13:24.072315: precision = 0.682
+After 25 training steps, loss on training batch is 0.901489
+2019-07-04 14:13:54.781269: precision = 0.689
+After 26 training steps, loss on training batch is 0.922862
+2019-07-04 14:14:25.530486: precision = 0.696
+After 27 training steps, loss on training batch is 1.040586
+2019-07-04 14:14:56.225616: precision = 0.704
+After 28 training steps, loss on training batch is 0.889777
+2019-07-04 14:15:26.913442: precision = 0.692
+After 29 training steps, loss on training batch is 0.924440
+2019-07-04 14:15:57.615296: precision = 0.684
+After 30 training steps, loss on training batch is 0.982951
+2019-07-04 14:16:28.356450: precision = 0.689
+After 31 training steps, loss on training batch is 0.774212
+2019-07-04 14:16:59.039360: precision = 0.691
+After 32 training steps, loss on training batch is 0.799914
+2019-07-04 14:17:29.730759: precision = 0.691
+After 33 training steps, loss on training batch is 0.799970
+2019-07-04 14:18:00.441067: precision = 0.666
+After 34 training steps, loss on training batch is 0.516652
+2019-07-04 14:18:31.134046: precision = 0.654
+After 35 training steps, loss on training batch is 0.533275
+2019-07-04 14:19:01.839386: precision = 0.674
+After 36 training steps, loss on training batch is 0.634967
+2019-07-04 14:19:32.510152: precision = 0.685
+After 37 training steps, loss on training batch is 0.696271
+2019-07-04 14:20:03.210140: precision = 0.694
+After 38 training steps, loss on training batch is 0.590233
+2019-07-04 14:20:33.945279: precision = 0.688
+After 39 training steps, loss on training batch is 0.450715
+2019-07-04 14:21:04.608868: precision = 0.694
+After 40 training steps, loss on training batch is 0.509486
+2019-07-04 14:21:35.287685: precision = 0.697
+After 41 training steps, loss on training batch is 0.424473
+2019-07-04 14:22:05.901837: precision = 0.692
+After 42 training steps, loss on training batch is 0.400482
+2019-07-04 14:22:36.452278: precision = 0.688
+After 43 training steps, loss on training batch is 0.353735
+2019-07-04 14:23:07.023529: precision = 0.693
+After 44 training steps, loss on training batch is 0.261427
+2019-07-04 14:23:37.577454: precision = 0.686
+After 45 training steps, loss on training batch is 0.305268
+2019-07-04 14:24:08.206481: precision = 0.675
+After 46 training steps, loss on training batch is 0.580481
+2019-07-04 14:24:38.895817: precision = 0.677
+After 47 training steps, loss on training batch is 0.369078
+2019-07-04 14:25:09.566120: precision = 0.670
+After 48 training steps, loss on training batch is 0.243331
+2019-07-04 14:25:40.242348: precision = 0.688
+After 49 training steps, loss on training batch is 0.155553
+2019-07-04 14:26:10.925608: precision = 0.688
+After 1 training steps, loss on training batch is 3.202109
+2019-07-04 14:27:11.927882: precision = 0.384
+After 2 training steps, loss on training batch is 2.983957
+2019-07-04 14:27:42.682069: precision = 0.473
+After 3 training steps, loss on training batch is 2.715377
+2019-07-04 14:28:13.436493: precision = 0.505
+After 4 training steps, loss on training batch is 2.477095
+2019-07-04 14:28:44.198394: precision = 0.544
+After 5 training steps, loss on training batch is 2.650095
+2019-07-04 14:29:14.940626: precision = 0.576
+After 6 training steps, loss on training batch is 2.431451
+2019-07-04 14:29:45.663296: precision = 0.578
+After 7 training steps, loss on training batch is 2.183209
+2019-07-04 14:30:16.406204: precision = 0.601
+After 8 training steps, loss on training batch is 2.038601
+2019-07-04 14:30:47.127426: precision = 0.626
+After 9 training steps, loss on training batch is 1.879911
+2019-07-04 14:31:17.857180: precision = 0.634
+After 10 training steps, loss on training batch is 1.758099
+2019-07-04 14:31:48.531453: precision = 0.645
+After 11 training steps, loss on training batch is 1.528029
+2019-07-04 14:32:19.257460: precision = 0.660
+After 12 training steps, loss on training batch is 1.740129
+2019-07-04 14:32:49.978600: precision = 0.667
+After 13 training steps, loss on training batch is 1.552454
+2019-07-04 14:33:20.680638: precision = 0.665
+After 14 training steps, loss on training batch is 1.491389
+2019-07-04 14:33:51.329224: precision = 0.668
+After 15 training steps, loss on training batch is 1.452517
+2019-07-04 14:34:22.020190: precision = 0.673
+After 16 training steps, loss on training batch is 1.265852
+2019-07-04 14:34:52.757883: precision = 0.688
+After 17 training steps, loss on training batch is 1.369135
+2019-07-04 14:35:23.492786: precision = 0.686
+After 18 training steps, loss on training batch is 1.341072
+2019-07-04 14:35:54.190844: precision = 0.691
+After 19 training steps, loss on training batch is 1.387432
+2019-07-04 14:36:24.929946: precision = 0.690
+After 20 training steps, loss on training batch is 1.455966
+2019-07-04 14:36:55.637182: precision = 0.691
+After 21 training steps, loss on training batch is 1.267438
+2019-07-04 14:37:26.326277: precision = 0.684
+After 22 training steps, loss on training batch is 1.368951
+2019-07-04 14:37:57.042760: precision = 0.683
+After 23 training steps, loss on training batch is 1.549818
+2019-07-04 14:38:27.671960: precision = 0.674
+After 24 training steps, loss on training batch is 1.119566
+2019-07-04 14:38:58.343030: precision = 0.683
+After 25 training steps, loss on training batch is 0.903563
+2019-07-04 14:39:29.027095: precision = 0.676
+After 26 training steps, loss on training batch is 1.307306
+2019-07-04 14:39:59.729881: precision = 0.694
+After 27 training steps, loss on training batch is 1.383419
+2019-07-04 14:40:30.440667: precision = 0.707
+After 28 training steps, loss on training batch is 1.097285
+2019-07-04 14:41:01.111715: precision = 0.705
+After 29 training steps, loss on training batch is 0.752222
+2019-07-04 14:41:31.813793: precision = 0.696
+After 30 training steps, loss on training batch is 0.795660
+2019-07-04 14:42:02.483395: precision = 0.700
+After 31 training steps, loss on training batch is 0.812528
+2019-07-04 14:42:33.184709: precision = 0.693
+After 32 training steps, loss on training batch is 0.943575
+2019-07-04 14:43:03.849234: precision = 0.678
+After 33 training steps, loss on training batch is 0.920643
+2019-07-04 14:43:34.551540: precision = 0.679
+After 34 training steps, loss on training batch is 0.755298
+2019-07-04 14:44:05.213883: precision = 0.680
+After 35 training steps, loss on training batch is 0.766748
+2019-07-04 14:44:35.808470: precision = 0.669
+After 36 training steps, loss on training batch is 0.693316
+2019-07-04 14:45:06.475428: precision = 0.687
+After 37 training steps, loss on training batch is 0.646483
+2019-07-04 14:45:37.162865: precision = 0.706
+After 38 training steps, loss on training batch is 0.530242
+2019-07-04 14:46:07.870204: precision = 0.697
+After 39 training steps, loss on training batch is 0.694621
+2019-07-04 14:46:38.575402: precision = 0.687
+After 40 training steps, loss on training batch is 0.403893
+2019-07-04 14:47:09.257646: precision = 0.678
+After 41 training steps, loss on training batch is 0.324433
+2019-07-04 14:47:39.934072: precision = 0.686
+After 42 training steps, loss on training batch is 0.712377
+2019-07-04 14:48:10.605338: precision = 0.703
+After 43 training steps, loss on training batch is 0.686375
+2019-07-04 14:48:41.279144: precision = 0.689
+After 44 training steps, loss on training batch is 0.308162
+2019-07-04 14:49:11.964583: precision = 0.688
+After 45 training steps, loss on training batch is 0.308081
+2019-07-04 14:49:42.668910: precision = 0.686
+After 46 training steps, loss on training batch is 0.461706
+2019-07-04 14:50:13.357897: precision = 0.677
+After 47 training steps, loss on training batch is 0.319690
+2019-07-04 14:50:44.030175: precision = 0.678
+After 48 training steps, loss on training batch is 0.347384
+2019-07-04 14:51:14.700162: precision = 0.681
+After 49 training steps, loss on training batch is 0.331014
+2019-07-04 14:51:45.392361: precision = 0.698
+After 1 training steps, loss on training batch is 3.059448
+2019-07-04 14:52:46.485833: precision = 0.405
+After 2 training steps, loss on training batch is 2.841596
+2019-07-04 14:53:17.315667: precision = 0.477
+After 3 training steps, loss on training batch is 2.701114
+2019-07-04 14:53:48.154687: precision = 0.521
+After 4 training steps, loss on training batch is 2.642640
+2019-07-04 14:54:19.006538: precision = 0.548
+After 5 training steps, loss on training batch is 2.528851
+2019-07-04 14:54:49.803164: precision = 0.586
+After 6 training steps, loss on training batch is 2.447007
+2019-07-04 14:55:20.620563: precision = 0.583
+After 7 training steps, loss on training batch is 2.126720
+2019-07-04 14:55:51.456624: precision = 0.609
+After 8 training steps, loss on training batch is 1.979480
+2019-07-04 14:56:22.289286: precision = 0.636
+After 9 training steps, loss on training batch is 1.878705
+2019-07-04 14:56:53.112292: precision = 0.644
+After 10 training steps, loss on training batch is 1.795553
+2019-07-04 14:57:23.937087: precision = 0.655
+After 11 training steps, loss on training batch is 1.508768
+2019-07-04 14:57:54.757414: precision = 0.663
+After 12 training steps, loss on training batch is 1.658558
+2019-07-04 14:58:25.565928: precision = 0.670
+After 13 training steps, loss on training batch is 1.531877
+2019-07-04 14:58:56.390467: precision = 0.680
+After 14 training steps, loss on training batch is 1.324819
+2019-07-04 14:59:27.206435: precision = 0.687
+After 15 training steps, loss on training batch is 1.222316
+2019-07-04 14:59:58.033498: precision = 0.693
+After 16 training steps, loss on training batch is 1.231645
+2019-07-04 15:00:28.891451: precision = 0.697
+After 17 training steps, loss on training batch is 1.100233
+2019-07-04 15:00:59.723310: precision = 0.697
+After 18 training steps, loss on training batch is 1.256270
+2019-07-04 15:01:30.549363: precision = 0.699
+After 19 training steps, loss on training batch is 1.474683
+2019-07-04 15:02:01.374804: precision = 0.693
+After 20 training steps, loss on training batch is 1.760009
+2019-07-04 15:02:32.148165: precision = 0.696
+After 21 training steps, loss on training batch is 1.379944
+2019-07-04 15:03:02.941094: precision = 0.691
+After 22 training steps, loss on training batch is 1.257765
+2019-07-04 15:03:33.724538: precision = 0.683
+After 23 training steps, loss on training batch is 1.480157
+2019-07-04 15:04:04.534194: precision = 0.680
+After 24 training steps, loss on training batch is 1.308018
+2019-07-04 15:04:35.273475: precision = 0.681
+After 25 training steps, loss on training batch is 0.885260
+2019-07-04 15:05:06.032321: precision = 0.687
+After 26 training steps, loss on training batch is 1.137486
+2019-07-04 15:05:36.768507: precision = 0.703
+After 27 training steps, loss on training batch is 1.221648
+2019-07-04 15:06:07.527306: precision = 0.701
+After 28 training steps, loss on training batch is 1.052788
+2019-07-04 15:06:38.256056: precision = 0.695
+After 29 training steps, loss on training batch is 0.861182
+2019-07-04 15:07:08.995896: precision = 0.698
+After 30 training steps, loss on training batch is 0.787795
+2019-07-04 15:07:39.786270: precision = 0.707
+After 31 training steps, loss on training batch is 0.596080
+2019-07-04 15:08:10.553280: precision = 0.705
+After 32 training steps, loss on training batch is 0.654637
+2019-07-04 15:08:41.244704: precision = 0.702
+After 33 training steps, loss on training batch is 0.618943
+2019-07-04 15:09:11.944050: precision = 0.700
+After 34 training steps, loss on training batch is 0.552897
+2019-07-04 15:09:42.627005: precision = 0.688
+After 35 training steps, loss on training batch is 0.498036
+2019-07-04 15:10:13.194684: precision = 0.692
+After 36 training steps, loss on training batch is 0.679616
+2019-07-04 15:10:43.804628: precision = 0.679
+After 37 training steps, loss on training batch is 0.640947
+2019-07-04 15:11:14.437761: precision = 0.682
+After 38 training steps, loss on training batch is 0.780597
+2019-07-04 15:11:45.062240: precision = 0.679
+After 39 training steps, loss on training batch is 1.242824
+2019-07-04 15:12:15.750351: precision = 0.669
+After 40 training steps, loss on training batch is 0.904756
+2019-07-04 15:12:46.398580: precision = 0.654
+After 41 training steps, loss on training batch is 0.555343
+2019-07-04 15:13:17.058937: precision = 0.680
+After 42 training steps, loss on training batch is 0.426493
+2019-07-04 15:13:47.714481: precision = 0.679
+After 43 training steps, loss on training batch is 0.363315
+2019-07-04 15:14:18.419107: precision = 0.690
+After 44 training steps, loss on training batch is 0.380224
+2019-07-04 15:14:49.066195: precision = 0.695
+After 45 training steps, loss on training batch is 0.617023
+2019-07-04 15:15:19.778448: precision = 0.681
+After 46 training steps, loss on training batch is 0.623719
+2019-07-04 15:15:50.487305: precision = 0.676
+After 47 training steps, loss on training batch is 0.343441
+2019-07-04 15:16:21.170761: precision = 0.668
+After 48 training steps, loss on training batch is 0.198290
+2019-07-04 15:16:51.827295: precision = 0.693
+After 49 training steps, loss on training batch is 0.278414
+2019-07-04 15:17:22.508758: precision = 0.701
+After 1 training steps, loss on training batch is 3.265975
+2019-07-04 15:18:23.297422: precision = 0.395
+After 2 training steps, loss on training batch is 2.814387
+2019-07-04 15:18:54.051109: precision = 0.468
+After 3 training steps, loss on training batch is 2.723924
+2019-07-04 15:19:24.821269: precision = 0.507
+After 4 training steps, loss on training batch is 2.582883
+2019-07-04 15:19:55.558598: precision = 0.550
+After 5 training steps, loss on training batch is 2.499428
+2019-07-04 15:20:26.319581: precision = 0.571
+After 6 training steps, loss on training batch is 2.438466
+2019-07-04 15:20:57.035333: precision = 0.570
+After 7 training steps, loss on training batch is 2.233693
+2019-07-04 15:21:27.796274: precision = 0.593
+After 8 training steps, loss on training batch is 2.077121
+2019-07-04 15:21:58.574965: precision = 0.617
+After 9 training steps, loss on training batch is 1.952236
+2019-07-04 15:22:29.323917: precision = 0.637
+After 10 training steps, loss on training batch is 1.684930
+2019-07-04 15:23:00.042020: precision = 0.647
+After 11 training steps, loss on training batch is 1.461270
+2019-07-04 15:23:30.746966: precision = 0.658
+After 12 training steps, loss on training batch is 1.827779
+2019-07-04 15:24:01.505328: precision = 0.662
+After 13 training steps, loss on training batch is 1.619312
+2019-07-04 15:24:32.208027: precision = 0.666
+After 14 training steps, loss on training batch is 1.385121
+2019-07-04 15:25:02.932048: precision = 0.672
+After 15 training steps, loss on training batch is 1.394063
+2019-07-04 15:25:33.663311: precision = 0.683
+After 16 training steps, loss on training batch is 1.240698
+2019-07-04 15:26:04.391172: precision = 0.682
+After 17 training steps, loss on training batch is 1.256453
+2019-07-04 15:26:35.094804: precision = 0.689
+After 18 training steps, loss on training batch is 1.426072
+2019-07-04 15:27:05.807317: precision = 0.696
+After 19 training steps, loss on training batch is 1.444021
+2019-07-04 15:27:36.491568: precision = 0.695
+After 20 training steps, loss on training batch is 1.555516
+2019-07-04 15:28:07.163862: precision = 0.694
+After 21 training steps, loss on training batch is 1.135725
+2019-07-04 15:28:37.678136: precision = 0.688
+After 22 training steps, loss on training batch is 1.222949
+2019-07-04 15:29:08.277953: precision = 0.694
+After 23 training steps, loss on training batch is 1.284384
+2019-07-04 15:29:38.941505: precision = 0.701
+After 24 training steps, loss on training batch is 1.220606
+2019-07-04 15:30:09.656078: precision = 0.701
+After 25 training steps, loss on training batch is 0.920931
+2019-07-04 15:30:40.339220: precision = 0.700
+After 26 training steps, loss on training batch is 1.083733
+2019-07-04 15:31:11.050809: precision = 0.699
+After 27 training steps, loss on training batch is 1.244299
+2019-07-04 15:31:41.706700: precision = 0.694
+After 28 training steps, loss on training batch is 0.973428
+2019-07-04 15:32:12.379264: precision = 0.695
+After 29 training steps, loss on training batch is 0.923438
+2019-07-04 15:32:43.042540: precision = 0.697
+After 30 training steps, loss on training batch is 0.781074
+2019-07-04 15:33:13.701068: precision = 0.699
+After 31 training steps, loss on training batch is 0.738709
+2019-07-04 15:33:44.388641: precision = 0.704
+After 32 training steps, loss on training batch is 0.970841
+2019-07-04 15:34:15.056424: precision = 0.702
+After 33 training steps, loss on training batch is 0.698417
+2019-07-04 15:34:45.715673: precision = 0.692
+After 34 training steps, loss on training batch is 0.446856
+2019-07-04 15:35:16.369500: precision = 0.693
+After 35 training steps, loss on training batch is 0.583651
+2019-07-04 15:35:47.028534: precision = 0.698
+After 36 training steps, loss on training batch is 0.677109
+2019-07-04 15:36:17.683113: precision = 0.695
+After 37 training steps, loss on training batch is 0.787077
+2019-07-04 15:36:48.344077: precision = 0.677
+After 38 training steps, loss on training batch is 0.601330
+2019-07-04 15:37:19.017583: precision = 0.689
+After 39 training steps, loss on training batch is 0.670644
+2019-07-04 15:37:49.670154: precision = 0.683
+After 40 training steps, loss on training batch is 0.592951
+2019-07-04 15:38:20.258099: precision = 0.676
+After 41 training steps, loss on training batch is 0.491476
+2019-07-04 15:38:50.921253: precision = 0.670
+After 42 training steps, loss on training batch is 0.479053
+2019-07-04 15:39:21.636420: precision = 0.657
+After 43 training steps, loss on training batch is 0.454747
+2019-07-04 15:39:52.333806: precision = 0.666
+After 44 training steps, loss on training batch is 0.355795
+2019-07-04 15:40:22.957338: precision = 0.682
+After 45 training steps, loss on training batch is 0.470498
+2019-07-04 15:40:53.611171: precision = 0.694
+After 46 training steps, loss on training batch is 0.369497
+2019-07-04 15:41:24.199033: precision = 0.691
+After 47 training steps, loss on training batch is 0.235049
+2019-07-04 15:41:54.849788: precision = 0.688
+After 48 training steps, loss on training batch is 0.235377
+2019-07-04 15:42:25.373933: precision = 0.677
+After 49 training steps, loss on training batch is 0.158686
+2019-07-04 15:42:55.949381: precision = 0.696
+After 1 training steps, loss on training batch is 3.153449
+2019-07-04 15:43:56.585166: precision = 0.400
+After 2 training steps, loss on training batch is 2.892420
+2019-07-04 15:44:27.236685: precision = 0.450
+After 3 training steps, loss on training batch is 2.638006
+2019-07-04 15:44:57.871651: precision = 0.503
+After 4 training steps, loss on training batch is 2.544839
+2019-07-04 15:45:28.528529: precision = 0.547
+After 5 training steps, loss on training batch is 2.662243
+2019-07-04 15:45:59.154962: precision = 0.578
+After 6 training steps, loss on training batch is 2.556887
+2019-07-04 15:46:29.799028: precision = 0.562
+After 7 training steps, loss on training batch is 2.279090
+2019-07-04 15:47:00.446131: precision = 0.591
+After 8 training steps, loss on training batch is 1.930732
+2019-07-04 15:47:31.035006: precision = 0.633
+After 9 training steps, loss on training batch is 1.973188
+2019-07-04 15:48:01.662594: precision = 0.638
+After 10 training steps, loss on training batch is 1.702664
+2019-07-04 15:48:32.315566: precision = 0.647
+After 11 training steps, loss on training batch is 1.503685
+2019-07-04 15:49:02.924403: precision = 0.658
+After 12 training steps, loss on training batch is 1.785283
+2019-07-04 15:49:33.554399: precision = 0.672
+After 13 training steps, loss on training batch is 1.460532
+2019-07-04 15:50:04.130266: precision = 0.669
+After 14 training steps, loss on training batch is 1.304929
+2019-07-04 15:50:34.644561: precision = 0.673
+After 15 training steps, loss on training batch is 1.229240
+2019-07-04 15:51:05.225591: precision = 0.682
+After 16 training steps, loss on training batch is 1.220474
+2019-07-04 15:51:35.847756: precision = 0.685
+After 17 training steps, loss on training batch is 1.281411
+2019-07-04 15:52:06.445307: precision = 0.692
+After 18 training steps, loss on training batch is 1.251558
+2019-07-04 15:52:37.034849: precision = 0.697
+After 19 training steps, loss on training batch is 1.248452
+2019-07-04 15:53:07.670154: precision = 0.696
+After 20 training steps, loss on training batch is 1.380873
+2019-07-04 15:53:38.269236: precision = 0.691
+After 21 training steps, loss on training batch is 1.143016
+2019-07-04 15:54:08.896946: precision = 0.688
+After 22 training steps, loss on training batch is 1.213160
+2019-07-04 15:54:39.497335: precision = 0.683
+After 23 training steps, loss on training batch is 1.473864
+2019-07-04 15:55:10.114145: precision = 0.696
+After 24 training steps, loss on training batch is 1.388247
+2019-07-04 15:55:40.685801: precision = 0.703
+After 25 training steps, loss on training batch is 1.097283
+2019-07-04 15:56:11.272962: precision = 0.695
+After 26 training steps, loss on training batch is 1.353113
+2019-07-04 15:56:41.909932: precision = 0.684
+After 27 training steps, loss on training batch is 1.250273
+2019-07-04 15:57:12.505762: precision = 0.684
+After 28 training steps, loss on training batch is 1.077252
+2019-07-04 15:57:43.099468: precision = 0.683
+After 29 training steps, loss on training batch is 1.054386
+2019-07-04 15:58:13.678285: precision = 0.679
+After 30 training steps, loss on training batch is 0.897271
+2019-07-04 15:58:44.292080: precision = 0.681
+After 31 training steps, loss on training batch is 0.758624
+2019-07-04 15:59:14.882941: precision = 0.690
+After 32 training steps, loss on training batch is 0.893964
+2019-07-04 15:59:45.421099: precision = 0.699
+After 33 training steps, loss on training batch is 0.987312
+2019-07-04 16:00:15.993560: precision = 0.699
+After 34 training steps, loss on training batch is 0.597151
+2019-07-04 16:00:46.576444: precision = 0.696
+After 35 training steps, loss on training batch is 0.569274
+2019-07-04 16:01:17.191822: precision = 0.703
+After 36 training steps, loss on training batch is 0.600041
+2019-07-04 16:01:47.782969: precision = 0.687
+After 37 training steps, loss on training batch is 0.831341
+2019-07-04 16:02:18.345321: precision = 0.691
+After 38 training steps, loss on training batch is 0.764148
+2019-07-04 16:02:48.926298: precision = 0.690
+After 39 training steps, loss on training batch is 0.724466
+2019-07-04 16:03:19.537680: precision = 0.688
+After 40 training steps, loss on training batch is 0.570764
+2019-07-04 16:03:50.110135: precision = 0.678
+After 41 training steps, loss on training batch is 0.386549
+2019-07-04 16:04:20.674971: precision = 0.679
+After 42 training steps, loss on training batch is 0.467790
+2019-07-04 16:04:51.299490: precision = 0.670
+After 43 training steps, loss on training batch is 0.661598
+2019-07-04 16:05:21.952401: precision = 0.666
+After 44 training steps, loss on training batch is 0.382495
+2019-07-04 16:05:52.655968: precision = 0.678
+After 45 training steps, loss on training batch is 0.406178
+2019-07-04 16:06:23.273505: precision = 0.691
+After 46 training steps, loss on training batch is 0.635327
+2019-07-04 16:06:53.953154: precision = 0.660
+After 47 training steps, loss on training batch is 0.455773
+2019-07-04 16:07:24.675358: precision = 0.661
+After 48 training steps, loss on training batch is 0.212941
+2019-07-04 16:07:55.370133: precision = 0.683
+After 49 training steps, loss on training batch is 0.194429
+2019-07-04 16:08:26.079438: precision = 0.693
+After 1 training steps, loss on training batch is 3.205245
+2019-07-04 16:09:27.102966: precision = 0.396
+After 2 training steps, loss on training batch is 2.856471
+2019-07-04 16:09:57.863262: precision = 0.439
+After 3 training steps, loss on training batch is 2.658750
+2019-07-04 16:10:28.623768: precision = 0.516
+After 4 training steps, loss on training batch is 2.553757
+2019-07-04 16:10:59.359353: precision = 0.544
+After 5 training steps, loss on training batch is 2.501811
+2019-07-04 16:11:30.104007: precision = 0.590
+After 6 training steps, loss on training batch is 2.363734
+2019-07-04 16:12:00.832797: precision = 0.587
+After 7 training steps, loss on training batch is 2.071600
+2019-07-04 16:12:31.585226: precision = 0.624
+After 8 training steps, loss on training batch is 1.876417
+2019-07-04 16:13:02.285984: precision = 0.642
+After 9 training steps, loss on training batch is 1.632701
+2019-07-04 16:13:33.014524: precision = 0.651
+After 10 training steps, loss on training batch is 1.639858
+2019-07-04 16:14:03.732249: precision = 0.660
+After 11 training steps, loss on training batch is 1.394884
+2019-07-04 16:14:34.426022: precision = 0.668
+After 12 training steps, loss on training batch is 1.560743
+2019-07-04 16:15:05.159488: precision = 0.676
+After 13 training steps, loss on training batch is 1.425165
+2019-07-04 16:15:35.896040: precision = 0.683
+After 14 training steps, loss on training batch is 1.337670
+2019-07-04 16:16:06.639308: precision = 0.687
+After 15 training steps, loss on training batch is 1.116673
+2019-07-04 16:16:37.370586: precision = 0.692
+After 16 training steps, loss on training batch is 1.076601
+2019-07-04 16:17:08.071087: precision = 0.701
+After 17 training steps, loss on training batch is 1.165095
+2019-07-04 16:17:38.735454: precision = 0.701
+After 18 training steps, loss on training batch is 1.054621
+2019-07-04 16:18:09.429935: precision = 0.707
+After 19 training steps, loss on training batch is 1.205745
+2019-07-04 16:18:40.111833: precision = 0.705
+After 20 training steps, loss on training batch is 1.419868
+2019-07-04 16:19:10.819577: precision = 0.695
+After 21 training steps, loss on training batch is 0.999949
+2019-07-04 16:19:41.501461: precision = 0.693
+After 22 training steps, loss on training batch is 1.157502
+2019-07-04 16:20:12.219873: precision = 0.695
+After 23 training steps, loss on training batch is 1.009246
+2019-07-04 16:20:42.913102: precision = 0.698
+After 24 training steps, loss on training batch is 0.868382
+2019-07-04 16:21:13.615890: precision = 0.700
+After 25 training steps, loss on training batch is 0.772416
+2019-07-04 16:21:44.297935: precision = 0.709
+After 26 training steps, loss on training batch is 1.147542
+2019-07-04 16:22:14.975981: precision = 0.713
+After 27 training steps, loss on training batch is 1.139635
+2019-07-04 16:22:45.681165: precision = 0.703
+After 28 training steps, loss on training batch is 0.852723
+2019-07-04 16:23:16.334742: precision = 0.695
+After 29 training steps, loss on training batch is 0.897750
+2019-07-04 16:23:46.990481: precision = 0.680
+After 30 training steps, loss on training batch is 0.736258
+2019-07-04 16:24:17.693949: precision = 0.672
+After 31 training steps, loss on training batch is 0.575746
+2019-07-04 16:24:48.371303: precision = 0.700
+After 32 training steps, loss on training batch is 0.655294
+2019-07-04 16:25:19.059373: precision = 0.705
+After 33 training steps, loss on training batch is 0.478172
+2019-07-04 16:25:49.739214: precision = 0.697
+After 34 training steps, loss on training batch is 0.512988
+2019-07-04 16:26:20.316601: precision = 0.698
+After 35 training steps, loss on training batch is 0.284268
+2019-07-04 16:26:50.859458: precision = 0.701
+After 36 training steps, loss on training batch is 0.505268
+2019-07-04 16:27:21.448353: precision = 0.705
+After 37 training steps, loss on training batch is 0.522301
+2019-07-04 16:27:52.059250: precision = 0.702
+After 38 training steps, loss on training batch is 0.526920
+2019-07-04 16:28:22.719505: precision = 0.702
+After 39 training steps, loss on training batch is 0.623223
+2019-07-04 16:28:53.392847: precision = 0.690
+After 40 training steps, loss on training batch is 0.526443
+2019-07-04 16:29:24.069998: precision = 0.686
+After 41 training steps, loss on training batch is 0.202825
+2019-07-04 16:29:54.749165: precision = 0.694
+After 42 training steps, loss on training batch is 0.343923
+2019-07-04 16:30:25.393386: precision = 0.691
+After 43 training steps, loss on training batch is 0.381489
+2019-07-04 16:30:56.053552: precision = 0.680
+After 44 training steps, loss on training batch is 0.251711
+2019-07-04 16:31:26.708796: precision = 0.693
+After 45 training steps, loss on training batch is 0.319039
+2019-07-04 16:31:57.392648: precision = 0.694
+After 46 training steps, loss on training batch is 0.283160
+2019-07-04 16:32:28.073614: precision = 0.697
+After 47 training steps, loss on training batch is 0.140769
+2019-07-04 16:32:58.728066: precision = 0.689
+After 48 training steps, loss on training batch is 0.331136
+2019-07-04 16:33:29.386276: precision = 0.695
+After 49 training steps, loss on training batch is 0.204679
+2019-07-04 16:34:00.023787: precision = 0.683
+After 1 training steps, loss on training batch is 3.063980
+2019-07-04 16:35:00.968616: precision = 0.401
+After 2 training steps, loss on training batch is 2.843149
+2019-07-04 16:35:31.732316: precision = 0.479
+After 3 training steps, loss on training batch is 2.601249
+2019-07-04 16:36:02.467362: precision = 0.527
+After 4 training steps, loss on training batch is 2.379038
+2019-07-04 16:36:33.190134: precision = 0.546
+After 5 training steps, loss on training batch is 2.516674
+2019-07-04 16:37:03.939334: precision = 0.589
+After 6 training steps, loss on training batch is 2.329109
+2019-07-04 16:37:34.697077: precision = 0.575
+After 7 training steps, loss on training batch is 2.094060
+2019-07-04 16:38:05.422981: precision = 0.594
+After 8 training steps, loss on training batch is 1.966650
+2019-07-04 16:38:36.177393: precision = 0.632
+After 9 training steps, loss on training batch is 1.831315
+2019-07-04 16:39:06.884223: precision = 0.644
+After 10 training steps, loss on training batch is 1.683748
+2019-07-04 16:39:37.625891: precision = 0.660
+After 11 training steps, loss on training batch is 1.522260
+2019-07-04 16:40:08.369658: precision = 0.669
+After 12 training steps, loss on training batch is 1.578013
+2019-07-04 16:40:39.068039: precision = 0.673
+After 13 training steps, loss on training batch is 1.402371
+2019-07-04 16:41:09.770546: precision = 0.675
+After 14 training steps, loss on training batch is 1.341548
+2019-07-04 16:41:40.484977: precision = 0.679
+After 15 training steps, loss on training batch is 1.271000
+2019-07-04 16:42:11.219284: precision = 0.683
+After 16 training steps, loss on training batch is 1.088110
+2019-07-04 16:42:41.936239: precision = 0.691
+After 17 training steps, loss on training batch is 1.193390
+2019-07-04 16:43:12.621896: precision = 0.702
+After 18 training steps, loss on training batch is 1.273051
+2019-07-04 16:43:43.353798: precision = 0.709
+After 19 training steps, loss on training batch is 1.338232
+2019-07-04 16:44:14.077032: precision = 0.711
+After 20 training steps, loss on training batch is 1.699558
+2019-07-04 16:44:44.763677: precision = 0.697
+After 21 training steps, loss on training batch is 1.324931
+2019-07-04 16:45:15.504395: precision = 0.684
+After 22 training steps, loss on training batch is 1.136405
+2019-07-04 16:45:46.216298: precision = 0.685
+After 23 training steps, loss on training batch is 1.144354
+2019-07-04 16:46:16.941426: precision = 0.691
+After 24 training steps, loss on training batch is 1.047572
+2019-07-04 16:46:47.633673: precision = 0.695
+After 25 training steps, loss on training batch is 0.849596
+2019-07-04 16:47:18.334441: precision = 0.705
+After 26 training steps, loss on training batch is 1.135980
+2019-07-04 16:47:49.065494: precision = 0.711
+After 27 training steps, loss on training batch is 1.224881
+2019-07-04 16:48:19.787794: precision = 0.704
+After 28 training steps, loss on training batch is 0.856207
+2019-07-04 16:48:50.486864: precision = 0.701
+After 29 training steps, loss on training batch is 0.811922
+2019-07-04 16:49:21.180796: precision = 0.695
+After 30 training steps, loss on training batch is 0.770697
+2019-07-04 16:49:51.863773: precision = 0.702
+After 31 training steps, loss on training batch is 0.544964
+2019-07-04 16:50:22.558881: precision = 0.699
+After 32 training steps, loss on training batch is 0.508066
+2019-07-04 16:50:53.266421: precision = 0.699
+After 33 training steps, loss on training batch is 0.526237
+2019-07-04 16:51:23.886486: precision = 0.703
+After 34 training steps, loss on training batch is 0.393099
+2019-07-04 16:51:54.564596: precision = 0.698
+After 35 training steps, loss on training batch is 0.533740
+2019-07-04 16:52:25.245695: precision = 0.692
+After 36 training steps, loss on training batch is 0.703070
+2019-07-04 16:52:55.966280: precision = 0.685
+After 37 training steps, loss on training batch is 0.704070
+2019-07-04 16:53:26.657909: precision = 0.667
+After 38 training steps, loss on training batch is 0.728127
+2019-07-04 16:53:57.370205: precision = 0.674
+After 39 training steps, loss on training batch is 0.545085
+2019-07-04 16:54:28.068533: precision = 0.679
+After 40 training steps, loss on training batch is 0.616538
+2019-07-04 16:54:58.741940: precision = 0.687
+After 41 training steps, loss on training batch is 0.384489
+2019-07-04 16:55:29.418331: precision = 0.678
+After 42 training steps, loss on training batch is 0.349595
+2019-07-04 16:56:00.107561: precision = 0.699
+After 43 training steps, loss on training batch is 0.556818
+2019-07-04 16:56:30.784220: precision = 0.689
+After 44 training steps, loss on training batch is 0.287556
+2019-07-04 16:57:01.447489: precision = 0.700
+After 45 training steps, loss on training batch is 0.423926
+2019-07-04 16:57:32.150219: precision = 0.692
+After 46 training steps, loss on training batch is 0.362863
+2019-07-04 16:58:02.821983: precision = 0.687
+After 47 training steps, loss on training batch is 0.261418
+2019-07-04 16:58:33.510706: precision = 0.696
+After 48 training steps, loss on training batch is 0.189407
+2019-07-04 16:59:04.212875: precision = 0.694
+After 49 training steps, loss on training batch is 0.201994
+2019-07-04 16:59:34.900688: precision = 0.690
+After 1 training steps, loss on training batch is 3.129786
+2019-07-04 17:00:35.931333: precision = 0.389
+After 2 training steps, loss on training batch is 2.820725
+2019-07-04 17:01:06.758086: precision = 0.446
+After 3 training steps, loss on training batch is 2.544597
+2019-07-04 17:01:37.574624: precision = 0.517
+After 4 training steps, loss on training batch is 2.505042
+2019-07-04 17:02:08.416494: precision = 0.561
+After 5 training steps, loss on training batch is 2.646814
+2019-07-04 17:02:39.255853: precision = 0.586
+After 6 training steps, loss on training batch is 2.387842
+2019-07-04 17:03:10.078773: precision = 0.583
+After 7 training steps, loss on training batch is 2.216044
+2019-07-04 17:03:40.863528: precision = 0.622
+After 8 training steps, loss on training batch is 1.985511
+2019-07-04 17:04:11.683680: precision = 0.636
+After 9 training steps, loss on training batch is 1.785671
+2019-07-04 17:04:42.483483: precision = 0.636
+After 10 training steps, loss on training batch is 1.667359
+2019-07-04 17:05:13.235522: precision = 0.652
+After 11 training steps, loss on training batch is 1.465992
+2019-07-04 17:05:43.977609: precision = 0.664
+After 12 training steps, loss on training batch is 1.565024
+2019-07-04 17:06:14.787123: precision = 0.675
+After 13 training steps, loss on training batch is 1.485725
+2019-07-04 17:06:45.584414: precision = 0.671
+After 14 training steps, loss on training batch is 1.433969
+2019-07-04 17:07:16.260169: precision = 0.673
+After 15 training steps, loss on training batch is 1.278945
+2019-07-04 17:07:46.892384: precision = 0.676
+After 16 training steps, loss on training batch is 1.163347
+2019-07-04 17:08:17.601427: precision = 0.684
+After 17 training steps, loss on training batch is 1.185625
+2019-07-04 17:08:48.394118: precision = 0.694
+After 18 training steps, loss on training batch is 1.267345
+2019-07-04 17:09:19.075903: precision = 0.701
+After 19 training steps, loss on training batch is 1.395439
+2019-07-04 17:09:49.723604: precision = 0.704
+After 20 training steps, loss on training batch is 1.430444
+2019-07-04 17:10:20.465113: precision = 0.700
+After 21 training steps, loss on training batch is 1.239287
+2019-07-04 17:10:51.276809: precision = 0.692
+After 22 training steps, loss on training batch is 1.158929
+2019-07-04 17:11:22.076228: precision = 0.690
+After 23 training steps, loss on training batch is 1.203730
+2019-07-04 17:11:52.876232: precision = 0.684
+After 24 training steps, loss on training batch is 1.076349
+2019-07-04 17:12:23.532449: precision = 0.699
+After 25 training steps, loss on training batch is 0.941027
+2019-07-04 17:12:54.183633: precision = 0.705
+After 26 training steps, loss on training batch is 1.085978
+2019-07-04 17:13:24.932294: precision = 0.709
+After 27 training steps, loss on training batch is 0.972962
+2019-07-04 17:13:55.661036: precision = 0.704
+After 28 training steps, loss on training batch is 0.833170
+2019-07-04 17:14:26.421186: precision = 0.710
+After 29 training steps, loss on training batch is 0.780026
+2019-07-04 17:14:57.230617: precision = 0.713
+After 30 training steps, loss on training batch is 0.847051
+2019-07-04 17:15:27.970607: precision = 0.708
+After 31 training steps, loss on training batch is 0.661074
+2019-07-04 17:15:58.702703: precision = 0.705
+After 32 training steps, loss on training batch is 0.634823
+2019-07-04 17:16:29.431705: precision = 0.703
+After 33 training steps, loss on training batch is 0.457052
+2019-07-04 17:17:00.186190: precision = 0.703
+After 34 training steps, loss on training batch is 0.435574
+2019-07-04 17:17:30.877618: precision = 0.701
+After 35 training steps, loss on training batch is 0.618295
+2019-07-04 17:18:01.650311: precision = 0.683
+After 36 training steps, loss on training batch is 0.527896
+2019-07-04 17:18:32.414451: precision = 0.675
+After 37 training steps, loss on training batch is 0.571747
+2019-07-04 17:19:03.189248: precision = 0.684
+After 38 training steps, loss on training batch is 0.575848
+2019-07-04 17:19:33.964958: precision = 0.692
+After 39 training steps, loss on training batch is 0.524246
+2019-07-04 17:20:04.779149: precision = 0.697
+After 40 training steps, loss on training batch is 0.351920
+2019-07-04 17:20:35.533301: precision = 0.695
+After 41 training steps, loss on training batch is 0.271708
+2019-07-04 17:21:06.327628: precision = 0.695
+After 42 training steps, loss on training batch is 0.334923
+2019-07-04 17:21:37.099368: precision = 0.708
+After 43 training steps, loss on training batch is 0.469179
+2019-07-04 17:22:07.841181: precision = 0.691
+After 44 training steps, loss on training batch is 0.248338
+2019-07-04 17:22:38.630253: precision = 0.696
+After 45 training steps, loss on training batch is 0.363742
+2019-07-04 17:23:09.406267: precision = 0.684
+After 46 training steps, loss on training batch is 0.497117
+2019-07-04 17:23:40.166615: precision = 0.661
+After 47 training steps, loss on training batch is 0.367918
+2019-07-04 17:24:10.925013: precision = 0.676
+After 48 training steps, loss on training batch is 0.428402
+2019-07-04 17:24:41.697966: precision = 0.695
+After 49 training steps, loss on training batch is 0.235061
+2019-07-04 17:25:12.471915: precision = 0.693
+After 1 training steps, loss on training batch is 3.177048
+2019-07-04 17:26:13.576585: precision = 0.382
+After 2 training steps, loss on training batch is 3.002011
+2019-07-04 17:26:44.435911: precision = 0.464
+After 3 training steps, loss on training batch is 2.724110
+2019-07-04 17:27:15.272040: precision = 0.521
+After 4 training steps, loss on training batch is 2.686148
+2019-07-04 17:27:46.118062: precision = 0.541
+After 5 training steps, loss on training batch is 2.498921
+2019-07-04 17:28:16.946446: precision = 0.562
+After 6 training steps, loss on training batch is 2.380651
+2019-07-04 17:28:47.780117: precision = 0.583
+After 7 training steps, loss on training batch is 2.343515
+2019-07-04 17:29:18.570061: precision = 0.602
+After 8 training steps, loss on training batch is 2.077066
+2019-07-04 17:29:49.412205: precision = 0.618
+After 9 training steps, loss on training batch is 2.032742
+2019-07-04 17:30:20.219672: precision = 0.632
+After 10 training steps, loss on training batch is 1.797238
+2019-07-04 17:30:50.994422: precision = 0.642
+After 11 training steps, loss on training batch is 1.473594
+2019-07-04 17:31:21.734376: precision = 0.654
+After 12 training steps, loss on training batch is 1.777008
+2019-07-04 17:31:52.540208: precision = 0.662
+After 13 training steps, loss on training batch is 1.506476
+2019-07-04 17:32:23.338884: precision = 0.665
+After 14 training steps, loss on training batch is 1.383541
+2019-07-04 17:32:54.124027: precision = 0.674
+After 15 training steps, loss on training batch is 1.413277
+2019-07-04 17:33:24.811035: precision = 0.681
+After 16 training steps, loss on training batch is 1.259836
+2019-07-04 17:33:55.518707: precision = 0.679
+After 17 training steps, loss on training batch is 1.127663
+2019-07-04 17:34:26.242928: precision = 0.691
+After 18 training steps, loss on training batch is 1.288272
+2019-07-04 17:34:56.930324: precision = 0.700
+After 19 training steps, loss on training batch is 1.410901
+2019-07-04 17:35:27.663952: precision = 0.701
+After 20 training steps, loss on training batch is 1.638364
+2019-07-04 17:35:58.392784: precision = 0.700
+After 21 training steps, loss on training batch is 1.206393
+2019-07-04 17:36:29.051369: precision = 0.696
+After 22 training steps, loss on training batch is 1.238697
+2019-07-04 17:36:59.833192: precision = 0.694
+After 23 training steps, loss on training batch is 1.345146
+2019-07-04 17:37:30.578594: precision = 0.692
+After 24 training steps, loss on training batch is 1.294829
+2019-07-04 17:38:01.267639: precision = 0.686
+After 25 training steps, loss on training batch is 1.045818
+2019-07-04 17:38:32.003086: precision = 0.680
+After 26 training steps, loss on training batch is 1.155569
+2019-07-04 17:39:02.749051: precision = 0.697
+After 27 training steps, loss on training batch is 1.200370
+2019-07-04 17:39:33.534349: precision = 0.705
+After 28 training steps, loss on training batch is 0.889565
+2019-07-04 17:40:04.173375: precision = 0.701
+After 29 training steps, loss on training batch is 0.751852
+2019-07-04 17:40:34.838792: precision = 0.706
+After 30 training steps, loss on training batch is 0.776715
+2019-07-04 17:41:05.536975: precision = 0.703
+After 31 training steps, loss on training batch is 0.618150
+2019-07-04 17:41:36.330504: precision = 0.701
+After 32 training steps, loss on training batch is 0.617700
+2019-07-04 17:42:07.112667: precision = 0.694
+After 33 training steps, loss on training batch is 0.685260
+2019-07-04 17:42:37.814144: precision = 0.698
+After 34 training steps, loss on training batch is 0.555977
+2019-07-04 17:43:08.498087: precision = 0.700
+After 35 training steps, loss on training batch is 0.417709
+2019-07-04 17:43:39.174642: precision = 0.691
+After 36 training steps, loss on training batch is 0.568424
+2019-07-04 17:44:09.934414: precision = 0.677
+After 37 training steps, loss on training batch is 0.734970
+2019-07-04 17:44:40.725568: precision = 0.693
+After 38 training steps, loss on training batch is 0.736423
+2019-07-04 17:45:11.494255: precision = 0.690
+After 39 training steps, loss on training batch is 1.007155
+2019-07-04 17:45:42.281153: precision = 0.674
+After 40 training steps, loss on training batch is 1.061395
+2019-07-04 17:46:12.967494: precision = 0.676
+After 41 training steps, loss on training batch is 0.727639
+2019-07-04 17:46:43.640045: precision = 0.646
+After 42 training steps, loss on training batch is 0.467867
+2019-07-04 17:47:14.385671: precision = 0.663
+After 43 training steps, loss on training batch is 0.463324
+2019-07-04 17:47:45.038631: precision = 0.683
+After 44 training steps, loss on training batch is 0.277206
+2019-07-04 17:48:15.663438: precision = 0.690
+After 45 training steps, loss on training batch is 0.402993
+2019-07-04 17:48:46.288632: precision = 0.684
+After 46 training steps, loss on training batch is 0.620150
+2019-07-04 17:49:16.989449: precision = 0.679
+After 47 training steps, loss on training batch is 0.708361
+2019-07-04 17:49:47.667587: precision = 0.672
+After 48 training steps, loss on training batch is 0.554529
+2019-07-04 17:50:18.332271: precision = 0.666
+After 49 training steps, loss on training batch is 0.256782
+2019-07-04 17:50:48.923491: precision = 0.667
+After 1 training steps, loss on training batch is 3.173739
+2019-07-04 17:51:49.696568: precision = 0.389
+After 2 training steps, loss on training batch is 2.880494
+2019-07-04 17:52:20.431464: precision = 0.456
+After 3 training steps, loss on training batch is 2.703864
+2019-07-04 17:52:51.185070: precision = 0.512
+After 4 training steps, loss on training batch is 2.492753
+2019-07-04 17:53:21.882375: precision = 0.527
+After 5 training steps, loss on training batch is 2.402802
+2019-07-04 17:53:52.570764: precision = 0.570
+After 6 training steps, loss on training batch is 2.517192
+2019-07-04 17:54:23.246481: precision = 0.595
+After 7 training steps, loss on training batch is 2.333555
+2019-07-04 17:54:54.002576: precision = 0.600
+After 8 training steps, loss on training batch is 2.075630
+2019-07-04 17:55:24.715644: precision = 0.625
+After 9 training steps, loss on training batch is 1.928321
+2019-07-04 17:55:55.472437: precision = 0.624
+After 10 training steps, loss on training batch is 1.654965
+2019-07-04 17:56:26.208944: precision = 0.632
+After 11 training steps, loss on training batch is 1.430447
+2019-07-04 17:56:56.965978: precision = 0.649
+After 12 training steps, loss on training batch is 1.784716
+2019-07-04 17:57:27.708835: precision = 0.656
+After 13 training steps, loss on training batch is 1.657605
+2019-07-04 17:57:58.421313: precision = 0.663
+After 14 training steps, loss on training batch is 1.497800
+2019-07-04 17:58:29.173409: precision = 0.667
+After 15 training steps, loss on training batch is 1.369523
+2019-07-04 17:58:59.880972: precision = 0.666
+After 16 training steps, loss on training batch is 1.142500
+2019-07-04 17:59:30.607496: precision = 0.677
+After 17 training steps, loss on training batch is 1.163026
+2019-07-04 18:00:01.265236: precision = 0.684
+After 18 training steps, loss on training batch is 1.314124
+2019-07-04 18:00:31.984483: precision = 0.687
+After 19 training steps, loss on training batch is 1.660342
+2019-07-04 18:01:02.677142: precision = 0.676
+After 20 training steps, loss on training batch is 1.554653
+2019-07-04 18:01:33.380821: precision = 0.676
+After 21 training steps, loss on training batch is 1.148251
+2019-07-04 18:02:04.044780: precision = 0.682
+After 22 training steps, loss on training batch is 1.326923
+2019-07-04 18:02:34.762140: precision = 0.686
+After 23 training steps, loss on training batch is 1.441091
+2019-07-04 18:03:05.452319: precision = 0.684
+After 24 training steps, loss on training batch is 1.241528
+2019-07-04 18:03:36.187526: precision = 0.686
+After 25 training steps, loss on training batch is 0.953070
+2019-07-04 18:04:06.910885: precision = 0.690
+After 26 training steps, loss on training batch is 1.294567
+2019-07-04 18:04:37.631156: precision = 0.692
+After 27 training steps, loss on training batch is 1.291815
+2019-07-04 18:05:08.300860: precision = 0.688
+After 28 training steps, loss on training batch is 0.880074
+2019-07-04 18:05:38.950134: precision = 0.695
+After 29 training steps, loss on training batch is 0.872524
+2019-07-04 18:06:09.603567: precision = 0.705
+After 30 training steps, loss on training batch is 1.003527
+2019-07-04 18:06:40.260826: precision = 0.696
+After 31 training steps, loss on training batch is 0.634411
+2019-07-04 18:07:10.916396: precision = 0.697
+After 32 training steps, loss on training batch is 0.807548
+2019-07-04 18:07:41.587445: precision = 0.698
+After 33 training steps, loss on training batch is 0.761392
+2019-07-04 18:08:12.268219: precision = 0.701
+After 34 training steps, loss on training batch is 0.512220
+2019-07-04 18:08:42.952243: precision = 0.704
+After 35 training steps, loss on training batch is 0.555702
+2019-07-04 18:09:13.634758: precision = 0.686
+After 36 training steps, loss on training batch is 0.567187
+2019-07-04 18:09:44.304020: precision = 0.686
+After 37 training steps, loss on training batch is 0.795980
+2019-07-04 18:10:15.011966: precision = 0.686
+After 38 training steps, loss on training batch is 0.810364
+2019-07-04 18:10:45.695623: precision = 0.664
+After 39 training steps, loss on training batch is 0.797890
+2019-07-04 18:11:16.354467: precision = 0.652
+After 40 training steps, loss on training batch is 0.422764
+2019-07-04 18:11:47.018743: precision = 0.672
+After 41 training steps, loss on training batch is 0.299326
+2019-07-04 18:12:17.663924: precision = 0.675
+After 42 training steps, loss on training batch is 0.530142
+2019-07-04 18:12:48.330764: precision = 0.677
+After 43 training steps, loss on training batch is 0.573965
+2019-07-04 18:13:18.986553: precision = 0.670
+After 44 training steps, loss on training batch is 0.332701
+2019-07-04 18:13:49.667667: precision = 0.683
+After 45 training steps, loss on training batch is 0.396048
+2019-07-04 18:14:20.307408: precision = 0.694
+After 46 training steps, loss on training batch is 0.258836
+2019-07-04 18:14:50.975010: precision = 0.694
+After 47 training steps, loss on training batch is 0.363290
+2019-07-04 18:15:21.641869: precision = 0.700
+After 48 training steps, loss on training batch is 0.416049
+2019-07-04 18:15:52.281943: precision = 0.702
+After 49 training steps, loss on training batch is 0.230555
+2019-07-04 18:16:22.847631: precision = 0.695

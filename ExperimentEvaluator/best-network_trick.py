@@ -188,7 +188,7 @@ class Evaluator:
             # print('Evaluater:right now we are processing node %d'%node,', ',cellist[node])
             if cellist[node][0] == 'conv':
                 layer = self._makeconv(inputs[node], cellist[node], node)
-                # layer = tf.nn.lrn(layer, 4, bias=1.0, alpha=0.001 / 9.0, beta=0.75, name='norm2')
+                layer = tf.nn.lrn(layer, 4, bias=1.0, alpha=0.001 / 9.0, beta=0.75, name='norm2')
             elif cellist[node][0] == 'pooling':
                 layer = self._makepool(inputs[node], cellist[node])
             elif cellist[node][0] == 'dense':
@@ -385,8 +385,8 @@ class Evaluator:
                 _, loss_value = sess.run([train_op, loss]
                                          , feed_dict={images: self.dataset.feature[batch_index],
                                                       labels: self.dataset.label[batch_index]})
-                if i % one_epoch == 0 and i > 0:
-                    print("After %d training steps, loss on training batch is %f" % (i / one_epoch, loss_value))
+                if (i + 1) % one_epoch == 0:
+                    print("After %d training steps, loss on training batch is %f" % ((i + 1) / one_epoch, loss_value))
                     step = 0
                     true_count = 0
                     while step < num_iter:
@@ -487,13 +487,17 @@ if __name__ == '__main__':
     network_list.append(best_network)
     # network_list.append(vgg16)
 
-    for network in network_list:
-        eval = Evaluator()
-        g = []
-        for r in subsample_ratio_range:
-            eval.add_data(int(NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN * r))
-            a = eval.exp(network, 50)
-            g.append(a)
-        print(np.shape(g))
-        g = np.array(g)
-        np.savetxt("2res.txt", g, "%.3f")
+    eval = Evaluator()
+    eval.add_data(50000)
+    eval = eval.exp(best_network, 300)
+
+    # for network in network_list:
+    #     eval = Evaluator()
+    #     g = []
+    #     for r in subsample_ratio_range:
+    #         eval.add_data(int(NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN * r))
+    #         a = eval.exp(network, 50)
+    #         g.append(a)
+    #     print(np.shape(g))
+    #     g = np.array(g)
+    #     np.savetxt("2res.txt", g, "%.3f")
