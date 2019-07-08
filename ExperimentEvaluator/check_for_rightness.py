@@ -300,6 +300,12 @@ def _makepool(inputs, hplist):
         return tf.reduce_mean(inputs, [1, 2], keep_dims=True)
 
 
+def batch_norm(input):
+    # return input
+    return tf.contrib.layers.batch_norm(input, decay=0.9, center=True, scale=True, epsilon=1e-3,
+                                        is_training=train_flag, updates_collections=None)
+
+
 def _makedense(inputs, hplist):
     """Generates dense layers according to information in hplist
 
@@ -312,17 +318,17 @@ def _makedense(inputs, hplist):
     """
     i = 0
     print(inputs.shape)
-    inputs = tf.reshape(inputs, [batch_size, 2046])
+    inputs = tf.reshape(inputs, [-1, 2 * 2 * 512])
 
     for neural_num in hplist[1]:
         with tf.variable_scope('dense' + str(i)) as scope:
-            weight = tf.get_variable('weights', shape=[inputs.shape[-1], neural_num],
-                                     initializer=tf.contrib.keras.initializers.he_normal())
-            weights = tf.multiply(tf.nn.l2_loss(weight), 0.004, name='weight_loss')
-            tf.add_to_collection('losses', weights)
+            weights = tf.get_variable('weights', shape=[inputs.shape[-1], neural_num],
+                                      initializer=tf.contrib.keras.initializers.he_normal())
+            weight = tf.multiply(tf.nn.l2_loss(weights), 0.004, name='weight_loss')
+            # tf.add_to_collection('losses', weight)
             biases = tf.get_variable('biases', [neural_num], initializer=tf.constant_initializer(0.0))
             if hplist[2] == 'relu':
-                local3 = tf.nn.relu(tf.matmul(inputs, weights) + biases, name=scope.name)
+                local3 = tf.nn.relu(batch_norm(tf.matmul(inputs, weights) + biases), name=scope.name)
             elif hplist[2] == 'tanh':
                 local3 = tf.tanh(tf.matmul(inputs, weights) + biases, name=scope.name)
             elif hplist[2] == 'sigmoid':
@@ -391,10 +397,10 @@ def inference(images, graph_part, cellist):  # ,regularizer):
                 inqueue[j] = True
 
     # softmax
-    layer = tf.reshape(layer, [batch_size, -1])
+    # layer = tf.reshape(layer, [batch_size, -1])
     with tf.variable_scope('softmax_linear') as scope:
         weights = tf.get_variable('weights', shape=[layer.shape[-1], NUM_CLASSES],
-                                  initializer=tf.truncated_normal_initializer(stddev=0.04))  # 1 / float(dim)))
+                                  initializer=tf.contrib.keras.initializers.he_normal())
         biases = tf.get_variable('biases', shape=[NUM_CLASSES], initializer=tf.constant_initializer(0.0))
         # softmax_linear = tf.nn.softmax(tf.matmul(layer, weights)+ biases, name=scope.name)
         softmax_linear = tf.add(tf.matmul(layer, weights), biases, name=scope.name)
@@ -418,13 +424,13 @@ if __name__ == '__main__':
     train_flag = tf.placeholder(tf.bool)
 
     graph_part = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [17],
-                  [18], []]
+                  []]
     cell_list = [('conv', 64, 3, 'relu'), ('conv', 64, 3, 'relu'), ('pooling', 'max', 2), ('conv', 128, 3, 'relu'),
                  ('conv', 128, 3, 'relu'), ('pooling', 'max', 2), ('conv', 256, 3, 'relu'),
                  ('conv', 256, 3, 'relu'), ('conv', 256, 3, 'relu'), ('pooling', 'max', 2),
                  ('conv', 512, 3, 'relu'), ('conv', 512, 3, 'relu'), ('conv', 512, 3, 'relu'),
                  ('pooling', 'max', 2), ('conv', 512, 3, 'relu'), ('conv', 512, 3, 'relu'),
-                 ('conv', 512, 3, 'relu'), ('pooling', 'max', 2), ('dense', [4096, 4096, 1000], 'relu')]
+                 ('conv', 512, 3, 'relu'), ('dense', [4096, 4096, 1000], 'relu')]
 
     output = inference(x, graph_part, cell_list)
 
