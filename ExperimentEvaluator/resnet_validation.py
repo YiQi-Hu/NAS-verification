@@ -412,17 +412,6 @@ if __name__ == '__main__':
     path = os.getcwd()  # +'/../'
     data_dir = os.path.join(path, 'cifar-10-batches-bin')
 
-    train_x, train_y = load_data(data_dir)
-    test_x, test_y = load_batch(os.path.join(data_dir, 'test_batch.bin'))
-    train_x, test_x = data_preprocessing(train_x, test_x)
-
-    # define placeholder x, y_ , keep_prob, learning_rate
-    x = tf.placeholder(tf.float32, [None, image_size, image_size, 3])
-    y_ = tf.placeholder(tf.int64, [None, ])
-    keep_prob = tf.placeholder(tf.float32)
-    learning_rate = tf.placeholder(tf.float32)
-    train_flag = tf.placeholder(tf.bool)
-
     graph_part = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [17],
                   []]
     cell_list = [('conv', 64, 3, 'relu'), ('conv', 64, 3, 'relu'), ('pooling', 'max', 2), ('conv', 128, 3, 'relu'),
@@ -432,76 +421,21 @@ if __name__ == '__main__':
                  ('pooling', 'max', 2), ('conv', 512, 3, 'relu'), ('conv', 512, 3, 'relu'),
                  ('conv', 512, 3, 'relu'), ('dense', [4096, 4096, 1000], 'relu')]
 
-    output = inference(x, graph_part, cell_list)
+    dataset_train = get_data('train')
+    dataset_test = get_data('test')
 
-    # output  = tf.reshape(output,[-1,10])
-
-    # loss function: cross_entropy
-    # train_step: training operation
-    cross_entropy = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y_, logits=output))
-    l2 = tf.add_n([tf.nn.l2_loss(var) for var in tf.trainable_variables()])
-    train_step = tf.train.MomentumOptimizer(learning_rate, momentum_rate, use_nesterov=True). \
-        minimize(cross_entropy + l2 * weight_decay)
-
-    correct_prediction = tf.equal(tf.argmax(output, 1), y_)
-    accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-
-    # initial an saver to save model
-    saver = tf.train.Saver()
-
-    with tf.Session() as sess:
-
-        sess.run(tf.global_variables_initializer())
-        summary_writer = tf.summary.FileWriter(log_save_path, sess.graph)
-
-        # epoch = 164
-        # make sure [bath_size * iteration = data_set_number]
-
-        for ep in range(1, total_epoch + 1):
-            lr = learning_rate_schedule(ep)
-            pre_index = 0
-            train_acc = 0.0
-            train_loss = 0.0
-            start_time = time.time()
-
-            print("\n epoch %d/%d:" % (ep, total_epoch))
-
-            for it in range(1, iterations + 1):
-                batch_x = train_x[pre_index:pre_index + batch_size]
-                batch_y = train_y[pre_index:pre_index + batch_size]
-
-                batch_x = data_augmentation(batch_x)
-
-                _, batch_loss = sess.run([train_step, cross_entropy],
-                                         feed_dict={x: batch_x, y_: batch_y, keep_prob: dropout_rate,
-                                                    learning_rate: lr, train_flag: True})
-                batch_acc = accuracy.eval(feed_dict={x: batch_x, y_: batch_y, keep_prob: 1.0, train_flag: True})
-
-                train_loss += batch_loss
-                train_acc += batch_acc
-                pre_index += batch_size
-
-                if it == iterations:
-                    train_loss /= iterations
-                    train_acc /= iterations
-
-                    loss_, acc_ = sess.run([cross_entropy, accuracy],
-                                           feed_dict={x: batch_x, y_: batch_y, keep_prob: 1.0, train_flag: True})
-                    train_summary = tf.Summary(value=[tf.Summary.Value(tag="train_loss", simple_value=train_loss),
-                                                      tf.Summary.Value(tag="train_accuracy", simple_value=train_acc)])
-
-                    val_acc, val_loss, test_summary = run_testing(sess, ep)
-
-                    summary_writer.add_summary(train_summary, ep)
-                    summary_writer.add_summary(test_summary, ep)
-                    summary_writer.flush()
-
-                    print("iteration: %d/%d, cost_time: %ds, train_loss: %.4f, "
-                          "train_acc: %.4f, test_loss: %.4f, test_acc: %.4f"
-                          % (it, iterations, int(time.time() - start_time), train_loss, train_acc, val_loss, val_acc))
-                # else:
-                #     print("iteration: %d/%d, train_loss: %.4f, train_acc: %.4f"
-                #           % (it, iterations, train_loss / it, train_acc / it))
-
-        save_path = saver.save(sess, model_save_path)
-        print("Model saved in file: %s" % save_path)
+    config = TrainConfig(
+        model=Model(n=NUM_UNITS),
+        dataflow=dataset_train,
+        callbacks=[
+            ModelSaver(),
+            InferenceRunner(dataset_test,
+                            [ScalarStats('cost'), ClassificationError('wrong_vector')]),
+            ScheduledHyperParamSetter('learning_rate',
+                                      [(1, 0.1), (82, 0.01), (123, 0.001), (300, 0.0002)])
+        ],
+        max_epoch=400,
+        session_init=SaverRestore(args.load) if args.load else None
+    )
+    num_gpu = max(get_num_gpu(), 1)
+    launch_train_with_config(config, SyncMultiGPUTrainerParameterServer(num_gpu))
