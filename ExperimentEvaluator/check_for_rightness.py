@@ -22,52 +22,14 @@ model_save_path = './model/'
 NUM_CLASSES = 10
 
 
-def download_data():
-    dirname = 'cifar10-dataset'
-    origin = 'http://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz'
-    fname = './CAFIR-10_data/cifar-10-python.tar.gz'
-    fpath = './' + dirname
-
-    download = False
-    if os.path.exists(fpath) or os.path.isfile(fname):
-        download = False
-        print("DataSet already exist!")
-    else:
-        download = True
-    if download:
-        print('Downloading data from', origin)
-        import urllib.request
-        import tarfile
-
-        def reporthook(count, block_size, total_size):
-            global start_time
-            if count == 0:
-                start_time = time.time()
-                return
-            duration = time.time() - start_time
-            progress_size = int(count * block_size)
-            speed = int(progress_size / (1024 * duration))
-            percent = min(int(count * block_size * 100 / total_size), 100)
-            sys.stdout.write("\r...%d%%, %d MB, %d KB/s, %d seconds passed" %
-                             (percent, progress_size / (1024 * 1024), speed, duration))
-            sys.stdout.flush()
-
-        urllib.request.urlretrieve(origin, fname, reporthook)
-        print('Download finished. Start extract!', origin)
-        if fname.endswith("tar.gz"):
-            tar = tarfile.open(fname, "r:gz")
-            tar.extractall()
-            tar.close()
-        elif fname.endswith("tar"):
-            tar = tarfile.open(fname, "r:")
-            tar.extractall()
-            tar.close()
 
 
 def unpickle(file):
     with open(file, 'rb') as fo:
-        dict = pickle.load(fo)
+        dict = pickle.load(fo,encoding='bytes')
     return dict
+
+
 
 
 def load_data_one(file):
@@ -78,39 +40,43 @@ def load_data_one(file):
     return data, labels
 
 
-#
-#
-# def load_data(files, data_dir, label_count):
-#     global image_size, img_channels
-#     data, labels = load_data_one(data_dir + '\\' + files[0])
-#     for f in files[1:]:
-#         data_n, labels_n = load_data_one(data_dir + '\\' + f)
-#         data = np.append(data, data_n, axis=0)
-#         labels = np.append(labels, labels_n, axis=0)
-#     labels = np.array([[float(i == label) for i in range(label_count)] for label in labels])
-#     data = data.reshape([-1, img_channels, image_size, image_size])
-#     data = data.transpose([0, 2, 3, 1])
-#     return data, labels
+
+
+def load_data(files, data_dir, label_count):
+    global image_size, img_channels
+    data, labels = load_data_one(data_dir + '/' + files[0])
+    for f in files[1:]:
+        data_n, labels_n = load_data_one(data_dir + '/' + f)
+        data = np.append(data, data_n, axis=0)
+        labels = np.append(labels, labels_n, axis=0)
+    labels = np.array([[float(i == label) for i in range(label_count)] for label in labels])
+    data = data.reshape([-1, img_channels, image_size, image_size])
+    data = data.transpose([0, 2, 3, 1])
+    return data, labels
+
+
 
 
 def prepare_data():
     print("======Loading data======")
     # download_data()
-    data_dir = os.path.join(os.getcwd(), 'cifar-10-batches-bin')
+    data_dir = os.path.join('/home/amax/Desktop', 'cifar-10-batches-py')
     image_dim = image_size * image_size * img_channels
-    # meta = unpickle(data_dir + '\\batches.meta.txt')
-    #
-    #
-    # print(meta)
-    # label_names = meta[b'label_names']
+    meta = unpickle(data_dir + '/batches.meta')
+
+
+    print(meta)
+    label_names = meta[b'label_names']
     label_count = 10
-    train_files = ['data_batch_%d.bin' % d for d in range(1, 6)]
+    train_files = ['data_batch_%d' % d for d in range(1, 6)]
     train_data, train_labels = load_data(train_files, data_dir, label_count)
-    test_data, test_labels = load_data(['test_batch.bin'], data_dir, label_count)
+    test_data, test_labels = load_data(['test_batch'], data_dir, label_count)
+
 
     print("Train data:", np.shape(train_data), np.shape(train_labels))
     print("Test data :", np.shape(test_data), np.shape(test_labels))
     print("======Load finished======")
+
 
     print("======Shuffling data======")
     indices = np.random.permutation(len(train_data))
@@ -118,21 +84,8 @@ def prepare_data():
     train_labels = train_labels[indices]
     print("======Prepare Finished======")
 
+
     return train_data, train_labels, test_data, test_labels
-
-
-def bias_variable(shape):
-    initial = tf.constant(0.1, shape=shape, dtype=tf.float32)
-    return tf.Variable(initial)
-
-
-def conv2d(x, W):
-    return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
-
-
-def max_pool(input, k_size=1, stride=1, name=None):
-    return tf.nn.max_pool(input, ksize=[1, k_size, k_size, 1], strides=[1, stride, stride, 1],
-                          padding='SAME', name=name)
 
 
 def batch_norm(input):
@@ -144,8 +97,9 @@ def batch_norm(input):
 def _random_crop(batch, crop_shape, padding=None):
     oshape = np.shape(batch[0])
 
+
     if padding:
-        oshape = (oshape[0] + 2 * padding, oshape[1] + 2 * padding)
+        oshape = (oshape[0] + 2*padding, oshape[1] + 2*padding)
     new_batch = []
     npad = ((padding, padding), (padding, padding), (0, 0))
     for i in range(len(batch)):
@@ -156,98 +110,47 @@ def _random_crop(batch, crop_shape, padding=None):
         nh = random.randint(0, oshape[0] - crop_shape[0])
         nw = random.randint(0, oshape[1] - crop_shape[1])
         new_batch[i] = new_batch[i][nh:nh + crop_shape[0],
-                       nw:nw + crop_shape[1]]
+                                    nw:nw + crop_shape[1]]
     return new_batch
 
 
+
+
 def _random_flip_leftright(batch):
-    for i in range(len(batch)):
-        if bool(random.getrandbits(1)):
-            batch[i] = np.fliplr(batch[i])
-    return batch
+        for i in range(len(batch)):
+            if bool(random.getrandbits(1)):
+                batch[i] = np.fliplr(batch[i])
+        return batch
 
 
-def data_preprocessing(x_train, x_test):
+
+
+def data_preprocessing(x_train,x_test):
+
+
     x_train = x_train.astype('float32')
     x_test = x_test.astype('float32')
+
 
     x_train[:, :, :, 0] = (x_train[:, :, :, 0] - np.mean(x_train[:, :, :, 0])) / np.std(x_train[:, :, :, 0])
     x_train[:, :, :, 1] = (x_train[:, :, :, 1] - np.mean(x_train[:, :, :, 1])) / np.std(x_train[:, :, :, 1])
     x_train[:, :, :, 2] = (x_train[:, :, :, 2] - np.mean(x_train[:, :, :, 2])) / np.std(x_train[:, :, :, 2])
 
+
     x_test[:, :, :, 0] = (x_test[:, :, :, 0] - np.mean(x_test[:, :, :, 0])) / np.std(x_test[:, :, :, 0])
     x_test[:, :, :, 1] = (x_test[:, :, :, 1] - np.mean(x_test[:, :, :, 1])) / np.std(x_test[:, :, :, 1])
     x_test[:, :, :, 2] = (x_test[:, :, :, 2] - np.mean(x_test[:, :, :, 2])) / np.std(x_test[:, :, :, 2])
 
+
     return x_train, x_test
+
+
 
 
 def data_augmentation(batch):
     batch = _random_flip_leftright(batch)
     batch = _random_crop(batch, [32, 32], 4)
     return batch
-
-
-def learning_rate_schedule(epoch_num):
-    if epoch_num < 81:
-        return 0.1
-    elif epoch_num < 121:
-        return 0.01
-    else:
-        return 0.001
-
-
-def run_testing(sess, ep):
-    acc = 0.0
-    loss = 0.0
-    pre_index = 0
-    add = 1000
-    for it in range(10):
-        batch_x = test_x[pre_index:pre_index + add]
-        batch_y = test_y[pre_index:pre_index + add]
-        pre_index = pre_index + add
-        loss_, acc_ = sess.run([cross_entropy, accuracy],
-                               feed_dict={x: batch_x, y_: batch_y, keep_prob: 1.0, train_flag: False})
-        loss += loss_ / 10.0
-        acc += acc_ / 10.0
-    summary = tf.Summary(value=[tf.Summary.Value(tag="test_loss", simple_value=loss),
-                                tf.Summary.Value(tag="test_accuracy", simple_value=acc)])
-    return acc, loss, summary
-
-
-def load_batch(filename, num=10000):
-    """ load single batch of cifar """
-    bytestream = open(filename, "rb")
-    buf = bytestream.read(num * (1 + 32 * 32 * 3))
-    bytestream.close()
-    data = np.frombuffer(buf, dtype=np.uint8)
-    data = data.reshape(num, 1 + 32 * 32 * 3)
-    data = np.float32(data)
-    labels_images = np.hsplit(data, [1])
-    labels = labels_images[0].reshape(num)
-    labels = np.int64(labels)
-    images = labels_images[1].reshape(num, 32, 32, 3)
-    images_mean = np.mean(images, axis=(1, 2, 3)).reshape((-1, 1, 1, 1))
-    stddev = np.std(images, axis=(1, 2, 3)).reshape((-1, 1, 1, 1))
-    images = (images - images_mean) / stddev
-    return images, labels
-
-
-def load_data(ROOT):
-    """ load all of cifar """
-    print('Evaluater: loading data')
-    xs = []
-    ys = []
-    for b in range(1, 6):
-        f = os.path.join(ROOT, 'data_batch_%d.bin' % (b,))
-        X, Y = load_batch(f)
-        xs.append(X)
-        ys.append(Y)
-    Xtr = np.concatenate(xs)  # 使变成行向量
-    Ytr = np.concatenate(ys)
-    del X, Y
-    # print('Evaluater:data loaded')
-    return Xtr, Ytr
 
 
 def _makeconv(inputs, hplist, node):
@@ -267,7 +170,7 @@ def _makeconv(inputs, hplist, node):
                                  initializer=tf.truncated_normal_initializer(stddev=0.1))
         conv = tf.nn.conv2d(inputs, kernel, [1, 1, 1, 1], padding='SAME')
         biases = tf.get_variable('biases', hplist[1], initializer=tf.constant_initializer(0.0))
-        bias = tf.nn.bias_add(conv, biases)
+        bias = batch_norm(tf.nn.bias_add(conv, biases))
         if hplist[3] == 'relu':
             conv1 = tf.nn.relu(bias, name=scope.name)
         elif hplist[3] == 'tenh' or hplist[3] == 'tanh':
@@ -299,11 +202,6 @@ def _makepool(inputs, hplist):
     elif hplist[1] == 'global':
         return tf.reduce_mean(inputs, [1, 2], keep_dims=True)
 
-
-def batch_norm(input):
-    # return input
-    return tf.contrib.layers.batch_norm(input, decay=0.9, center=True, scale=True, epsilon=1e-3,
-                                        is_training=train_flag, updates_collections=None)
 
 
 def _makedense(inputs, hplist):
@@ -408,23 +306,46 @@ def inference(images, graph_part, cellist):  # ,regularizer):
     return softmax_linear
 
 
-if __name__ == '__main__':
-    path = os.getcwd()  # +'/../'
-    data_dir = os.path.join(path, 'cifar-10-batches-bin')
+def learning_rate_schedule(epoch_num):
+    if epoch_num < 81:
+        return 0.1
+    elif epoch_num < 121:
+        return 0.01
+    else:
+        return 0.001
 
-    train_x, train_y = load_data(data_dir)
-    test_x, test_y = load_batch(os.path.join(data_dir, 'test_batch.bin'))
+
+def run_testing(sess, ep):
+    acc = 0.0
+    loss = 0.0
+    pre_index = 0
+    add = 1000
+    for it in range(10):
+        batch_x = test_x[pre_index:pre_index+add]
+        batch_y = test_y[pre_index:pre_index+add]
+        pre_index = pre_index + add
+        loss_, acc_  = sess.run([cross_entropy, accuracy],
+                                feed_dict={x: batch_x, y_: batch_y, keep_prob: 1.0, train_flag: False})
+        loss += loss_ / 10.0
+        acc += acc_ / 10.0
+    summary = tf.Summary(value=[tf.Summary.Value(tag="test_loss", simple_value=loss),
+                                tf.Summary.Value(tag="test_accuracy", simple_value=acc)])
+    return acc, loss, summary
+
+if __name__ == '__main__':
+    train_x, train_y, test_x, test_y = prepare_data()
+    # train_x, train_y=load_data(data_dir)
+    # test_x, test_y=load_batch(os.path.join(data_dir, 'test_batch.bin'))
     train_x, test_x = data_preprocessing(train_x, test_x)
 
     # define placeholder x, y_ , keep_prob, learning_rate
     x = tf.placeholder(tf.float32, [None, image_size, image_size, 3])
-    y_ = tf.placeholder(tf.int64, [None, ])
+    y_ = tf.placeholder(tf.int64, [None, 10])
     keep_prob = tf.placeholder(tf.float32)
     learning_rate = tf.placeholder(tf.float32)
     train_flag = tf.placeholder(tf.bool)
 
-    graph_part = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [17],
-                  []]
+    graph_part = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [17],[]]
     cell_list = [('conv', 64, 3, 'relu'), ('conv', 64, 3, 'relu'), ('pooling', 'max', 2), ('conv', 128, 3, 'relu'),
                  ('conv', 128, 3, 'relu'), ('pooling', 'max', 2), ('conv', 256, 3, 'relu'),
                  ('conv', 256, 3, 'relu'), ('conv', 256, 3, 'relu'), ('pooling', 'max', 2),
@@ -438,12 +359,12 @@ if __name__ == '__main__':
 
     # loss function: cross_entropy
     # train_step: training operation
-    cross_entropy = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y_, logits=output))
+    cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=output))
     l2 = tf.add_n([tf.nn.l2_loss(var) for var in tf.trainable_variables()])
     train_step = tf.train.MomentumOptimizer(learning_rate, momentum_rate, use_nesterov=True). \
         minimize(cross_entropy + l2 * weight_decay)
 
-    correct_prediction = tf.equal(tf.argmax(output, 1), y_)
+    correct_prediction = tf.equal(tf.argmax(output, 1), tf.argmax(y_,1))
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
     # initial an saver to save model
