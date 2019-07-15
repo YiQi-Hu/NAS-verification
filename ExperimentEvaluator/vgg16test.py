@@ -72,7 +72,7 @@ def download_data():
 
 def unpickle(file):
     with open(file, 'rb') as fo:
-        dict = pickle.load(fo)
+        dict = pickle.load(fo,encoding='bytes')
     return dict
 
 
@@ -86,19 +86,19 @@ def load_data_one(file):
     return data, labels
 
 
-#
-#
-# def load_data(files, data_dir, label_count):
-#     global image_size, img_channels
-#     data, labels = load_data_one(data_dir + '\\' + files[0])
-#     for f in files[1:]:
-#         data_n, labels_n = load_data_one(data_dir + '\\' + f)
-#         data = np.append(data, data_n, axis=0)
-#         labels = np.append(labels, labels_n, axis=0)
-#     labels = np.array([[float(i == label) for i in range(label_count)] for label in labels])
-#     data = data.reshape([-1, img_channels, image_size, image_size])
-#     data = data.transpose([0, 2, 3, 1])
-#     return data, labels
+
+
+def load_data(files, data_dir, label_count):
+    global image_size, img_channels
+    data, labels = load_data_one(data_dir + '/' + files[0])
+    for f in files[1:]:
+        data_n, labels_n = load_data_one(data_dir + '/' + f)
+        data = np.append(data, data_n, axis=0)
+        labels = np.append(labels, labels_n, axis=0)
+    labels = np.array([[float(i == label) for i in range(label_count)] for label in labels])
+    data = data.reshape([-1, img_channels, image_size, image_size])
+    data = data.transpose([0, 2, 3, 1])
+    return data, labels
 
 
 
@@ -106,17 +106,17 @@ def load_data_one(file):
 def prepare_data():
     print("======Loading data======")
     # download_data()
-    data_dir = os.path.join(os.getcwd(), 'cifar-10-batches-bin')
+    data_dir = os.path.join('/home/amax/Desktop/tensorpack-master', 'cifar-10-batches-py')
     image_dim = image_size * image_size * img_channels
-    # meta = unpickle(data_dir + '\\batches.meta.txt')
+    # meta = unpickle(data_dir + '/batches.meta.txt')
     #
     #
     # print(meta)
     # label_names = meta[b'label_names']
     label_count = 10
-    train_files = ['data_batch_%d.bin' % d for d in range(1, 6)]
+    train_files = ['data_batch_%d' % d for d in range(1, 6)]
     train_data, train_labels = load_data(train_files, data_dir, label_count)
-    test_data, test_labels = load_data(['test_batch.bin'], data_dir, label_count)
+    test_data, test_labels = load_data(['test_batch'], data_dir, label_count)
 
 
     print("Train data:", np.shape(train_data), np.shape(train_labels))
@@ -252,52 +252,16 @@ def run_testing(sess, ep):
     return acc, loss, summary
 
 
-def load_batch(filename, num=10000):
-        """ load single batch of cifar """
-        bytestream = open(filename, "rb")
-        buf = bytestream.read(num * (1 + 32 * 32 * 3))
-        bytestream.close()
-        data = np.frombuffer(buf, dtype=np.uint8)
-        data = data.reshape(num, 1 + 32 * 32 * 3)
-        data = np.float32(data)
-        labels_images = np.hsplit(data, [1])
-        labels = labels_images[0].reshape(num)
-        labels = np.int64(labels)
-        images = labels_images[1].reshape(num, 32, 32, 3)
-        images_mean = np.mean(images, axis=(1, 2, 3)).reshape((-1, 1, 1, 1))
-        stddev = np.std(images, axis=(1, 2, 3)).reshape((-1, 1, 1, 1))
-        images = (images - images_mean) / stddev
-        return images, labels
-
-def load_data( ROOT):
-        """ load all of cifar """
-        print('Evaluater: loading data')
-        xs = []
-        ys = []
-        for b in range(1, 6):
-            f = os.path.join(ROOT, 'data_batch_%d.bin' % (b,))
-            X, Y = load_batch(f)
-            xs.append(X)
-            ys.append(Y)
-        Xtr = np.concatenate(xs)  # 使变成行向量
-        Ytr = np.concatenate(ys)
-        del X, Y
-        # print('Evaluater:data loaded')
-        return Xtr, Ytr
 
 
 if __name__ == '__main__':
-    path = os.getcwd()  # +'/../'
-    data_dir = os.path.join(path, 'cifar-10-batches-bin')
-
-    train_x, train_y=load_data(data_dir)
-    test_x, test_y=load_batch(os.path.join(data_dir, 'test_batch.bin'))
+    train_x, train_y, test_x, test_y=prepare_data()
     train_x, test_x = data_preprocessing(train_x, test_x)
 
 
     # define placeholder x, y_ , keep_prob, learning_rate
     x = tf.placeholder(tf.float32,[None, image_size, image_size, 3])
-    y_ = tf.placeholder(tf.int64, [None, ])
+    y_ = tf.placeholder(tf.int64, [None, 10])
     keep_prob = tf.placeholder(tf.float32)
     learning_rate = tf.placeholder(tf.float32)
     train_flag = tf.placeholder(tf.bool)
@@ -400,13 +364,13 @@ if __name__ == '__main__':
 
     # loss function: cross_entropy
     # train_step: training operation
-    cross_entropy = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y_, logits=output))
+    cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=output))
     l2 = tf.add_n([tf.nn.l2_loss(var) for var in tf.trainable_variables()])
     train_step = tf.train.MomentumOptimizer(learning_rate, momentum_rate, use_nesterov=True).\
         minimize(cross_entropy + l2 * weight_decay)
 
 
-    correct_prediction = tf.equal(tf.argmax(output, 1), y_)
+    correct_prediction = tf.equal(tf.argmax(output, 1), tf.argmax(y_,1))
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
 
