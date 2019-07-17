@@ -1,11 +1,12 @@
 import numpy as np
+import os
 import tensorflow as tf
-
+# os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 def unpickle(file):
     import pickle
     fo = open(file, 'rb')
-    dict = pickle.load(fo)
+    dict = pickle.load(fo,encoding='bytes')
     fo.close()
     if 'data' in dict:
         dict['data'] = dict['data'].reshape((-1, 3, 32, 32)).swapaxes(1, 3).swapaxes(1, 2).reshape(-1,
@@ -16,8 +17,8 @@ def unpickle(file):
 
 def load_data_one(f):
     batch = unpickle(f)
-    data = batch['data']
-    labels = batch['labels']
+    data = batch[b'data']
+    labels = batch[b'labels']
     print("Loading %s: %d" % (f, len(data)))
     return data, labels
 
@@ -36,7 +37,7 @@ def run_in_batch_avg(session, tensors, batch_placeholders, feed_dict={}, batch_s
     res = [0] * len(tensors)
     batch_tensors = [(placeholder, feed_dict[placeholder]) for placeholder in batch_placeholders]
     total_size = len(batch_tensors[0][1])
-    batch_count = (total_size + batch_size - 1) / batch_size
+    batch_count = int((total_size + batch_size - 1) / batch_size)
     for batch_idx in range(batch_count):
         current_batch_size = None
         for (placeholder, tensor) in batch_tensors:
@@ -90,7 +91,7 @@ def avg_pool(input, s):
 
 def run_model(data, image_dim, label_count, depth):
     weight_decay = 1e-4
-    layers = (depth - 4) / 3
+    layers = int((depth - 4) / 3)
     graph = tf.Graph()
     with graph.as_default():
         xs = tf.placeholder("float", shape=[None, image_dim])
@@ -131,7 +132,7 @@ def run_model(data, image_dim, label_count, depth):
         session.run(tf.global_variables_initializer())
         saver = tf.train.Saver()
         train_data, train_labels = data['train_data'], data['train_labels']
-        batch_count = len(train_data) / batch_size
+        batch_count = int(len(train_data) / batch_size)
         batches_data = np.split(train_data[:batch_count * batch_size], batch_count)
         batches_labels = np.split(train_labels[:batch_count * batch_size], batch_count)
         print("Batch per epoch: ", batch_count)
@@ -143,9 +144,9 @@ def run_model(data, image_dim, label_count, depth):
                 batch_res = session.run([train_step, cross_entropy, accuracy],
                                         feed_dict={xs: xs_, ys: ys_, lr: learning_rate, is_training: True,
                                                    keep_prob: 0.8})
-                if batch_idx % 100 == 0: print(epoch, batch_idx, batch_res[1:])
+                # if batch_idx % 100 == 0: print(epoch, batch_idx, batch_res[1:])
 
-            save_path = saver.save(session, 'densenet_%d.ckpt' % epoch)
+            # save_path = saver.save(session, 'densenet_%d.ckpt' % epoch)
             test_results = run_in_batch_avg(session, [cross_entropy, accuracy], [xs, ys],
                                             feed_dict={xs: data['test_data'], ys: data['test_labels'],
                                                        is_training: False, keep_prob: 1.})
@@ -153,11 +154,11 @@ def run_model(data, image_dim, label_count, depth):
 
 
 def run():
-    data_dir = 'data'
+    data_dir = '/home/amax/Desktop/cifar-10-batches-py'
     image_size = 32
     image_dim = image_size * image_size * 3
     meta = unpickle(data_dir + '/batches.meta')
-    label_names = meta['label_names']
+    label_names = meta[b'label_names']
     label_count = len(label_names)
 
     train_files = ['data_batch_%d' % d for d in range(1, 6)]
