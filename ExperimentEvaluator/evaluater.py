@@ -10,6 +10,7 @@ import os
 import numpy as np
 import tensorflow as tf
 import random
+import pickle
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
@@ -17,7 +18,7 @@ import matplotlib.pyplot as plt
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
-path = os.getcwd()  # + '/../'
+path = 'C:\\Users\\Jalynn\\Desktop'  # os.getcwd()  # + '/../'
 
 # FLAGS = tf.app.flags.FLAGS
 
@@ -50,17 +51,69 @@ class Evaluator:
         self.dataset = Dataset()
         self.dtrain.feature = self.dtrain.label = []
         self.trainindex = []
-        data_dir = os.path.join(path, 'cifar-10-batches-bin')
-        self.dvalid.feature, self.dvalid.label = self._load_batch(os.path.join(data_dir, 'test_batch.bin'))
-        self.dataset.feature, self.dataset.label = self._load_data(data_dir)
+        data_dir = os.path.join(path, 'cifar-10-batches-py')
+        self.dataset.feature, self.dataset.label, self.dvalid.feature, self.dvalid.label = self.prepare_data()
+        # self.dvalid.feature, self.dvalid.label = self._load_batch(os.path.join(data_dir, 'test_batch.bin'))
+        # self.dataset.feature, self.dataset.label = self._load_data(data_dir)
         self.leftindex = range(self.dataset.label.shape[0])
-        ind = list(range(10000))
-        random.shuffle(ind)
-        self.dvalid.feature = self.dvalid.feature[ind]
-        self.dvalid.label = self.dvalid.label[ind]
+        # ind = list(range(10000))
+        # random.shuffle(ind)
+        # self.dvalid.feature = self.dvalid.feature[ind]
+        # self.dvalid.label = self.dvalid.label[ind]
         self.train_num = 0
         self.network_num = 0
         self.max_steps = 60000
+
+    def unpickle(self, file):
+        with open(file, 'rb') as fo:
+            dict = pickle.load(fo, encoding='bytes')
+        return dict
+
+    def load_data_one(self, file):
+        batch = self.unpickle(file)
+        data = batch[b'data']
+        labels = batch[b'labels']
+        print("Loading %s : %d." % (file, len(data)))
+        return data, labels
+
+    def load_data(self, files, data_dir, label_count):
+        global image_size, img_channels
+        data, labels = self.load_data_one(os.path.join(data_dir, files[0]))
+        for f in files[1:]:
+            data_n, labels_n = self.load_data_one(os.path.join(data_dir, f))
+            data = np.append(data, data_n, axis=0)
+            labels = np.append(labels, labels_n, axis=0)
+        labels = np.array([[float(i == label) for i in range(label_count)] for label in labels])
+        data = data.reshape([-1, 3, IMAGE_SIZE, IMAGE_SIZE])
+        data = data.transpose([0, 2, 3, 1])
+        return data, labels
+
+    def prepare_data(self):
+        print("======Loading data======")
+        # download_data()
+        data_dir = os.path.join(path, 'cifar-10-batches-py')
+        # image_dim = image_size * image_size * img_channels
+        meta = self.unpickle(data_dir + '/batches.meta')
+
+        print(meta)
+        label_names = meta[b'label_names']
+        label_count = 10
+        train_files = ['data_batch_%d' % d for d in range(1, 6)]
+        train_data, train_labels = self.load_data(train_files, data_dir, label_count)
+        test_data, test_labels = self.load_data(['test_batch'], data_dir, label_count)
+
+        print("Train data:", np.shape(train_data), np.shape(train_labels))
+        print("Test data :", np.shape(test_data), np.shape(test_labels))
+        print("======Load finished======")
+
+        # print("======Shuffling data======")
+        # indices = np.random.permutation(len(train_data))
+        # train_data = train_data[indices]
+        # train_labels = train_labels[indices]
+        print("======Prepare Finished======")
+
+        return train_data, train_labels, test_data, test_labels
+
 
     def _variable_on_cpu(self, name, shape, initializer):
         """Helper to create a Variable stored on CPU memory.
@@ -299,7 +352,7 @@ class Evaluator:
             # images, labels = inputs(eval_data=False, data_dir=os.path.join(path, 'cifar-10-batches-bin'),
             #                                       batch_size=batch_size,NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN=self.train_num)
             images = tf.placeholder(tf.float32, [128, 32, 32, 3])
-            labels = tf.placeholder(tf.int32, [128, ])
+            labels = tf.placeholder(tf.int32, [128, 10])
 
             y = self._inference(images, graph_part, cellist)
 
@@ -308,8 +361,9 @@ class Evaluator:
             variable_average_op = variable_average.apply(
                 tf.trainable_variables())
             labels = tf.cast(labels, tf.int64)
-            top_k_op = tf.nn.in_top_k(y, labels, 1)  # Calculate predictions
-            cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=y, labels=labels)
+            top_k_op = tf.equal(tf.argmax(y, 1), tf.argmax(labels, 1))
+            # top_k_op = tf.nn.in_top_k(y, labels, 1)  # Calculate predictions
+            cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=y, labels=labels)
             cross_entropy_mean = tf.reduce_mean(cross_entropy)
             tf.add_to_collection('losses', cross_entropy_mean)
 
@@ -322,11 +376,11 @@ class Evaluator:
 
             return train_op, loss, top_k_op,images,labels
 
-    def evaluate(self, network, network_index, start_time):
+    def evaluate(self, network):  #, network_index, start_time):
         '''Train'''
         # print('Evaluater:start training')
         cellist = network.cell_list[-1]
-        cellist.append(('dense', [384, 192], 'relu'))
+        # cellist.append(('dense', [384, 192], 'relu'))
         self.network_num += 1
         tf.reset_default_graph()
         print('*********network %d config***********' % (self.network_num))
@@ -397,7 +451,10 @@ class Evaluator:
             catag = 10
             for cat in range(catag):
                 # num_train_samples = self.dataset.label.shape[0]
-                cata_index = [i for i in self.leftindex if self.dataset.label[i] == cat]
+                print(type(self.dataset.label))
+                print(np.argmax(self.dataset.label[0]))
+                print(type(self.leftindex))
+                cata_index = [i for i in self.leftindex if np.argmax(self.dataset.label[i]) == cat]
                 selected = random.sample(cata_index, int(add_num / catag))
                 self.trainindex += selected
                 self.leftindex = [i for i in self.leftindex if not (i in selected)]
@@ -539,7 +596,7 @@ if __name__ == '__main__':
     network_list.append(vgg16)
     eval = Evaluator()
     eval.add_data(50000)
-    eval = eval.exp(vgg16, 300)
+    eval = eval.evaluate(vgg16)
 
     # for network in network_list:
     #     eval = Evaluator()

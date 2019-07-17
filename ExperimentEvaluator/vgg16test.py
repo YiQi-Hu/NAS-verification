@@ -106,7 +106,7 @@ def load_data(files, data_dir, label_count):
 def prepare_data():
     print("======Loading data======")
     # download_data()
-    data_dir = os.path.join('/home/amax/Desktop', 'cifar-10-batches-py')
+    data_dir = os.path.join(path, 'cifar-10-batches-py')
     image_dim = image_size * image_size * img_channels
     meta = unpickle(data_dir + '/batches.meta')
 

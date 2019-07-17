@@ -7,6 +7,7 @@ import random
 import pickle as pickle
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+path = 'C:\\Users\\Jalynn\\Desktop'
 
 class_num = 10
 image_size = 32
@@ -22,14 +23,10 @@ model_save_path = './model/'
 NUM_CLASSES = 10
 
 
-
-
 def unpickle(file):
     with open(file, 'rb') as fo:
-        dict = pickle.load(fo,encoding='bytes')
+        dict = pickle.load(fo, encoding='bytes')
     return dict
-
-
 
 
 def load_data_one(file):
@@ -40,30 +37,25 @@ def load_data_one(file):
     return data, labels
 
 
-
-
 def load_data(files, data_dir, label_count):
     global image_size, img_channels
-    data, labels = load_data_one(data_dir + '/' + files[0])
+    data, labels = load_data_one(os.path.join(data_dir, files[0]))
     for f in files[1:]:
-        data_n, labels_n = load_data_one(data_dir + '/' + f)
+        data_n, labels_n = load_data_one(os.path.join(data_dir, f))
         data = np.append(data, data_n, axis=0)
         labels = np.append(labels, labels_n, axis=0)
     labels = np.array([[float(i == label) for i in range(label_count)] for label in labels])
-    data = data.reshape([-1, img_channels, image_size, image_size])
+    data = data.reshape([-1, 3, image_size, image_size])
     data = data.transpose([0, 2, 3, 1])
     return data, labels
-
-
 
 
 def prepare_data():
     print("======Loading data======")
     # download_data()
-    data_dir = os.path.join('/home/amax/Desktop', 'cifar-10-batches-py')
-    image_dim = image_size * image_size * img_channels
+    data_dir = os.path.join(path, 'cifar-10-batches-py')
+    # image_dim = IMAGE_SIZE * image_size * img_channels
     meta = unpickle(data_dir + '/batches.meta')
-
 
     print(meta)
     label_names = meta[b'label_names']
@@ -72,18 +64,15 @@ def prepare_data():
     train_data, train_labels = load_data(train_files, data_dir, label_count)
     test_data, test_labels = load_data(['test_batch'], data_dir, label_count)
 
-
     print("Train data:", np.shape(train_data), np.shape(train_labels))
     print("Test data :", np.shape(test_data), np.shape(test_labels))
     print("======Load finished======")
-
 
     print("======Shuffling data======")
     indices = np.random.permutation(len(train_data))
     train_data = train_data[indices]
     train_labels = train_labels[indices]
     print("======Prepare Finished======")
-
 
     return train_data, train_labels, test_data, test_labels
 
@@ -97,9 +86,8 @@ def batch_norm(input):
 def _random_crop(batch, crop_shape, padding=None):
     oshape = np.shape(batch[0])
 
-
     if padding:
-        oshape = (oshape[0] + 2*padding, oshape[1] + 2*padding)
+        oshape = (oshape[0] + 2 * padding, oshape[1] + 2 * padding)
     new_batch = []
     npad = ((padding, padding), (padding, padding), (0, 0))
     for i in range(len(batch)):
@@ -110,41 +98,30 @@ def _random_crop(batch, crop_shape, padding=None):
         nh = random.randint(0, oshape[0] - crop_shape[0])
         nw = random.randint(0, oshape[1] - crop_shape[1])
         new_batch[i] = new_batch[i][nh:nh + crop_shape[0],
-                                    nw:nw + crop_shape[1]]
+                       nw:nw + crop_shape[1]]
     return new_batch
 
 
-
-
 def _random_flip_leftright(batch):
-        for i in range(len(batch)):
-            if bool(random.getrandbits(1)):
-                batch[i] = np.fliplr(batch[i])
-        return batch
+    for i in range(len(batch)):
+        if bool(random.getrandbits(1)):
+            batch[i] = np.fliplr(batch[i])
+    return batch
 
 
-
-
-def data_preprocessing(x_train,x_test):
-
-
+def data_preprocessing(x_train, x_test):
     x_train = x_train.astype('float32')
     x_test = x_test.astype('float32')
-
 
     x_train[:, :, :, 0] = (x_train[:, :, :, 0] - np.mean(x_train[:, :, :, 0])) / np.std(x_train[:, :, :, 0])
     x_train[:, :, :, 1] = (x_train[:, :, :, 1] - np.mean(x_train[:, :, :, 1])) / np.std(x_train[:, :, :, 1])
     x_train[:, :, :, 2] = (x_train[:, :, :, 2] - np.mean(x_train[:, :, :, 2])) / np.std(x_train[:, :, :, 2])
 
-
     x_test[:, :, :, 0] = (x_test[:, :, :, 0] - np.mean(x_test[:, :, :, 0])) / np.std(x_test[:, :, :, 0])
     x_test[:, :, :, 1] = (x_test[:, :, :, 1] - np.mean(x_test[:, :, :, 1])) / np.std(x_test[:, :, :, 1])
     x_test[:, :, :, 2] = (x_test[:, :, :, 2] - np.mean(x_test[:, :, :, 2])) / np.std(x_test[:, :, :, 2])
 
-
     return x_train, x_test
-
-
 
 
 def data_augmentation(batch):
@@ -203,7 +180,6 @@ def _makepool(inputs, hplist):
         return tf.reduce_mean(inputs, [1, 2], keep_dims=True)
 
 
-
 def _makedense(inputs, hplist):
     """Generates dense layers according to information in hplist
 
@@ -222,7 +198,7 @@ def _makedense(inputs, hplist):
         with tf.variable_scope('dense' + str(i)) as scope:
             weights = tf.get_variable('weights', shape=[inputs.shape[-1], neural_num],
                                       initializer=tf.contrib.keras.initializers.he_normal())
-            weight = tf.multiply(tf.nn.l2_loss(weights), 0.004, name='weight_loss')
+            # weight = tf.multiply(tf.nn.l2_loss(weights), 0.004, name='weight_loss')
             # tf.add_to_collection('losses', weight)
             biases = tf.get_variable('biases', [neural_num], initializer=tf.constant_initializer(0.0))
             if hplist[2] == 'relu':
@@ -321,16 +297,17 @@ def run_testing(sess, ep):
     pre_index = 0
     add = 1000
     for it in range(10):
-        batch_x = test_x[pre_index:pre_index+add]
-        batch_y = test_y[pre_index:pre_index+add]
+        batch_x = test_x[pre_index:pre_index + add]
+        batch_y = test_y[pre_index:pre_index + add]
         pre_index = pre_index + add
-        loss_, acc_  = sess.run([cross_entropy, accuracy],
-                                feed_dict={x: batch_x, y_: batch_y, keep_prob: 1.0, train_flag: False})
+        loss_, acc_ = sess.run([cross_entropy, accuracy],
+                               feed_dict={x: batch_x, y_: batch_y, keep_prob: 1.0, train_flag: False})
         loss += loss_ / 10.0
         acc += acc_ / 10.0
     summary = tf.Summary(value=[tf.Summary.Value(tag="test_loss", simple_value=loss),
                                 tf.Summary.Value(tag="test_accuracy", simple_value=acc)])
     return acc, loss, summary
+
 
 if __name__ == '__main__':
     train_x, train_y, test_x, test_y = prepare_data()
@@ -345,7 +322,7 @@ if __name__ == '__main__':
     learning_rate = tf.placeholder(tf.float32)
     train_flag = tf.placeholder(tf.bool)
 
-    graph_part = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [17],[]]
+    graph_part = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [17], []]
     cell_list = [('conv', 64, 3, 'relu'), ('conv', 64, 3, 'relu'), ('pooling', 'max', 2), ('conv', 128, 3, 'relu'),
                  ('conv', 128, 3, 'relu'), ('pooling', 'max', 2), ('conv', 256, 3, 'relu'),
                  ('conv', 256, 3, 'relu'), ('conv', 256, 3, 'relu'), ('pooling', 'max', 2),
@@ -364,7 +341,7 @@ if __name__ == '__main__':
     train_step = tf.train.MomentumOptimizer(learning_rate, momentum_rate, use_nesterov=True). \
         minimize(cross_entropy + l2 * weight_decay)
 
-    correct_prediction = tf.equal(tf.argmax(output, 1), tf.argmax(y_,1))
+    correct_prediction = tf.equal(tf.argmax(output, 1), tf.argmax(y_, 1))
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
     # initial an saver to save model
