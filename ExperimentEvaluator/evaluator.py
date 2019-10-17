@@ -346,9 +346,10 @@ class Evaluator:
                 y_ = tf.placeholder(tf.int64, [batch_size, NUM_CLASSES], name="label")
                 input = x
                 for i in range(self.blocks):
-                    self.blocks = i
+                    # self.blocks = i
                     input = self._inference(input, pre_block[i][0], pre_block[i][1])
-                self.blocks = len(pre_block)
+                    input=tf.nn.avg_pool(input, ksize=[1, 2,2, 1],strides=[1, 1,1, 1], padding='SAME')
+                # self.blocks = len(pre_block)
             elif self.blocks > 0:
                 new_saver = tf.train.import_meta_graph(model_save_path + 'my_model.meta')
                 new_saver.restore(sess, tf.train.latest_checkpoint(model_save_path))
@@ -356,12 +357,14 @@ class Evaluator:
                 x = graph.get_tensor_by_name("input:0")
                 y_ = graph.get_tensor_by_name("label:0")
                 input = graph.get_tensor_by_name("last_layer" + str(self.blocks - 1) + ":0")
+                input = tf.nn.avg_pool(input, ksize=[1, 2, 2, 1], strides=[1, 1, 1, 1], padding='SAME')
             else:
                 x = tf.placeholder(tf.float32, [batch_size, IMAGE_SIZE, IMAGE_SIZE, 3], name='input')
                 y_ = tf.placeholder(tf.int64, [batch_size, NUM_CLASSES], name="label")
                 input = x
 
             output = self._inference(input, graph_part, cell_list)
+            output = tf.reduce_mean(output, [1, 2], name="gpool", keep_dims=True)#global pooling
 
             output = tf.reshape(output, [batch_size, -1])
             with tf.variable_scope('lastdense' + str(self.blocks)) as scope:
