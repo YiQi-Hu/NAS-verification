@@ -26,8 +26,8 @@ NUM_EXAMPLES_PER_EPOCH_FOR_EVAL = 10000
 INITIAL_LEARNING_RATE = 0.1  # Initial learning rate.
 MOVING_AVERAGE_DECAY = 0.98
 REGULARAZTION_RATE = 0.0001
-batch_size = 250
-epoch = 500
+batch_size = 125
+epoch = 5
 weight_decay = 0.0003
 momentum_rate = 0.9
 log_save_path = './logs'
@@ -124,6 +124,8 @@ def data_preprocessing(x_train, x_test):
     x_test[:, :, :, 0] = (x_test[:, :, :, 0] - np.mean(x_test[:, :, :, 0])) / np.std(x_test[:, :, :, 0])
     x_test[:, :, :, 1] = (x_test[:, :, :, 1] - np.mean(x_test[:, :, :, 1])) / np.std(x_test[:, :, :, 1])
     x_test[:, :, :, 2] = (x_test[:, :, :, 2] - np.mean(x_test[:, :, :, 2])) / np.std(x_test[:, :, :, 2])
+    x_train=data_augmentation(x_train)
+    x_train=np.array(x_train)
 
     return x_train, x_test
 
@@ -264,16 +266,8 @@ class Evaluator:
         inputs[0] = images
         getinput = [False for i in range(nodelen)]  # bool list for whether this cell has already got input or not
         getinput[0] = True
-        # bool list for whether this cell has already been in the queue or not
-        inqueue = [False for i in range(nodelen)]
-        inqueue[0] = True
-        q = []
-        q.append(0)
 
-        # starting to build network through width-first searching
-        while len(q) > 0:
-            # making layers according to information provided by cellist
-            node = q.pop(0)
+        for node in range(nodelen):
             # print('Evaluater:right now we are processing node %d'%node,', ',cellist[node])
             if cellist[node][0] == 'conv':
                 layer = self._makeconv(inputs[node], cellist[node], node)
@@ -301,9 +295,6 @@ class Evaluator:
                 else:
                     inputs[j] = layer
                     getinput[j] = True
-                if not inqueue[j]:
-                    q.append(j)
-                    inqueue[j] = True
 
         # softmax
         last_layer = tf.identity(layer, name="last_layer" + str(self.blocks))
@@ -337,7 +328,7 @@ class Evaluator:
         self.blocks = len(pre_block)
         # define placeholder x, y_ , keep_prob, learning_rate
         train_flag = tf.placeholder(tf.bool)
-        global_step = tf.Variable(0, trainable=False)
+        # global_step = tf.Variable(0, trainable=False)
         learning_rate=tf.placeholder(tf.float32)
 
         with tf.Session() as sess:
@@ -346,10 +337,10 @@ class Evaluator:
                 y_ = tf.placeholder(tf.int64, [batch_size, NUM_CLASSES], name="label")
                 input = x
                 for i in range(self.blocks):
-                    # self.blocks = i
+                    self.blocks = i
                     input = self._inference(input, pre_block[i][0], pre_block[i][1])
                     input=tf.nn.avg_pool(input, ksize=[1, 2,2, 1],strides=[1, 1,1, 1], padding='SAME')
-                # self.blocks = len(pre_block)
+                self.blocks = len(pre_block)
             elif self.blocks > 0:
                 new_saver = tf.train.import_meta_graph(model_save_path + 'my_model.meta')
                 new_saver.restore(sess, tf.train.latest_checkpoint(model_save_path))
@@ -357,14 +348,14 @@ class Evaluator:
                 x = graph.get_tensor_by_name("input:0")
                 y_ = graph.get_tensor_by_name("label:0")
                 input = graph.get_tensor_by_name("last_layer" + str(self.blocks - 1) + ":0")
-                input = tf.nn.avg_pool(input, ksize=[1, 2, 2, 1], strides=[1, 1, 1, 1], padding='SAME')
+                input = tf.nn.avg_pool(input, ksize=[1, 2, 2, 1], strides=[1, 1, 1, 1], padding='SAME',name="pool"+ str(self.blocks))
             else:
                 x = tf.placeholder(tf.float32, [batch_size, IMAGE_SIZE, IMAGE_SIZE, 3], name='input')
                 y_ = tf.placeholder(tf.int64, [batch_size, NUM_CLASSES], name="label")
                 input = x
 
             output = self._inference(input, graph_part, cell_list)
-            output = tf.reduce_mean(output, [1, 2], name="gpool", keep_dims=True)#global pooling
+            output = tf.reduce_mean(output, [1, 2], name="gpool"+ str(self.blocks), keep_dims=True)#global pooling
 
             output = tf.reshape(output, [batch_size, -1])
             with tf.variable_scope('lastdense' + str(self.blocks)) as scope:
@@ -384,7 +375,7 @@ class Evaluator:
             #                                            staircase=True)
             train_step = tf.train.MomentumOptimizer(learning_rate, momentum_rate, use_nesterov=True,
                                                     name='opt' + str(self.blocks)). \
-                minimize(cross_entropy + l2 * weight_decay, global_step=global_step)
+                minimize(cross_entropy + l2 * weight_decay)#, global_step=global_step)
 
             correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
             accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
@@ -408,7 +399,7 @@ class Evaluator:
                     batch_x = self.dtrain.feature[pre_index:pre_index + batch_size]
                     batch_y = self.dtrain.label[pre_index:pre_index + batch_size]
 
-                    batch_x = data_augmentation(batch_x)
+                    # batch_x = data_augmentation(batch_x)
 
                     _, batch_loss = sess.run([train_step, cross_entropy],
                                              feed_dict={x: batch_x, y_: batch_y,learning_rate: lr, train_flag: True})
@@ -523,8 +514,26 @@ if __name__ == '__main__':
     # vgg.pre_block.append([lenet.graph_part, lenet.cell_list[-1]])
     # e = eval.evaluate(vgg.graph_part,vgg.cell_list[-1],vgg.pre_block)#, update_pre_weight=True)
     # e=eval.train(network.graph_part,cellist)
-    cell_list = [('conv', 128, 3, 'relu'), ('conv', 128, 1, 'leakyrelu'), ('conv', 256, 3, 'leakyrelu'), ('conv', 256, 3, 'leakyrelu'), ('conv', 48, 5, 'relu'), ('pooling', 'avg', 8), ('conv', 48, 1, 'relu'), ('conv', 48, 3, 'relu'), ('pooling', 'avg', 6), ('conv', 128, 3, 'leakyrelu')]
-    graph=[[1, 2, 3, 4, 6, 8, 9], [2, 3, 7, 9], [3, 4, 6, 7, 8], [4, 7, 9], [5], [6, 8, 9], [7], [8, 9], [9], []]
+    # nn_preblock =[[ [[1, 4, 5, 2, 3, 6], [2, 3], [3], [], [3], [6, 3], [3]],
+    #   [('conv', 64, 3, 'relu'), ('conv', 48, 3, 'relu'), ('conv', 48, 3, 'relu'), ('conv', 64, 3, 'relu'),
+    #    ('conv', 32, 3, 'relu'), ('conv', 32, 1, 'relu'), ('conv', 64, 3, 'leakyrelu')]],
+    #  [[[1, 4, 5, 2, 6, 3], [2, 3], [3], [], [2, 3], [6, 3], [3]],
+    #   [('conv', 128, 3, 'relu'), ('conv', 128, 3, 'relu'), ('conv', 192, 3, 'relu'), ('conv', 128, 3, 'leakyrelu'),
+    #    ('conv', 192, 3, 'relu'), ('conv', 128, 3, 'relu'), ('conv', 192, 3, 'relu')]],
+    #               [[[1, 4, 3], [2], [3], [], [3]],[('conv', 256, 3, 'relu'), ('conv', 256, 3, 'relu'), ('conv', 192, 3, 'leakyrelu'), ('conv', 192, 3, 'leakyrelu'),
+    #    ('conv', 256, 3, 'relu')]]
+    #  ]
+    # preblock=[]
+    #
+    # for nn in nn_preblock:
+    #     e=eval.evaluate(nn[0],nn[1],preblock,is_bestNN=True)
+    #     preblock.append(nn)
+    #     print(e)
+    # cell=[('conv', 64, 3, 'relu'), ('conv', 256, 1, 'leakyrelu'), ('conv', 256, 5, 'leakyrelu'),
+    #  ('conv', 256, 5, 'leakyrelu'), ('conv', 48, 5, 'leakyrelu'), ('pooling', 'avg', 2), ('conv', 32, 1, 'relu'),
+    #  ('conv', 48, 3, 'relu'), ('pooling', 'max', 6), ('conv', 128, 5, 'leakyrelu')]
+    # graph=[[1, 2, 3, 4, 6, 8, 9], [2, 3, 7, 9], [3, 4, 6, 7, 8], [4, 5, 8, 9], [5, 6], [6, 9], [7], [8, 9], [9], []]
+    cell=[('conv', 64, 3, 'relu'), ('conv', 256, 3, 'leakyrelu'), ('conv', 256, 1, 'leakyrelu'), ('conv', 256, 3, 'leakyrelu'), ('conv', 48, 5, 'relu'), ('pooling', 'avg', 7), ('conv', 32, 1, 'relu'), ('conv', 48, 3, 'relu'), ('pooling', 'max', 2), ('conv', 128, 5, 'relu')]
+    graph=[[1, 2, 3, 4, 6, 9], [2, 3, 5, 7, 9], [3, 4, 5, 6, 8], [4, 5, 7], [5, 6, 7, 9], [6, 8, 9], [7], [8, 9], [9], []]
+    eval.evaluate(graph,cell)
 
-    e = eval.evaluate(graph, cell_list)
-    print(e)
