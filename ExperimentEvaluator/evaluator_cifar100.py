@@ -14,6 +14,74 @@ from info_str import NAS_CONFIG
 from densenet import densenet121, densenet161, densenet169, densenet201, densenet100bc, densenet190bc
 
 
+def compute_mean_var(image):
+    # image.shape: [image_num, w, h, c]
+    mean = []
+    var = []
+    for c in range(image.shape[-1]):
+        mean.append(np.mean(image[:, :, :, c]))
+        var.append(np.std(image[:, :, :, c]))
+    return mean, var
+
+
+def unpickle(file):
+    import pickle
+    with open(file, 'rb') as fo:
+        dict = pickle.load(fo, encoding='bytes')
+    return dict
+
+
+def norm_images(image):
+    # image.shape: [image_num, w, h, c]
+    image = image.astype('float32')
+    mean, var = compute_mean_var(image)
+    image[:, :, :, 0] = (image[:, :, :, 0] - mean[0]) / var[0]
+    image[:, :, :, 1] = (image[:, :, :, 1] - mean[1]) / var[1]
+    image[:, :, :, 2] = (image[:, :, :, 2] - mean[2]) / var[2]
+    return image
+
+
+def parse_function(example_proto):
+    features = {'image_raw': tf.FixedLenFeature([], tf.string),
+                'label': tf.FixedLenFeature([], tf.int64)}
+    features = tf.parse_single_example(example_proto, features)
+
+    img = tf.decode_raw(features['image_raw'], tf.float32)
+    img = tf.reshape(img, shape=(32, 32, 3))
+
+    img = tf.pad(img, [[4, 4], [4, 4], [0, 0]])
+    img = tf.random_crop(img, [32, 32, 3])
+    # img = tf.image.random_flip_left_right(img)
+
+    flip = random.getrandbits(1)
+    if flip:
+        img = img[:, ::-1, :]
+    # rot = random.randint(-15, 15)
+    # img = tf.contrib.image.rotate(img, rot)
+    # img = tf.image.rot90(img, rot)
+
+    label = tf.cast(features['label'], tf.int64)
+    return img, label
+
+
+def generate_tfrecord(train, labels, output_path, output_name):
+    if not os.path.exists(output_path):
+        os.mkdir(output_path)
+    writer = tf.python_io.TFRecordWriter(os.path.join(output_path, output_name))
+    for ind, (file, label) in enumerate(zip(train, labels)):
+        img_raw = file.tobytes()
+
+        example = tf.train.Example(features=tf.train.Features(feature={
+            'image_raw': tf.train.Feature(bytes_list=tf.train.BytesList(value=[img_raw])),
+            "label": tf.train.Feature(int64_list=tf.train.Int64List(value=[label]))
+        }))
+        writer.write(example.SerializeToString())  # Serialize To String
+        if ind != 0 and ind % 1000 == 0:
+            print("%d num imgs processed" % ind)
+    writer.close()
+
+
+
 class DataSet:
 
     def __init__(self):
@@ -145,8 +213,8 @@ class Evaluator:
         self.train_num = 0
         self.block_num = 0
         self.log = ''
-        self.train_data, self.train_label, self.valid_data, self.valid_label, \
-        self.test_data, self.test_label = DataSet().inputs()
+        # self.train_data, self.train_label, self.valid_data, self.valid_label, \
+        # self.test_data, self.test_label = DataSet().inputs()
 
     def set_epoch(self, e):
         self.epoch = e
@@ -470,9 +538,21 @@ class Evaluator:
         loss = self._loss(labels, logits)
         train_op = self._train_op(global_step, loss)
 
-        x_train = norm_images(np.concatenate(
-            (np.array(self.train_data), np.array(self.valid_data)), axis=0))
-        x_test = norm_images(self.test_data)
+        train = unpickle('/data/data/cifar-100-python/train')
+        test = unpickle('/data/data/cifar-100-python/test')
+        train_data = train[b'data']
+        test_data = test[b'data']
+
+        x_train = train_data.reshape(train_data.shape[0], 3, 32, 32)
+        x_train = x_train.transpose(0, 2, 3, 1)
+        y_train = train[b'fine_labels']
+
+        x_test = test_data.reshape(test_data.shape[0], 3, 32, 32)
+        x_test = x_test.transpose(0, 2, 3, 1)
+        y_test = test[b'fine_labels']
+
+        x_train = norm_images(train_data)
+        x_test = norm_images(test_data)
         if not os.path.exists('./trans/tran.tfrecords'):
             generate_tfrecord(x_train, self.train_label, './trans/', 'tran.tfrecords')
             generate_tfrecord(x_test, self.test_label, './trans/', 'test.tfrecords')
@@ -488,18 +568,18 @@ class Evaluator:
         sess.run(tf.global_variables_initializer())
 
         if retrain:
-            self.train_data = np.concatenate(
-                (np.array(self.train_data), np.array(self.valid_data)), axis=0).tolist()
-            self.train_label = np.concatenate(
-                (np.array(self.train_label), np.array(self.valid_label)), axis=0).tolist()
+            # self.train_data = np.concatenate(
+            #     (np.array(self.train_data), np.array(self.valid_data)), axis=0).tolist()
+            # self.train_label = np.concatenate(
+            #     (np.array(self.train_label), np.array(self.valid_label)), axis=0).tolist()
             max_steps = (self.NUM_EXAMPLES_FOR_TRAIN + self.NUM_EXAMPLES_FOR_EVAL) // self.batch_size
-            test_data = copy.deepcopy(self.test_data)
-            test_label = copy.deepcopy(self.test_label)
+            # test_data = copy.deepcopy(self.test_data)
+            # test_label = copy.deepcopy(self.test_label)
             num_iter = len(test_label) // self.batch_size
         else:
             max_steps = self.train_num // self.batch_size
-            test_data = copy.deepcopy(self.valid_data)
-            test_label = copy.deepcopy(self.valid_label)
+            # test_data = copy.deepcopy(self.valid_data)
+            # test_label = copy.deepcopy(self.valid_label)
             num_iter = self.NUM_EXAMPLES_FOR_EVAL // self.batch_size
 
         log = ''
